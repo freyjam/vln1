@@ -10,8 +10,3 @@ diagram stuff
 
 wireframes for TUI
 diary stuff
-
-
-##
-lkjdsfljka
-# Halló
