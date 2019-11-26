@@ -7,3 +7,6 @@ verklegt námskeið 1 í HR
 hlutir
 
 diagram stuff
+
+wireframes for TUI
+diary stuff
