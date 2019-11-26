@@ -1,0 +1,55 @@
+1. Insert data.
+2. Retreive data.
+3. Update data.
+
+
+
+
+###
+Insert
+###
+
+1. flight.
+2. staff.
+3. airplane.
+
+
+###
+staff
+###
+
+Name:
+Age:
+Birth:
+Residence:
+JobTitle:
+
+
+###
+flight
+###
+
+destination:
+source:
+time:
+length:
+fuel:
+cost:
+pilot:
+numberOfPassengers:
+
+
+
+###
+airplane
+###
+
+model:
+manufacturer:
+capacity:
+fuelTank:
+...
+
+###
+Retreive
+###
