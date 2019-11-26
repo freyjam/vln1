@@ -15,7 +15,43 @@ Insert
 4. go back
 
 ###
-staff
+Insert -> staff
+###
+
+1. pilot
+2. notpilot
+3. flight attendent
+
+
+
+
+###
+Insert -> staff -> flight attendent
+###
+
+
+basic info.
+
+
+###
+Insert -> staff -> pilot
+###
+
+
+
+###
+pilot
+###
+
+Name: 
+Age:
+Birth:
+Residence:
+...
+
+
+###
+Insert -> Staff -> notpilot
 ###
 
 Name:
@@ -26,7 +62,7 @@ JobTitle:
 
 
 ###
-flight
+Insert -> flight
 ###
 
 destination:
@@ -41,7 +77,7 @@ numberOfPassengers:
 
 
 ###
-airplane
+Insert -> airplane
 ###
 
 model:
@@ -54,14 +90,19 @@ fuelTank:
 Retreive
 ###
 
+
+1. staff
+2. airplanes
+3. destinations
 #
-Pilots
+Retreive -> Pilots
 #
 
 
 #
-airplanes
+Retreive -> airplanes
 #
+
 
 
 
