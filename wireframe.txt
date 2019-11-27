@@ -6,7 +6,7 @@ vdcvgrdgtr
 
 
 ###
-Insert
+1.Insert
 ###
 
 1. flight.
@@ -87,21 +87,37 @@ fuelTank:
 ...
 
 ###
-Retreive
+2.Retreive
 ###
 
 
 1. staff
 2. airplanes
 3. destinations
+
 #
-Retreive -> Pilots
+Retreive -> staff
 #
+
+1. All staff
+2. Pilot
+3. Flight attendant
 
 
 #
 Retreive -> airplanes
 #
+
+###
+3.Update data
+###
+
+Residence:
+JobTitle:
+...
+
+	
+
 
 
 
