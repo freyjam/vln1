@@ -8,14 +8,14 @@
 1.Insert
 ###
 
-1. flight vinnuferd.
+1. voyage.
 2. staff.
 3. destination.
 4. go back
 
 
 ###
-Insert -> flight
+Insert -> voyage
 ###
 airplane:
 destination:
@@ -56,32 +56,6 @@ email:
 residence:
 
 
-###
-Insert -> staff -> pilot
-###
-
-
-
-###
-pilot
-###
-
-Name: 
-Age:
-Birth:
-Residence:
-...
-
-
-###
-Insert -> Staff -> notpilot
-###
-
-Name:
-Age:
-Birth:
-Residence:
-JobTitle:
 
 
 ###
@@ -114,15 +88,15 @@ capacity:
 ###
 
 
-1. staff
+1. crew
 2. airplanes
 3. destinations
 4. go back
 #
-Retreive -> staff
+Retreive -> crew
 #
 
-1. All staff
+1. crew
 2. Pilot
 3. Flight attendant
 4. go back
