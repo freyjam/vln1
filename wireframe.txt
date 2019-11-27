@@ -1,8 +1,7 @@
 1. Insert data.
 2. Retreive data.
 3. Update data.
-vdcvgrdgtr
-
+4. Quit program
 
 
 ###
@@ -116,7 +115,7 @@ capacity:
 1. staff
 2. airplanes
 3. destinations
-
+4. go back
 #
 Retreive -> staff
 #
@@ -124,21 +123,24 @@ Retreive -> staff
 1. All staff
 2. Pilot
 3. Flight attendant
-
+4. go back
 
 #
 Retreive -> airplanes
 #
 
 ###
-3.Update data
+Update data
 ###
 
-Residence:
-JobTitle:
-...
+what user do you want to update the data? 
+social security number:
 
-	
+1. home phone number
+2. cell phone number
+3. residence
+4. email 
+5. go back	
 
 
 
