@@ -9,28 +9,50 @@ vdcvgrdgtr
 Insert
 ###
 
-1. flight.
+1. flight vinnuferd.
 2. staff.
-3. airplane.
+3. destination.
 4. go back
+
+
+###
+Insert -> flight
+###
+
+destination:
+departure from iceland:
+arrival:
+How many pilots? minimum 2:
+captain pilot:
+other pilots:
+how many flight attendants? minimum 1:
+senior flight attendant:
+other flight attendants if flight attendants > 1
+
+###
+Insert -> destination
+###
+
+
+country:
+airport:
+time:
+distanceToIceland:
+contact:
+contoct'sPhoneNumber:
+
 
 ###
 Insert -> staff
 ###
 
-1. pilot
-2. notpilot
-3. flight attendent
 
-
-
-
-###
-Insert -> staff -> flight attendent
-###
-
-
-basic info.
+social security number:
+name:
+cell phone number:
+home phone number:
+email:
+residence:
 
 
 ###
@@ -79,12 +101,12 @@ numberOfPassengers:
 ###
 Insert -> airplane
 ###
+name:
 
 model:
 manufacturer:
+type:
 capacity:
-fuelTank:
-...
 
 ###
 Retreive
