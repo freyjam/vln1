@@ -52,6 +52,14 @@ contoct'sPhoneNumber:
 Insert -> staff
 ###
 
+1. crew.
+2. pilot.
+3. flight attendant.
+
+
+###
+Insert -> Crew -> Pilot
+###
 
 social security number:
 name:
@@ -60,7 +68,19 @@ home phone number:
 email:
 residence:
 
+is captoin Y/n
 
+###
+Insert -> crew -> Flight attendant
+###
+
+social security number:
+name:
+cell phone number:
+home phone number:
+email:
+residence:
+is the main flight attendant Y/n:
 
 
 ###
