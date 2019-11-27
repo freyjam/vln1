@@ -18,10 +18,12 @@ vdcvgrdgtr
 ###
 Insert -> flight
 ###
-
+airplane:
 destination:
-departure from iceland:
 arrival:
+departure from iceland:
+departure from that place to iceland:
+arrival back at iceland:
 How many pilots? minimum 2:
 captain pilot:
 other pilots:
