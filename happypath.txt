@@ -3,7 +3,7 @@
 3. Update data.
 4. Quit program
 
-1
+Choose 1-4: 1
 
 
 ###
@@ -16,7 +16,7 @@
 4. staff to voyage.
 5. go back
 
-2
+Choose 1-5: 2
 
 
 ###
@@ -27,7 +27,7 @@ Insert -> Crew
 2. pilot.
 3. flight attendant.
 
-3
+Choose 1-3: 3
 
 ###
 Insert -> crew -> Flight attendant
