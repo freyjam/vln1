@@ -1,0 +1,45 @@
+1. Insert data.
+2. Retreive data.
+3. Update data.
+4. Quit program
+
+1
+
+
+###
+1.Insert
+###
+
+1. voyage.
+2. staff.
+3. destination.
+4. staff to voyage.
+5. go back
+
+2
+
+
+###
+Insert -> Crew
+###
+
+1. crew.
+2. pilot.
+3. flight attendant.
+
+3
+
+###
+Insert -> crew -> Flight attendant
+###
+
+social security number: 1234567890
+name:	fridrik njalsson
+cell phone number: 1234567
+home phone number: 1234567
+email: fridrikn19@ru.is
+residence: nauthalsvik 1
+is the main flight attendant Y/n: Y
+
+User created
+
