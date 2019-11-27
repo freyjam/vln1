@@ -3,6 +3,7 @@
 3. Update data.
 4. Quit program
 
+Choose 1-4:
 
 ###
 1.Insert
@@ -14,6 +15,7 @@
 4. staff to voyage.
 5. go back
 
+Choose 1-5:
 
 ###
 Insert -> voyage
@@ -49,13 +51,15 @@ contoct'sPhoneNumber:
 
 
 ###
-Insert -> staff
+Insert -> Crew
 ###
 
 1. crew.
 2. pilot.
 3. flight attendant.
+4. Go back.
 
+Choose 1-4:
 
 ###
 Insert -> Crew -> Pilot
@@ -117,6 +121,9 @@ capacity:
 2. airplanes
 3. destinations
 4. go back
+
+Choose 1-4:
+
 #
 Retreive -> crew
 #
@@ -125,6 +132,8 @@ Retreive -> crew
 2. Pilot
 3. Flight attendant
 4. go back
+
+Choose 1-4:
 
 #
 Retreive -> airplanes
@@ -142,6 +151,8 @@ social security number:
 3. residence
 4. email 
 5. go back	
+
+Choose 1-5:
 
 
 
