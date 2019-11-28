@@ -13,9 +13,9 @@ Choose 1-4:
 ###
 
 1. voyage.
-2. staff.
+2. crewmember.
 3. destination.
-4. staff to voyage.
+4. assign crew  to voyage.
 5. airplane
 6. go back
 
@@ -31,7 +31,7 @@ departure from destination:
 
 
 ###
-Insert -> staff to voyage
+Insert -> assign crew  to voyage
 ###
 
 How many pilots? minimum 2:
