@@ -1,68 +1,98 @@
+Welcome to NaN air.
+
+
 1. Insert data.
-2. Retreive data.
+2. Retrieve data.
 3. Update data.
-vdcvgrdgtr
+4. Quit program
 
-
+Choose 1-4:
 
 ###
 1.Insert
 ###
 
-1. flight.
-2. staff.
-3. airplane.
-4. go back
+1. voyage.
+2. crew member.
+3. destination.
+4. assign crew to voyage.
+5. airplane
+6. go back
+
+Choose 1-5:
 
 ###
-Insert -> staff
+Insert -> voyage
 ###
-
-1. pilot
-2. notpilot
-3. flight attendent
-
-
-
-
-###
-Insert -> staff -> flight attendent
-###
-
-
-basic info.
+airplane:
+destination:
+departure from iceland:
+departure from destination:
 
 
 ###
-Insert -> staff -> pilot
+Insert -> assign crew  to voyage
+###
+
+How many pilots? minimum 2:
+captain pilot:
+other pilots:
+how many flight attendants? minimum 1:
+senior flight attendant:
+other flight attendants if flight attendants > 1
+
+###
+Insert -> destination
 ###
 
 
-
-###
-pilot
-###
-
-Name: 
-Age:
-Birth:
-Residence:
-...
+country:
+airport:
+time of flight:
+distance from Iceland:
+contact:
+contact's phonenumber:
 
 
 ###
-Insert -> Staff -> notpilot
+Insert -> Crew
 ###
 
-Name:
-Age:
-Birth:
-Residence:
-JobTitle:
+1. crew.
+2. pilot.
+3. flight attendant.
+4. go back.
+
+Choose 1-4:
+
+###
+Insert -> Crew -> Pilot
+###
+
+social security number:
+name:
+cell phone number:
+home phone number:
+email:
+residence:
+
+is captain Y/n
+
+###
+Insert -> crew -> Flight attendant
+###
+
+social security number:
+name:
+cell phone number:
+home phone number:
+email:
+residence:
+is the main flight attendant Y/n:
 
 
 ###
-Insert -> flight
+Insert -> voyage
 ###
 
 destination:
@@ -79,45 +109,83 @@ numberOfPassengers:
 ###
 Insert -> airplane
 ###
+name:
 
 model:
 manufacturer:
+type:
 capacity:
-fuelTank:
-...
 
 ###
-2.Retreive
+2.Retrieve
 ###
 
 
-1. staff
+1. crew
 2. airplanes
 3. destinations
+4. go back
+
+Choose 1-4:
 
 #
-Retreive -> staff
+Retrieve -> crew
 #
 
-1. All staff
+1. crew
 2. Pilot
 3. Flight attendant
+4. go back
 
+Choose 1-4:
 
 #
-Retreive -> airplanes
+Retrieve -> airplanes
 #
 
 ###
-3.Update data
+Update data
 ###
 
-Residence:
-JobTitle:
-...
+1. crew
+2. airplanes
+3. destinations
+4. go back
 
-	
+#
+1.Crew
+#
 
+what user do you want to update the data? 
+social security number:
+
+1. home phone number
+2. cell phone number
+3. residence
+4. email 
+5. go back	
+
+Choose 1-5:
+
+#
+2.Airplain 
+#
+
+model:
+manufacturer:
+type:
+capacity:
+
+#
+3.Destination
+#
+
+country:
+airport:
+time of flight:
+distance from Iceland:
+contact:
+contact's phonenumber:
 
 
 
