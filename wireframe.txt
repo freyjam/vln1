@@ -13,9 +13,9 @@ Choose 1-4:
 ###
 
 1. voyage.
-2. crewmember.
+2. crew member.
 3. destination.
-4. assign crew  to voyage.
+4. assign crew to voyage.
 5. airplane
 6. go back
 
