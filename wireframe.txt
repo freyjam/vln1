@@ -2,7 +2,7 @@ Welcome to NaN air.
 
 
 1. Insert data.
-2. Retreive data.
+2. Retrieve data.
 3. Update data.
 4. Quit program
 
@@ -48,10 +48,10 @@ Insert -> destination
 
 country:
 airport:
-time:
-distanceToIceland:
+time of flight:
+distance from Iceland:
 contact:
-contoct'sPhoneNumber:
+contact's phonenumber:
 
 
 ###
@@ -61,7 +61,7 @@ Insert -> Crew
 1. crew.
 2. pilot.
 3. flight attendant.
-4. Go back.
+4. go back.
 
 Choose 1-4:
 
@@ -76,7 +76,7 @@ home phone number:
 email:
 residence:
 
-is captoin Y/n
+is captain Y/n
 
 ###
 Insert -> crew -> Flight attendant
@@ -117,7 +117,7 @@ type:
 capacity:
 
 ###
-2.Retreive
+2.Retrieve
 ###
 
 
@@ -129,7 +129,7 @@ capacity:
 Choose 1-4:
 
 #
-Retreive -> crew
+Retrieve -> crew
 #
 
 1. crew
@@ -140,7 +140,7 @@ Retreive -> crew
 Choose 1-4:
 
 #
-Retreive -> airplanes
+Retrieve -> airplanes
 #
 
 ###
