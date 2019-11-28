@@ -43,3 +43,127 @@ is the main flight attendant Y/n: Y
 
 User created
 
+###
+Insert -> Crew
+###
+
+1. crew.
+2. Pilot.
+3. Fligth attendant.
+4. go back.
+
+Choose: 4
+
+###
+Insert
+###
+
+1. voyage.
+2. Crew.
+3. Destination
+4. crew to voyage
+5. airplane.
+6. go back.
+
+Chaase: 5
+
+###
+Insert -> airplane
+###
+
+name: john 
+model:	big
+manufacturer: subaru
+type: sti
+capacity: 5
+
+
+###
+Insert
+###
+
+1. voyage.
+2. Crew.
+3. Destination
+4. crew to voyage
+5. airplane.
+6. go back.
+
+Choose: 3
+
+###
+Insert -> Destination
+###
+
+country:
+airport:
+time:
+distance from iceland:
+contact at airport:
+contact's phone number:
+
+###
+Insert 
+###
+
+
+1. voyage.
+2. staff.
+3. destination.
+4. staff to voyage.
+5. airplane
+6. go back
+
+Choose 1-5: 6
+
+
+Welcome to NaN air.
+
+
+1. Insert data.
+2. Retreive data.
+3. Update data.
+4. Quit program
+
+Choose 1-4: 2.
+
+###
+2.Retreive
+###
+
+
+1. crew
+2. airplanes
+3. destinations
+4. go back
+
+Choose 1-4: 2
+
+.....
+
+
+.....
+
+###
+2.Retreive
+###
+
+
+1. crew
+2. airplanes
+3. destinations
+4. go back
+
+Choose 1-4: 4.
+
+Welcome to NaN air.
+
+
+1. Insert data.
+2. Retreive data.
+3. Update data.
+4. Quit program
+
+Choose 1-4: 4
+
+... 

@@ -1,3 +1,6 @@
+Welcome to NaN air.
+
+
 1. Insert data.
 2. Retreive data.
 3. Update data.
@@ -13,7 +16,8 @@ Choose 1-4:
 2. staff.
 3. destination.
 4. staff to voyage.
-5. go back
+5. airplane
+6. go back
 
 Choose 1-5:
 
@@ -88,7 +92,7 @@ is the main flight attendant Y/n:
 
 
 ###
-Insert -> flight
+Insert -> voyage
 ###
 
 destination:
