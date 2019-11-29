@@ -397,55 +397,78 @@ m - main menu
 UPDATE DATA
 ###
 
-1. crew
-2. destinations
+1. Crew member info
+2. Destination info
 
 b - go back
 m - main menu
 
 #
-UPDATE DATA - CREW
+UPDATE DATA -> CREW MEMBER INFO
 #
 
-what user do you want to update the data? 
-social security number:
+Enter member's SSN:
 
-1. home phone number
-2. cell phone number
-3. residence
-4. email 
-5. go back	
+b - go back
+m - main menu
+
+
+#
+UPDATE DATA -> CREW MEMBER INFO -> 123456-7890
+#
+
+1. Home phone number
+2. Cell phone number
+3. Residence
+4. Email 	
+
+b - go back
+m - main menu
+
+Choose 1-4:
+
+#
+UPDATE DATA -> CREW MEMBER INFO -> 123456-7890 -> EMAIL
+#
+
+Enter new email:	
+
+b - go back
+m - main menu
+
+#
+UPDATE -> DESTINATION INFO
+#
+
+1. Nuuk
+2. Kulusuk
+3. Torshavn
+4. Tingwall
+5. Longyearbyen
+
+b - go back
+m - main menu
 
 Choose 1-5:
 
 #
-2.Airplain 
+UPDATE -> DESTINATION INFO -> TORSHAVN
 #
 
-model:
-manufacturer:
-type:
-capacity:
-
-#
-UPDATE -> DESTINATION
-#
-
-Contact:
-Contact's phonenumber:
-Emergency number:
-
+1. Contact
+2. Contact's phone number
+3. Emergency number
 
 b - go back
 m - main menu
 
+Choose 1-3:
 
+#
+UPDATE -> DESTINATION INFO -> TORSHAVN -> EMERGENCY NUMBER
+#
 
+Enter new emergency number:
 
-
-
-
-
-
-
-
+b - go back
+m - main menu
