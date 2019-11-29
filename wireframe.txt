@@ -159,7 +159,69 @@ Choose 1-4:
 #
 RETRIEVE DATA -> CREW -> ALL CREW
 #
-......
+
+1. All crew
+2. All pilots
+3. All flight attendants
+
+b – go back
+m – main menu
+
+Choose 1-3:
+
+#
+RETRIEVE DATA  -> CREW -> ALL CREW
+#
+
+1.  Alphabetically
+2.  By ID number
+
+b – go back
+m – main menu
+
+Choose 1-2:
+
+
+#
+RETRIEVE DATA  -> CREW -> ALL CREW -> ALPHABETICALLY
+#
+
+FULL NAME		ID		SSN			JOB TITLE
+
+Jón Jónsson		3446		123456-7890		Pilot
+Jóna Jónsdóttir		5739		234583-1234		Flight attendant
+...
+
+b – go back
+m – main menu
+
+
+#
+RETRIEVE DATA -> CREW -> ALL CREW -> ALL PILOTS
+#
+
+1.  Alphabetically
+2.  By ID number
+3.  By aircraft certificate
+
+b – go back
+m – main menu
+
+Choose 1-3:
+
+#
+RETRIEVE DATA -> CREW -> ALL CREW -> ALL PILOTS -> ALPHABETICALLY
+#
+
+FULL NAME		ID		SSN			JOB TITLE
+
+Jón Jónsson		3446		123456-7890		Pilot
+Jóna Jónsdóttir		5739		234583-1234		Flight attendant
+...
+
+b – go back
+m – main menu
+
 
 #
 RETRIEVE DATA -> CREW -> AVAILABLE CREW
