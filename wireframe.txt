@@ -56,6 +56,7 @@ time of flight:
 distance from Iceland:
 contact:
 contact's phonenumber:
+emergency number:
 
 b - go back
 m - main menu
@@ -279,32 +280,131 @@ b - go back
 m - main menu
 
 #
-Retrieve -> destination
+RETRIEVE DATA -> DESTINATION
 #
-.......
+Destination
+Country
+Airport
+Time of flight
+Distance from Iceland
+Contact
+Contact's phonenumber
+Emergency number
 
 #
-Retrieve -> voyage
+RETRIEVE DATA -> VOYAGE
 #
-1. Special day
-2. Special week
-3. Special voyage
-4. go back
+1. By date
+2. By week
 
-Choose 1-4
+b - go back
+m - main menu
 
+#
+RETRIEVE DATA -> VOYAGE -> BY DATE
+#
+
+Enter date:
+
+b - go back
+m - main menu
+
+#
+RETRIEVE DATA -> VOYAGE -> BY DATE -> DD/MM/YY
+#
+Nuuk
+	Status		Airplane
+	
+	Outbound: Reykjavík - Nuuk			From: Airport - GREENLAND
+		Departure: DD/MM/YY HH:MM		At: Nuuk
+		Arrival: DD/MM/YY HH:MM
+		
+	Inbound: Nuuk - Reykjavík
+		Departure: DD/MM/YY HH:MM		From: RVK - ICELAND
+		Arrival: DD/MM/YY HH:MM			At: Reykjavík
+		
+	Crew:	Pilot
+		Co-Pilot
+		Flight attendant(s)
+
+Kulusuk
+	Status		Airplane
+	
+	Outbound: Reykjavík - Kulusuk			From: Airport - GREENLAND
+		Departure: DD/MM/YY HH:MM		At: Kulusuk
+		Arrival: DD/MM/YY HH:MM
+		
+	Inbound: Kulusuk - Reykjavík
+		Departure: DD/MM/YY HH:MM		From: RVK - ICELAND
+		Arrival: DD/MM/YY HH:MM			At: Reykjavík
+		
+	Crew:	Pilot
+		Co-Pilot
+		Flight attendant(s)
+		
+
+b - go back
+m - main menu
+
+#
+RETRIEVE DATA -> VOYAGE -> BY WEEK
+#
+
+Enter start date:
+
+b - go back
+m - main menu
+
+
+#
+RETRIEVE DATA -> VOYAGE -> BY DATE -> DD/MM/YY - DD/MM/YY
+#
+Nuuk
+	Status		Airplane
+	
+	Outbound: Reykjavík - Nuuk			From: Airport - GREENLAND
+		Departure: DD/MM/YY HH:MM		At: Nuuk
+		Arrival: DD/MM/YY HH:MM
+		
+	Inbound: Nuuk - Reykjavík
+		Departure: DD/MM/YY HH:MM		From: RVK - ICELAND
+		Arrival: DD/MM/YY HH:MM			At: Reykjavík
+		
+	Crew:	Pilot
+		Co-Pilot
+		Flight attendant(s)
+
+Kulusuk
+	Status		Airplane
+	
+	Outbound: Reykjavík - Kulusuk			From: Airport - GREENLAND
+		Departure: DD/MM/YY HH:MM		At: Kulusuk
+		Arrival: DD/MM/YY HH:MM
+		
+	Inbound: Kulusuk - Reykjavík
+		Departure: DD/MM/YY HH:MM		From: RVK - ICELAND
+		Arrival: DD/MM/YY HH:MM			At: Reykjavík
+		
+	Crew:	Pilot
+		Co-Pilot
+		Flight attendant(s)
+		
+
+b - go back
+m - main menu
 
 ###
-Update data
+UPDATE DATA
 ###
 
 1. crew
-2. airplanes
-3. destinations
-4. go back
+2. destinations
+
+b - go back
+m - main menu
 
 #
-1.Crew
+UPDATE DATA - CREW
 #
 
 what user do you want to update the data? 
@@ -328,15 +428,18 @@ type:
 capacity:
 
 #
-3.Destination
+UPDATE -> DESTINATION
 #
 
-country:
-airport:
-time of flight:
-distance from Iceland:
-contact:
-contact's phonenumber:
+Contact:
+Contact's phonenumber:
+Emergency number:
+
+
+b - go back
+m - main menu
+
+
 
 
 
