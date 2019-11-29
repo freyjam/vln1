@@ -219,6 +219,15 @@ Choose 1-4
 Update data
 ###
 
+1. crew
+2. airplanes
+3. destinations
+4. go back
+
+#
+1.Crew
+#
+
 what user do you want to update the data? 
 social security number:
 
@@ -229,6 +238,26 @@ social security number:
 5. go back	
 
 Choose 1-5:
+
+#
+2.Airplain 
+#
+
+model:
+manufacturer:
+type:
+capacity:
+
+#
+3.Destination
+#
+
+country:
+airport:
+time of flight:
+distance from Iceland:
+contact:
+contact's phonenumber:
 
 
 
