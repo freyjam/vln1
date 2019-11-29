@@ -35,6 +35,20 @@ Departure from destination:
 b - go back
 m - main menu
 
+###
+REGISTER DATA -> VOYAGE -> CHOOSE AIRCRAFT
+###
+Available aircrafts
+
+1. name		type		seats
+2. name		type		seats
+...
+
+b - go back
+m - main menu
+
+choose 1-6:
+
 #
 REGISTER DATA -> ASSIGN CREW TO VOYAGE
 #
