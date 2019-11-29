@@ -88,7 +88,7 @@ b - go back
 m - main menu
 
 ###
-REGISTER DATA -> CREW -> PILOT
+REGISTER DATA -> CREW -> PILOT -> SELECT CERTIFICATE
 ###
 Select certificate:
 
@@ -96,37 +96,47 @@ Select certificate:
 2. name type
 3. name type
 
+b - go back
+m - main menu
+
 ###
 REGISTER DATA -> CREW -> FLIGHT ATTENDANT
 ###
 
-social security number:
-name:
-cell phone number:
-home phone number:
-email:
-residence:
+Social security number:
+Name:
+Cell phone number:
+Home phone number:
+Email:
+Residence:
+
+b - go back
+m - main menu
 
 ###
 REGISTER DATA -> AIRCRAFT
 ###
 
-name:
-model:
-manufacturer:
-type:
-capacity:
+Name:
+Model:
+Manufacturer:
+Type:
+Capacity:
 
+b - go back
+m - main menu
 
 ###
 RETRIEVE DATA
 ###
 
-1. crew
-2. airplanes
-3. destinations
-4. voyage
-5. go back
+1. Crew
+2. Airplanes
+3. Destinations
+4. Voyage
+
+b - go back
+m - main menu
 
 Choose 1-5:
 
@@ -134,57 +144,65 @@ Choose 1-5:
 RETRIEVE DATA -> CREW
 #
 
-1. all crew
-2. available crew
-3. unavailable crew
-5. special crew member
-4. go back
+1. All crew
+2. Available crew
+3. Unavailable crew
+4. Special crew member
+
+b - go back
+m - main menu
 
 Choose 1-4:
 
 #
-Retrieve -> crew -> all crew
+RETRIEVE DATA -> CREW -> ALL CREW
 #
 ......
 
 #
-Retrieve -> crew -> available crew  
+RETRIEVE DATA -> CREW -> AVAILABLE CREW
 #
 
-1. all crew
-2. pilot
-3. flight attendant
-4. go back
+1. All crew
+2. Pilots
+3. Flight attendants
 
-Choose 1-4
+b - go back
+m - main menu
 
-#
-Retrieve -> crew -> unavailable crew  
-#
-
-1. all crew
-2. pilot
-3. flight attendant
-4. go back
-
-Choose 1-4
+Choose 1-3:
 
 #
-Retrieve -> crew -> special crew member
+RETRIEVE DATA -> CREW -> UNAVAILABLE CREW
 #
-1. pilot
-2. flight attendant
-3. go back
 
-Choose 1-3
+1. All crew
+2. Pilots
+3. Flight attendants
 
+b - go back
+m - main menu
+
+Choose 1-3:
+
+#
+RETRIEVE DATA -> CREW -> special crew member
+#
+
+Enter SSN:
+
+b - go back
+m - main menu
 
 #
 RETRIEVE DATA -> AIRCRAFTS
 #
-1. all aircrafts
-2. select aircraft model
-3. go back
+
+1. All aircrafts
+2. Aircraft model
+
+b - go back
+m - main menu
 
 #
 RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST
@@ -192,12 +210,15 @@ RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST
 Enter date:
 Enter time:
 
+b - go back
+m - main menu
+
 #
 RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST -> DD/MM/YY HH:MM
 #
 1. name		type		seats
 	In the air		  NA 020
-	Nuuk			      Available at: 16:30
+	Nuuk			  Available at: 16:30
   
 2. name		type		seats
 	Arrived at Kulusuk
@@ -209,9 +230,53 @@ RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST -> DD/MM/YY HH:MM
 4. name		type 		seats
 	In the air	  	NA 041
 	Longyearbyen		Available at: 14:45
-  
-###
+	
 
+b - go back
+m - main menu
+  
+#
+RETRIEVE DATA -> AIRCRAFTS -> AIRCRAFT MODEL
+#
+
+1. name	type
+2. name type
+3. name type
+
+b - go back
+m - main menu
+
+#
+RETRIEVE DATA -> AIRCRAFTS -> AIRCRAFT MODEL
+#
+Enter date:
+Enter time:
+
+b - go back
+m - main menu
+
+
+#
+RETRIEVE DATA -> AIRCRAFTS -> AIRCRAFT MODEL -> DD/MM/YY HH:MM
+#
+1. name		type		seats
+	In the air		  NA 020
+	Nuuk			  Available at: 16:30
+  
+2. name		type		seats
+	Arrived at Kulusuk
+	Kulusuk		      Available at: 17:20
+  
+3. name		type		seats
+	Available
+  
+4. name		type 		seats
+	In the air	  	NA 041
+	Longyearbyen		Available at: 14:45
+	
+
+b - go back
+m - main menu
 
 #
 Retrieve -> destination
