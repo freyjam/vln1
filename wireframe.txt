@@ -79,7 +79,7 @@ residence:
 is captain Y/n
 
 ###
-Insert -> crew -> flight attendant
+Insert -> crew -> Flight attendant
 ###
 
 social security number:
@@ -146,7 +146,7 @@ Choose 1-4:
 #
 Retrieve -> crew -> all crew
 #
-...
+......
 
 #
 Retrieve -> crew -> available crew  
@@ -190,15 +190,35 @@ Retrieve -> airplanes
 #
 Retrieve -> airplanes -> all aircrafts
 #
-1. date/time
+1. date
 2. go back
 
 Choose 1-2
 
+###
+RETRIEVE DATA -> AIRPLANES ->
+1. name		type		seats
+	In the air		  NA 020
+	Nuuk			      Available at: 16:30
+  
+2. name		type		seats
+	Arrived at Kulusuk
+	Kulusuk		      Available at: 17:20
+  
+3. name		type		seats
+	Available
+  
+4. name		type 		seats
+	In the air	  	NA 041
+	Longyearbyen		Available at: 14:45
+  
+###
+
+
 #
 Retrieve -> destination
 #
-...
+.......
 
 #
 Retrieve -> voyage
