@@ -50,13 +50,14 @@ other flight attendants if flight attendants > 1
 REGISTER DATA -> DESTINATION
 ###
 
-country:
-airport:
-time of flight:
-distance from Iceland:
-contact:
-contact's phonenumber:
-emergency number:
+Destination:
+Country:
+Airport:
+Time of flight:
+Distance from Iceland:
+Contact:
+Contact's phonenumber:
+Emergency number:
 
 b - go back
 m - main menu
