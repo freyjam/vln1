@@ -27,10 +27,10 @@ Choose 1-5:
 ###
 REGISTER DATA -> VOYAGE
 ###
-airplane:
-destination:
-departure from iceland:
-departure from destination:
+Airplane:
+Destination:
+Departure from iceland:
+Departure from destination:
 
 b - go back
 m - main menu
