@@ -533,9 +533,7 @@ Kulusuk
 		Departure: DD/MM/YY HH:MM		From: RVK - ICELAND
 		Arrival: DD/MM/YY HH:MM			At: Reykjavík
 		
-	Crew:	Pilot
-		Co-Pilot
-		Flight attendant(s)
+	Crew:	has not been assigned
 		
 
 b - go back
