@@ -181,22 +181,21 @@ Choose 1-3
 
 
 #
-Retrieve -> airplanes
+RETRIEVE DATA -> AIRCRAFTS
 #
 1. all aircrafts
 2. select aircraft model
 3. go back
 
 #
-Retrieve -> airplanes -> all aircrafts
+RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST
 #
-1. date
-2. go back
+Enter date:
+Enter time:
 
-Choose 1-2
-
-###
-RETRIEVE DATA -> AIRPLANES ->
+#
+RETRIEVE DATA -> AIRCRAFTS -> ALL AIRCRAFST -> DD/MM/YY HH:MM
+#
 1. name		type		seats
 	In the air		  NA 020
 	Nuuk			      Available at: 16:30
