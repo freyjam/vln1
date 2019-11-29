@@ -116,6 +116,8 @@ manufacturer:
 type:
 capacity:
 
+
+
 ###
 2.Retrieve
 ###
@@ -124,24 +126,90 @@ capacity:
 1. crew
 2. airplanes
 3. destinations
-4. go back
+4. voyage
+5. go back
 
-Choose 1-4:
+Choose 1-5:
 
 #
 Retrieve -> crew
 #
 
-1. crew
-2. Pilot
-3. Flight attendant
+1. all crew
+2. available crew
+3. unavailable crew
+5. special crew member
 4. go back
 
 Choose 1-4:
 
 #
+Retrieve -> crew -> all crew
+#
+......
+
+#
+Retrieve -> crew -> available crew  
+#
+
+1. all crew
+2. pilot
+3. flight attendant
+4. go back
+
+Choose 1-4
+
+#
+Retrieve -> crew -> unavailable crew  
+#
+
+1. all crew
+2. pilot
+3. flight attendant
+4. go back
+
+Choose 1-4
+
+#
+Retrieve -> crew -> special crew member
+#
+1. pilot
+2. flight attendant
+3. go back
+
+Choose 1-3
+
+
+#
 Retrieve -> airplanes
 #
+1. all aircrafts
+2. select aircraft model
+3. go back
+
+#
+Retrieve -> airplanes -> all aircrafts
+#
+1. date/time
+2. go back
+
+Choose 1-2
+
+#
+Retrieve -> destination
+#
+.......
+
+#
+Retrieve -> voyage
+#
+1. Special day
+2. Special week
+3. Special voyage
+4. go back
+
+Choose 1-4
+
 
 ###
 Update data
