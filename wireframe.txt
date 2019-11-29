@@ -79,7 +79,7 @@ residence:
 is captain Y/n
 
 ###
-Insert -> crew -> Flight attendant
+Insert -> crew -> flight attendant
 ###
 
 social security number:
@@ -146,7 +146,7 @@ Choose 1-4:
 #
 Retrieve -> crew -> all crew
 #
-......
+...
 
 #
 Retrieve -> crew -> available crew  
@@ -198,7 +198,7 @@ Choose 1-2
 #
 Retrieve -> destination
 #
-.......
+...
 
 #
 Retrieve -> voyage
