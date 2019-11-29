@@ -29,7 +29,7 @@ REGISTER DATA -> VOYAGE
 ###
 Airplane:
 Destination:
-Departure from iceland:
+Departure from Iceland:
 Departure from destination:
 
 b - go back
