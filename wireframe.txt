@@ -32,6 +32,7 @@ destination:
 departure from iceland:
 departure from destination:
 
+b - go back
 
 ###
 REGISTER DATA -> ASSIGN CREW TO VOYAGE
@@ -45,9 +46,8 @@ senior flight attendant:
 other flight attendants if flight attendants > 1
 
 ###
-Insert -> destination
+REGISTER DATA -> DESTINATION
 ###
-
 
 country:
 airport:
@@ -58,7 +58,7 @@ contact's phonenumber:
 
 
 ###
-Insert -> Crew
+REGISTER DATA -> CREW
 ###
 
 1. crew.
@@ -69,7 +69,7 @@ Insert -> Crew
 Choose 1-4:
 
 ###
-Insert -> Crew -> Pilot
+REGISTER DATA -> CREW -> PILOT
 ###
 
 social security number:
@@ -82,7 +82,7 @@ residence:
 is captain Y/n
 
 ###
-REGISTER -> CREW -> FLIGHT ATTENDANT
+REGISTER DATA -> CREW -> FLIGHT ATTENDANT
 ###
 
 social security number:
@@ -93,38 +93,20 @@ email:
 residence:
 is the main flight attendant Y/n:
 
-
 ###
-Insert -> voyage
+REGISTER DATA -> AIRCRAFT
 ###
 
-destination:
-source:
-time:
-length:
-fuel:
-cost:
-pilot:
-numberOfPassengers:
-
-
-
-###
-Insert -> airplane
-###
 name:
-
 model:
 manufacturer:
 type:
 capacity:
 
 
-
 ###
-2.Retrieve
+RETRIEVE DATA
 ###
-
 
 1. crew
 2. airplanes
@@ -135,7 +117,7 @@ capacity:
 Choose 1-5:
 
 #
-Retrieve -> crew
+RETRIEVE DATA -> CREW
 #
 
 1. all crew
