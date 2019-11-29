@@ -35,16 +35,87 @@ departure from destination:
 b - go back
 m - main menu
 
-###
+#
 REGISTER DATA -> ASSIGN CREW TO VOYAGE
-###
+#
 
-How many pilots? minimum 2:
-captain pilot:
-other pilots:
-how many flight attendants? minimum 1:
-senior flight attendant:
-other flight attendants if flight attendants > 1
+Enter departure date:
+
+b – go back
+m – main menu
+
+#
+REGISTER DATA -> ASSIGN CREW TO VOYAGE -> DD/MM/YY
+#
+1.  Nuuk	Departure from RKV: 14:20		Arrival to RKV: 17:40	Aircraft
+2. Kulusuk	Departure from RKV: 14:20		Arrival to RKV: 17:40	Aircraft
+...
+
+Choose 1-6:
+
+b – go back
+m – main menu
+
+#
+REGISTER DATA -> ASSIGN CREW TO VOYAGE -> DD/MM/YY -> NUUK
+#
+Available captains for voyage
+
+1. Jón Jónsson		123456-7890
+2. Jóna Jónsdóttir	123457-6890
+...
+
+Choose 1-4:
+
+b – go back
+m – main menu
+
+#
+REGISTER DATA -> ASSIGN CREW TO VOYAGE -> DD/MM/YY -> NUUK
+#
+
+Available co-pilots for voyage
+
+1. Jón Jónsson		123456-7890
+2. Jóna Jónsdóttir	123457-6890
+...
+
+Choose 1-4:
+
+b – go back
+m – main menu
+
+#
+REGISTER DATA -> ASSIGN CREW TO VOYAGE -> DD/MM/YY -> NUUK
+#
+
+Available main flight attendent
+
+1. Jón Jónsson		123456-7890
+2. Jóna Jónsdóttir	123457-6890
+...
+
+Choose 1-4:
+
+b – go back
+m – main menu
+
+#
+REGISTER DATA -> ASSIGN CREW TO VOYAGE -> DD/MM/YY -> NUUK -> CREW
+#
+
+Captain: 	Jón Jónsson			123456-7890
+Co-Pilot: 	Jóna Jónsdóttir			345677-7892
+Main FA: 	Gunnar Gunnarsson		789012-3456
+
+1. Save
+2. Assign another FA
+
+b – go back
+m – main menu
+
+Choose 1-2:
+
 
 ###
 REGISTER DATA -> DESTINATION
