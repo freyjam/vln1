@@ -27,7 +27,7 @@ Choose 1-5:
 ###
 REGISTER DATA -> VOYAGE
 ###
-Airplane:
+
 Destination:
 Departure from Iceland:
 Departure from destination:
