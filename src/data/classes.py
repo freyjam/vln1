@@ -1,7 +1,13 @@
 class aeroport:
 	def __init__(self):  ## probably going to have no parameters when created, but
 	 				     ## when the 
-		pass
+		
+		self.personnel = peeps()
+
+	
+	def createUserPilot(self, name, ssn, address, phone, homephone, rank, privileges):
+		self.personnel.createPilot(name, ssn, address, phone, homephone, rank, privileges)
+
 
 
 
@@ -12,7 +18,7 @@ class Airplane:
 
 
 class Crew:
-	def __init__(self, name, ssn, address, phone, homephone):
+	def __init__(self, name, ssn, address = None, phone = None, homephone = None):
 		self.name = name
 		self.ssn = ssn
 		self.address = address
@@ -30,10 +36,8 @@ class pilotNode(Crew):
 		return str(self.ssn)
 
 class flightAttendantNode(Crew):
-	def __init__(self, name, ssn, address, phone, homephone, isboss, rank):
+	def __init__(self, name, ssn, address, phone, homephone):
 		super().__init__(name, ssn, address, phone, homephone)
-		self.isboss = isboss
-		self.rank = rank
 
 
 class peeps: ## store people in a hash map
@@ -41,14 +45,14 @@ class peeps: ## store people in a hash map
 		self.cap = 16
 		self.buckets = [ [] ] * self.cap
 
-	def insertpilot(self, name, ssn, address, phone, homephone):
+	def createPilot(self, name, ssn, address, phone, homephone):
 		node = pilotNode(name, ssn, address, phone, homephone)
 		index = hash(name) % self.cap
-		if node in self.bucket[index]:
+		if node in self.buckets[index]:
 			pass
 			# update
 		else:
-			self.bucket[index].append(node)
+			self.buckets[index].append(node)
 
 	def contains(self, name, ssn):
 		out = False
@@ -59,5 +63,6 @@ class peeps: ## store people in a hash map
 
 		return out
 
-
-
+	def function():
+		pass
+  
