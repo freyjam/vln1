@@ -1,21 +1,31 @@
-class Airport:
+class DataLayerAPI:
 	def __init__(self):  ## probably going to have no parameters when created, but
-	 				     ## when the 
-		
-		self.personnel = peeps()
+						 ## when the 	
+		self.crew = CrewClass()
 		self.destinations = []
 
-	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
-		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
-		self.destinations.append(node)
-		
+	# def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+	# 	node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+	# 	self.destinations.append(node)
 
-	def createUserPilot(self, name, ssn, address, phone, homephone, rank, privileges):
-		self.personnel.createPilot(name, ssn, address, phone, homephone, rank, privileges)
+	def createUserPilot(self, name, ssn, address, phone , homephone , rank, role, license):
+		self.crew.createPilot(name, ssn, address, phone, homephone, rank, role, license)
+
+	def getAllDestinations(self):
+		output = []
+		for x in self.destinations:
+			output.append(x.destination)
+		return output
+
+	def retrieveCrew(self):
+		outputList = []
+		for x, v in self.crew.data.items():
+			outputList.append(v)
+		return outputList
 
 
 
-class Voyage:
+class Voyage: 
 	def __init__(self):
 		pass
 
@@ -35,43 +45,27 @@ class Airplane:
 		pass
 
 
-class Crew:
-	def __init__(self, name, ssn, address = None, phone = None, homephone = None):
+class CrewNode:
+	def __init__(self, name, ssn, address, phone , homephone , role, rank, license ):
 		self.name = name
 		self.ssn = ssn
 		self.address = address
 		self.phone = phone
 		self.homephone = homephone
-
-
-class pilotNode(Crew):
-	def __init__(self, name , ssn , address , phone , homephone, rank = None, privileges = None ):
-		super().__init__(name , ssn , address , phone , homephone)
 		self.rank = rank
-		self.privileges = privileges
-
-	def __str__(self):
-		return str(self.ssn)
-
-class flightAttendantNode(Crew):
-	def __init__(self, name, ssn, address, phone, homephone):
-		super().__init__(name, ssn, address, phone, homephone)
+		self.role = role
+		self.license = license
 
 
-class peeps: ## store people in a hash map
+class CrewClass: ## store people in a hash map
 	def __init__(self):
-		self.cap = 16
-		self.buckets = [ [] ] * self.cap
+		self.data = {}
 
-	def createPilot(self, name, ssn, address, phone, homephone):
-		node = pilotNode(name, ssn, address, phone, homephone)
-		index = hash(name) % self.cap
-		if node in self.buckets[index]:
-			pass
-			# update
-		else:
-			self.buckets[index].append(node)
-
+	def createPilot(self, name, ssn, address, phone, homephone, rank, role, license 
+	 = None):
+		node = CrewNode(name, ssn, address, phone, homephone, rank, role, license)
+		self.data[ssn] = node
+			
 	def contains(self, name, ssn):
 		out = False
 		index = hash(name) % self.cap
