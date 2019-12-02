@@ -1,15 +1,33 @@
-class aeroport:
+class Airport:
 	def __init__(self):  ## probably going to have no parameters when created, but
 	 				     ## when the 
 		
 		self.personnel = peeps()
+		self.destinations = []
 
-	
+	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+		self.destinations.append(node)
+		
+
 	def createUserPilot(self, name, ssn, address, phone, homephone, rank, privileges):
 		self.personnel.createPilot(name, ssn, address, phone, homephone, rank, privileges)
 
 
 
+class Voyage:
+	def __init__(self):
+		pass
+
+class destinationNode:
+	def __init__(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
+		self.destination = destination
+		self.country  = country
+		self.airport = airport
+		self.distanceFromIceland = distanceFromIceland
+		self.contact = contact
+		self.contactNumber = contactNumber
+		self.emergencyNumber = emergencyNumber
 
 
 class Airplane:
