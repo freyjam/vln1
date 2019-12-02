@@ -1,14 +1,17 @@
+import csv
+
+
 class DataLayerAPI:
 	def __init__(self):  ## probably going to have no parameters when created, but
 						 ## when the 	
 		self.crew = CrewClass()
 		self.destinations = []
 
-	# def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
-	# 	node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
-	# 	self.destinations.append(node)
+	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
+		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+		self.destinations.append(node)
 
-	def createUserPilot(self, name, ssn, address, phone , homephone , rank, role, license):
+	def createUserPilot(self, name, ssn, address, phone, homephone, rank, role, license):
 		self.crew.createPilot(name, ssn, address, phone, homephone, rank, role, license)
 
 	def getAllDestinations(self):
@@ -23,6 +26,15 @@ class DataLayerAPI:
 			outputList.append(v)
 		return outputList
 
+	def loadObjectFromClass(self):
+		with open('csv/Crew.csv') as csv_file:
+		    csv_reader = csv.reader(csv_file, delimiter=',')
+		    line_count = 0
+		    for row in csv_reader:
+		        if line_count == 0:
+		            line_count += 1
+		        else:
+		        	self.createUserPilot(row[1],row[0], None, None, None, row[2], row[3], row[4] )
 
 
 class Voyage: 
@@ -75,6 +87,4 @@ class CrewClass: ## store people in a hash map
 
 		return out
 
-	def function():
-		pass
-  
+	
