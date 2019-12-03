@@ -4,18 +4,47 @@ import csv
 
 from operator import attrgetter
 
-all_crew = classes.DataLayerAPI()
+class LogicLayerAPI:
 
-all_crew.loadObjectFromClass()
+    def getAllCrewList(self):
+        allCrew = classes.DataLayerAPI()
+        allCrew.loadObjectFromClass()
+        allCrewList = allCrew.retrieveCrew()
+        return allCrewList
 
-all_crew.sort(key=attrgetter('name'))
+    def sortAllCrewAlpha(self):
+        allCrewList = self.getAllCrewList()
+        allCrewList.sort(key=attrgetter('name'))
+        return allCrewList
 
-print(all_crew)
+    def sortAllPilotsAlpha(self):
+        allCrewList = self.getAllCrewList()
+        allPilotsList = []
+        for obj in allCrewList:
+            if obj.role == 'Pilot':
+                allPilotsList.append(obj)
+        allPilotsList.sort(key=attrgetter('name'))
+        return allPilotsList
+
+    def sortAllPilotsBylicense(self):
+        allPilotsList = self.sortAllPilotsAlpha()
+        allPilotsList.sort(key=attrgetter('license'))
+        return allPilotsList
+    
+    def sortAllCabincrewAlpha(self):
+        allCrewList = self.getAllCrewList()
+        allCabincrewList = []
+        for obj in allCrewList:
+            if obj.role == 'Cabincrew':
+                allCabincrewList.append(obj)
+        allCabincrewList.sort(key=attrgetter('name'))
+        return allCabincrewList
 
 
+a = LogicLayerAPI()
 
-
-
+for obj in a.sortAllCabincrewAlpha():
+    print('Name: {} Role: {} Rank: {} License: {}'.format(obj.name, obj.role, obj.rank, obj.license))
 
 
 
