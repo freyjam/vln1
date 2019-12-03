@@ -41,12 +41,6 @@ class LogicLayerAPI:
         return allCabincrewList
 
 
-a = LogicLayerAPI()
-
-for obj in a.sortAllCabincrewAlpha():
-    print('Name: {} Role: {} Rank: {} License: {}'.format(obj.name, obj.role, obj.rank, obj.license))
-
-
 
 
 
