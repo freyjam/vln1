@@ -48,10 +48,10 @@ class DataLayerAPI:
 		# iterate over all crew members and taking the flight attendants 
 		# and putting them into a list and returning the list
 
-	def getSpecificEmployee(self, ssn):
+	def getSpecificCrewMember(self, ssn):
 		return self.crew.data[ssn]
 		# return a instance of a crew member by using ssn as a identifier
-	def changeEmployeeDetail(self, ssn, address = None, phone = None, homephone = None):
+	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
 		if address is not None:
 			 self.crew.data[ssn].address = address
 		if phone is not None:

@@ -17,3 +17,5 @@ with open('csv/Crew.csv') as csv_file:
 out = Datalayerapi.retrieveCrew()
 for x in out:
 	print(x.name, x.ssn)
+
+# print(Datalayerapi.getSpecificEmployee('3009907461').name)
