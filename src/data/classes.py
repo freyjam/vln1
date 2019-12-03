@@ -7,7 +7,7 @@ class DataLayerAPI:
 		self.crew = CrewClass() ## create instance of class that maintains people
 		self.destinations = [] # list of nodes of destinations
 		self.airplanes = [] # list of nodes of airplanes
-
+		self.voyages = Voyage()
 	def registerPlane(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
 		node = Airplane(name, model, manufacturer, type, capacity, planeInsignia, planeTypeId)
 		self.airplanes.append(node) ## creating a airplane node and insert that node into list
@@ -17,40 +17,16 @@ class DataLayerAPI:
 
 		# create a instance of destination node 
 		# and putting that node into the list.
-	def createUserPilot(self, name, ssn, address, phone, homephone, rank, role, license):
+	def registerCrewMember(self, name, ssn, address, phone, homephone, rank, role, license):
 		self.crew.createPilot(name, ssn, address, phone, homephone, rank, role, license)
 		# crew instance has a function that creates 
 		# a crew node and puts it into a dictionary with
 		# the ssn as a key.
-	def getAllDestinations(self):
-		output = []
-		for x in self.destinations:
-			output.append(x.destination)
-		return output
-		# iterate over destinations and return the list.
-
-	def getAllPilots(self):
-		output = []
-		for x, v in self.crew.data.items():
-			if v.role is "Pilot":
-				output.append(v)
-		return output
-
-		# iterate over every member of crew and making a list of every pilot
-		# and returning that list
-	def getAllFlightAttendants(self):
-		output = []
-		for x, v in self.crew.data.items():
-			if v.role is "Cabincrew":
-				output.append(v)
-		return output
 
 		# iterate over all crew members and taking the flight attendants 
 		# and putting them into a list and returning the list
 
-	def getSpecificCrewMember(self, ssn):
-		return self.crew.data[ssn]
-		# return a instance of a crew member by using ssn as a identifier
+	
 	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
 		if address is not None:
 			 self.crew.data[ssn].address = address
@@ -85,10 +61,32 @@ class DataLayerAPI:
 		## stuff
 		# todo..
 
-class Voyage: 
-	def __init__(self):
-		pass 
+class VoyageNode: 
+	def __init__(self, destination, departureFromIceland, departureFromDestination):
+		self.airplane = ""
+		self.destination = destination
+		self.departureFromIceland = departureFromIceland
+		self.departureFromDestination = departureFromDestination
+
 		## todo
+
+
+class Voyage:
+	def __init__(self):
+		self.voyages = []
+
+	def registerVoyage(self, airplane, destination, departureFromIceland, departureFromDestination):
+		node = VoyageNode(destination, departureFromIceland, departureFromDestination)
+		self.voyages.append(node)
+
+	def registerCrewToVoyage(self, staff):
+		pass
+
+	def registerAirplaneToVoyage(self, airplane):
+		pass
+
+
+
 
 class destinationNode:
 	def __init__(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
@@ -114,7 +112,7 @@ class Airplane:
 
 
 class CrewNode:
-	def __init__(self, name, ssn, address, phone , homephone , role, rank, license ):
+	def __init__(self, name, ssn, address, phone , homephone , role, rank, license, email):
 		self.name = name
 		self.ssn = ssn
 		self.address = address
@@ -123,6 +121,7 @@ class CrewNode:
 		self.rank = rank
 		self.role = role
 		self.license = license
+		self.email = email
 
 
 class CrewClass: ## store people in a hash map
@@ -130,8 +129,8 @@ class CrewClass: ## store people in a hash map
 		self.data = {}
 
 	def createPilot(self, name, ssn, address, phone, homephone, rank, role, license 
-	 = None):
-		node = CrewNode(name, ssn, address, phone, homephone, rank, role, license)
+	 = None, email = None):
+		node = CrewNode(name, ssn, address, phone, homephone, rank, role, license, email)
 		self.data[ssn] = node
 			
 	
