@@ -1,4 +1,5 @@
 import csv
+from modelClasses.airplaneClass import airplaneClass
 
 
 class DataLayerAPI:
@@ -85,43 +86,6 @@ class Voyage:
 	def registerAirplaneToVoyage(self, airplane):
 		pass
 
-
-
-
-class destinationNode:
-	def __init__(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
-		self.destination = destination
-		self.country  = country
-		self.airport = airport
-		self.distanceFromIceland = distanceFromIceland
-		self.contact = contact
-		self.contactNumber = contactNumber
-		self.emergencyNumber = emergencyNumber
-
-
-class Airplane:
-	def __init__(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
-		self.name = name
-		self.model = model
-		self.manufacturer = manufacturer
-		self.type = type
-		self.capacity = capacity
-		self.planeInsignia = planeInsignia
-		self.planeTypeId = planeTypeId
-
-
-
-class CrewNode:
-	def __init__(self, name, ssn, address, phone , homephone , role, rank, license, email):
-		self.name = name
-		self.ssn = ssn
-		self.address = address
-		self.phone = phone
-		self.homephone = homephone
-		self.rank = rank
-		self.role = role
-		self.license = license
-		self.email = email
 
 
 class CrewClass: ## store people in a hash map
