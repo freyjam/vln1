@@ -1,4 +1,4 @@
-import csv
+#import csv
 from models.crewModel import Crew
 from models.destinationModel import Destination
 
@@ -33,7 +33,7 @@ class DataLayerAPI:
 			file_stream = open(filename)
 			return file_stream
 		except FileNotFoundError:
-			print('ooops')
+			return None
 
 	def getAllDestinationsFromFile(self):
 		AllDestinationsList = []
@@ -45,8 +45,6 @@ class DataLayerAPI:
 				destination, country, airport, distance, contact, emergencyNumber = line.strip().split(',')
 				AllDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
 		return AllDestinationsList
-
-
 			
 
 	
@@ -108,10 +106,4 @@ class CrewClass: ## store people in a hash map
 	def createPilot(self, ssn, name, role, rank, license, address, phonenumber, email):
 		node = Crew(ssn, name, role, rank, license, address, phonenumber, email)
 		self.data[ssn] = node
-			
-
-
-a = DataLayerAPI()
-
-for x in a.getAllDestinationsFromFile():
-	print(x.destination, x.country)
+		
