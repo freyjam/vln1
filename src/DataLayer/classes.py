@@ -33,17 +33,17 @@ class DataLayerAPI:
 			file_stream = open(filename)
 			return file_stream
 		except FileNotFoundError:
-			return None
+			print('ooops')
 
 	def getAllDestinationsFromFile(self):
 		AllDestinationsList = []
 		lineCounter = 0
-		file_stream = self.open_file('csv/Destinations.csv')
-		for line in file_stream:
+		for line in self.open_file('csv/Destinations.csv'):
 			if lineCounter == 0:
 				lineCounter += 1
 			else:
-				AllDestinationsList.append(Destination(line.strip().split(',')))
+				destination, country, airport, distance, contact, emergencyNumber = line.strip().split(',')
+				AllDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
 		return AllDestinationsList
 
 
@@ -84,15 +84,6 @@ class DataLayerAPI:
 		## stuff
 		# todo..
 
-class VoyageNode: 
-	def __init__(self, destination, departureFromIceland, departureFromDestination):
-		self.airplane = ""
-		self.destination = destination
-		self.departureFromIceland = departureFromIceland
-		self.departureFromDestination = departureFromDestination
-
-		## todo
-
 
 class Voyage:
 	def __init__(self):
@@ -120,3 +111,7 @@ class CrewClass: ## store people in a hash map
 			
 
 
+a = DataLayerAPI()
+
+for x in a.getAllDestinationsFromFile():
+	print(x.destination, x.country)

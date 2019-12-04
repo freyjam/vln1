@@ -5,10 +5,16 @@ from operator import attrgetter
 class LogicLayerAPI:
 
     def getAllCrewList(self):
-        allCrew = classes.DataLayerAPI()
+        allCrew = DataLayerAPI()
         allCrew.loadObjectFromClass()
         allCrewList = allCrew.retrieveCrew()
         return allCrewList
+
+    def getAllDestinationsList(self):
+        allDestinations = DataLayerAPI()
+        allDestinationsList = allDestinations.getAllDestinationsFromFile()
+        allDestinationsList.sort(key=attrgetter('destination'))
+        return allDestinationsList
 
     def sortAllCrewAlpha(self):
         allCrewList = self.getAllCrewList()
@@ -46,8 +52,4 @@ class LogicLayerAPI:
         for obj in self.getAllCrewList():
             if obj.ssn == ssn:
                 return obj
-
-    def getAllDestination(self):
-        pass
-
 
