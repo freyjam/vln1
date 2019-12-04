@@ -1,6 +1,4 @@
-from DataLayer.classes.DataLayerAPI import DataLayerAPI
-
-import csv
+from DataLayer.classes import DataLayerAPI
 
 from operator import attrgetter
 
@@ -43,5 +41,3 @@ class LogicLayerAPI:
             if obj.ssn == ssn:
                 return obj
 
-    
-    
