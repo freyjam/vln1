@@ -38,7 +38,12 @@ class LogicLayerAPI:
         allCabincrewList.sort(key=attrgetter('name'))
         return allCabincrewList
 
-
+    def getCrewMemberBySsn(self, Ssn):
+        allCrewList = self.getAllCrewList()
+        specialCrewMember = ""
+        for obj in self.getAllCrewList():
+            if obj == Ssn:
+                specialCrewMember = obj
 
 
 
