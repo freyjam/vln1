@@ -1,4 +1,4 @@
-import classes
+import DataLayer.classes
 
 import csv
 
@@ -18,9 +18,8 @@ class LogicLayerAPI:
         return allCrewList
 
     def sortAllPilotsAlpha(self):
-        allCrewList = self.getAllCrewList()
         allPilotsList = []
-        for obj in allCrewList:
+        for obj in self.getAllCrewList():
             if obj.role == 'Pilot':
                 allPilotsList.append(obj)
         allPilotsList.sort(key=attrgetter('name'))
@@ -32,9 +31,8 @@ class LogicLayerAPI:
         return allPilotsList
     
     def sortAllCabincrewAlpha(self):
-        allCrewList = self.getAllCrewList()
         allCabincrewList = []
-        for obj in allCrewList:
+        for obj in self.getAllCrewList():
             if obj.role == 'Cabincrew':
                 allCabincrewList.append(obj)
         allCabincrewList.sort(key=attrgetter('name'))
