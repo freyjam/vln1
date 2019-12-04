@@ -39,7 +39,6 @@ class LogicLayerAPI:
         return allCabincrewList
 
     def getCrewMemberBySsn(self, ssn):
-
         for obj in self.getAllCrewList():
             if obj.ssn == ssn:
                 return obj
