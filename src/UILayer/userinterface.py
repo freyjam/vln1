@@ -21,13 +21,12 @@ class PrintOverview:
         self.printer = LogicLayerAPI()
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
-        a = LogicLayerAPI()
         ret_str = "####\nAll Staff\n####"
         #Bæta við status ? Eða bara hafa hann þegar leitað er eftir status? (gæti verið hentugt að sjá beint í yfirliti hver er laus og hver ekki)
         header = "\n\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
         ret_str += header
         ret_str += "\n" + "-" * len(ret_str)            #Seperates header from data
-        for member in a.sortAllCrewAlpha():                        #Laga þegar við tengjum við LL
+        for member in self.printer.sortAllCrewAlpha():                        #Laga þegar við tengjum við LL
             ret_str += "\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format\
                 (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.license)
         print(ret_str)
