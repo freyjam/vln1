@@ -3,3 +3,7 @@ class Aircraft:
 		self.insignia = insignia
 		self.typeId = typeId
 		self.capacity = capacity
+		self.state = 'Available'
+		self.availableAt = None
+		self.numberOfFlight = None
+		self.destination = None
