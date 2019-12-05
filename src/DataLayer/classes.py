@@ -1,5 +1,6 @@
-import csv
-from modelClasses.airplaneClass import airplaneClass
+#import csv
+from models.crewModel import Crew
+from models.destinationModel import Destination
 
 
 class DataLayerAPI:
@@ -12,20 +13,45 @@ class DataLayerAPI:
 	def registerPlane(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
 		node = Airplane(name, model, manufacturer, type, capacity, planeInsignia, planeTypeId)
 		self.airplanes.append(node) ## creating a airplane node and insert that node into list
+<<<<<<< HEAD
 	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
 		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
 		self.destinations.append(node)
+=======
+	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, emergencyNumber):
+		node = destinationNode(destination, country, airport, distanceFromIceland, contact, emergencyNumber)
+		self.destinations.append(node) 
+>>>>>>> 29855183e4c9a07c2133d507fd0e0c3ed11aac5e
 
 		# create a instance of destination node 
 		# and putting that node into the list.
-	def registerCrewMember(self, name, ssn, address, phone, homephone, rank, role, license):
-		self.crew.createPilot(name, ssn, address, phone, homephone, rank, role, license)
+	def registerCrewMember(self, ssn, name, role, rank, license, address, phonenumber, email):
+		self.crew.createPilot(ssn, name, role, rank, license, address, phonenumber, email)
 		# crew instance has a function that creates 
 		# a crew node and puts it into a dictionary with
 		# the ssn as a key.
 
 		# iterate over all crew members and taking the flight attendants 
 		# and putting them into a list and returning the list
+
+	def open_file(self, filename):
+		try:
+			file_stream = open(filename)
+			return file_stream
+		except FileNotFoundError:
+			return None
+
+	def getAllDestinationsFromFile(self):
+		AllDestinationsList = []
+		lineCounter = 0
+		for line in self.open_file('csv/Destinations.csv'):
+			if lineCounter == 0:
+				lineCounter += 1
+			else:
+				destination, country, airport, distance, contact, emergencyNumber = line.strip().split(',')
+				AllDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
+		return AllDestinationsList
+			
 
 	
 	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
@@ -52,7 +78,7 @@ class DataLayerAPI:
 		        if line_count == 0:
 		            line_count += 1
 		        else:
-		        	self.createUserPilot(row[1],row[0], None, None, None, row[2], row[3], row[4] )
+		        	self.crew.createPilot(row[0],row[1], row[2], row[3], row[4], row[5], row[6], row[7])
 
 
 	    # taking data from csv file and inserting that data into the class 
@@ -61,15 +87,6 @@ class DataLayerAPI:
 		pass
 		## stuff
 		# todo..
-
-class VoyageNode: 
-	def __init__(self, destination, departureFromIceland, departureFromDestination):
-		self.airplane = ""
-		self.destination = destination
-		self.departureFromIceland = departureFromIceland
-		self.departureFromDestination = departureFromDestination
-
-		## todo
 
 
 class Voyage:
@@ -92,8 +109,7 @@ class CrewClass: ## store people in a hash map
 	def __init__(self):
 		self.data = {}
 
-	def createPilot(self, name, ssn, address, phone, homephone, rank, role, license 
-	 = None, email = None):
-		node = CrewNode(name, ssn, address, phone, homephone, rank, role, license, email)
+	def createPilot(self, ssn, name, role, rank, license, address, phonenumber, email):
+		node = Crew(ssn, name, role, rank, license, address, phonenumber, email)
 		self.data[ssn] = node
-			
+		

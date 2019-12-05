@@ -1,7 +1,7 @@
-id,destination
-LYR,Longyearbyean
-GOH,Nuuk
-KUS,Kulusuk
-FAE,Thorshavn
-LWK,Tingwall
-KEF,Keflavik
+destination,country,airport,distance,contact,emergencynumber
+Longyearbyean,Svalbard,LYR,4,Sadie Bullock,5648375
+Nuuk,Greenland,GOH,3,Aubree Buckley,5648392
+Kulusuk,Greenland,KUS,2,Naima Greene,6574024
+Thorshavn,Faroe Islands,FAE,1,Braxton Wade,6589452
+Tingwall,Shetland Island,LWK,2,Cadence Mahoney,5468963
+Reykjavik,Iceland,RKV,0,Jón Jónsson,3546756
