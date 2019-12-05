@@ -53,12 +53,22 @@ class DataLayerAPI:
 		aircraftsList = []
 		lineCounter = 0
 		for line in self.openFileForReading('csv/Aircraft.csv'):
-			if lineCounter = 0:
+			if lineCounter == 0:
 				lineCounter += 1
 			else:
 				insignia, typeId, capacity = line.stip().split(',')
 				aircraftsList.append(Aircraft(insignia, typeId, capacity))
 		return aircraftsList
+
+	def getAllCrewFromFile(self):
+		allCrewList = []
+		lineCounter = 0
+		for line in self.openFileForReading('csv/Crew.csv'):
+			if lineCounter == 0:
+				lineCounter += 1
+			else:
+				ssn, name, role, rank, license, address, phone, email = line.strip().split(',')
+				allCrewList.append(Crew(ssn, name, role, rank, license, address, phone, email))
 
 	
 	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
