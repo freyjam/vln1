@@ -63,5 +63,16 @@ class PrintOverview:
         pass
        
     def printVoyage(self):
-        #Verkefni morgundagsins :)
-        pass
+        #Tekur inn voyage
+        subject = "####\nVoyages\n####"
+        voytitlestatus = "\n\n{} - {}\n   Status: {}".format(deplocation, destinationname, status)
+        outbound = "\n   Outbound: {} - {}".format("RVK", destairport)
+        outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", outdeptime, outdepdate, "Arrival: ", outarrtime, outarrdate)
+        inbound = "\n   Inbound: {} - {}".format(destairport, "RVK")
+        inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", indeptime, indepdate, "Arrival: ", inarrtime, inarrdate)
+        #Ath uppsetningu gagna fra LL.
+        crew = "\n   Crew: "
+        for member in voyage_crew:
+            crew += "\n\t{}, {}".format(member.name, member.rank)
+        ret_str = subject + voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
+        print(ret_str)
