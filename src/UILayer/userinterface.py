@@ -18,11 +18,11 @@ class Menu:
  
 class PrintOverview:
     def __init__(self, staff, airplane, destination, voyage, workPlan):
-        self.staff = staff
-        self.airplane = airplane
-        self.destination = destination
-        self.voyage = voyage
-        self.workPlan = workPlan
+        self.staff_list = staffs
+        self.airplane_list = airplanes
+        self.destination_list = destinations
+        self.voyage_list = voyages
+        self.workPlan_list = workPlans
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
         ret_str = "####\nAll Staff\n####"
@@ -30,7 +30,7 @@ class PrintOverview:
         header = "\n\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
         ret_str += header
         ret_str += "\n" + "-" * len(ret_str)            #Seperates header from data
-        for member in staffList:                        #Laga þegar við tengjum við LL
+        for member in self.staff_list:                        #Laga þegar við tengjum við LL
             ret_str += "\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format\
                 (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.air_license)
         print(ret_str)
