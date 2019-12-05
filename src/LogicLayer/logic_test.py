@@ -72,10 +72,13 @@ class LogicLayerAPI:
         dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 4d623db8f70d913b301369dde1924f5f39b01df3
     
 >>>>>>> fe3110f99ca7c2bf8a45bf53e47dd19fb783fd28
     def changeIsoTimeFormat(self, isotime):
@@ -85,4 +88,3 @@ class LogicLayerAPI:
         hour, minutes = isotime[11:13], isotime[14:18] 
         isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
         return isoTimeChange
->>>>>>> f655e1587c43a9cb4d9e972b3dc634cb02ce301b

@@ -1,6 +1,5 @@
-from LogicLayer.logic_test import LogicLayerAPI
+from UILayer.userinterface import PrintOverview
 
-a = LogicLayerAPI()
+a = PrintOverview()
 
-for x in a.sortAllCabincrewAlpha():
-    print(x.name)
+a.printDestinations()
