@@ -9,8 +9,6 @@ class Menu:
         #returns a menu, write code when connections between layers have been nailed down.
         pass
  
-    def printMenu(self, menu):
-        print(menu)
  
  
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
@@ -19,6 +17,16 @@ class Menu:
 class PrintOverview:
     def __init__(self):
         self.printer = LogicLayerAPI()
+    
+    def printMenu(self, menu):
+        #Needs an iterable format of menu options.
+        output = "What would you like to do?\n"
+        i = 1                                       #Initialize number of options, first option is marked 1.
+        for option in menu:
+            output += "\n" + "{}. {}".format(i, option)
+            i += 1
+        output += "\n\nq - Quit Program"
+        print(output)
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
         a = LogicLayerAPI()
@@ -31,13 +39,31 @@ class PrintOverview:
                 (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.license)
         print(ret_str)
    
-    def printStaffMember(self, staffMember):
+    def printStaffMember(self):
         ret_str = "####\n{}\n####".format(staffMember.name)
         ret_str += "\n\nName: {}\nSocial Security Number: {}\nAddress: {}\nPhone Number: {}\nE-mail address: {}\nRole: {}\nRank: {}\nLicense: {}".format\
             (staffMember.name, staffMember.snn, staffMember.address, staffMember.phone, staffMember.email, staffMember.role, staffMember.rank, staffMember.license)
         print(ret_str)
- 
- 
+    
+    def printUnavailableStaff(self):
+        #Birta fleiri/færri upplýsingar?
+        ret_str = "####\nUnavailable Staff\n####"
+        header = "\n\n{:<15} {:<15} {:<25} {:<15} {:<15}".format("Name", "SSN", "Rank", "Destination", "Becomes Available")   
+        ret_str += header
+        ret_str += "\n" + "-" * (len(ret_str) - 20)            #Seperates header from data
+        for staff in unavailable_staff_list:
+            ret_str += "\n{:<15} {:<15} {:<25} {:<15} {:<15}".format(staff.name, staff.ssn, staff.rank, staff.destination, staff.freedate)
+        print(ret_str)
+    
+    def printAvailableStaff(self):
+        #Birta fleiri upplýsingar? T.d. license
+        ret_str = "####\nAvailable Staff\n####"
+        header = "\n\n{:<15} {:<15} {:<25}".format("Name", "SSN", "Rank")
+        ret_str += header + "\n" + "-" * (len(ret_str) - 20)
+        for staff in available_staff_list:
+            ret_str += "\n{:<15} {:<15} {:<25}".format(staff.name, staff.ssn, staff.rank)
+        print(ret_str)
+
     def printDestinations(self):
         ret_str = "####\nDestinations:\n####"
         for destination in self.printer.getAllDestinationsList():
@@ -46,6 +72,7 @@ class PrintOverview:
         print(ret_str)
    
     def printAirplanes(self):
+        #Needs an iterable format of all airplanes, attributes must be accessible.
         ret_str = "####\nAirplanes\n####"
         header = "\n\n{:<15}{:<15}{:<20}{:<15}".format("Name", "Model", "Manufacturer", "Capacity")
         ret_str += header
@@ -55,10 +82,18 @@ class PrintOverview:
         print(ret_str)
  
     def printWorkSchedule(self):
-        #Check how work hours are maintained in logic layer before writing this function
-        pass
+        #Needs both the desired staff member and their work schedule from LL
+        ret_str = "####\nWork Schedule\n####\n"
+        staff_info = "\n{:<15} {:<15} {:<15} {:<30}".format(staff.name, staff.ssn, staff.role, staff.rank)
+        frame = "\n" + "=" * (len(staff_info) - 5)
+        schedule = ""
+        for entry in work_plan:
+            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>6}".format(entry.ddmmyy, entry.destination, "Departure: ", entry.departuretime, "Arrival: ", entry.arrivaltime)
+        ret_str += frame + staff_info + frame + schedule
+        print(ret_str)
        
     def printVoyage(self):
+        #Needs an iterable format of voyages from LL
         ret_str = "####\nVoyages\n####"
         for voyage in voyages_list:     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
             voytitlestatus = "\n\n{} - {}\n   Status: {}".format(voyage.deplocation, voyage.destinationname, voyage.status) #dep = departure, arr = arrival
