@@ -1,6 +1,7 @@
 #import csv
 from models.crewModel import Crew
 from models.destinationModel import Destination
+from models.aircraftModel import Aircraft
 
 
 class DataLayerAPI:
@@ -30,24 +31,34 @@ class DataLayerAPI:
 		# iterate over all crew members and taking the flight attendants 
 		# and putting them into a list and returning the list
 
-	def open_file(self, filename):
+	def openFileForReading(self, filename):
 		try:
-			file_stream = open(filename)
+			file_stream = open(filename, 'r')
 			return file_stream
 		except FileNotFoundError:
 			return None
 
 	def getAllDestinationsFromFile(self):
-		AllDestinationsList = []
+		allDestinationsList = []
 		lineCounter = 0
-		for line in self.open_file('csv/Destinations.csv'):
+		for line in self.openFileForReading('csv/Destinations.csv'):
 			if lineCounter == 0:
 				lineCounter += 1
 			else:
 				destination, country, airport, distance, contact, emergencyNumber = line.strip().split(',')
-				AllDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
-		return AllDestinationsList
-			
+				allDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
+		return allDestinationsList
+	
+	def getAllAircraftInfoFromFile(self):
+		aircraftsList = []
+		lineCounter = 0
+		for line in self.openFileForReading('csv/Aircraft.csv'):
+			if lineCounter = 0:
+				lineCounter += 1
+			else:
+				insignia, typeId, capacity = line.stip().split(',')
+				aircraftsList.append(Aircraft(insignia, typeId, capacity))
+		return aircraftsList
 
 	
 	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
