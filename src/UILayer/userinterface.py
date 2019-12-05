@@ -1,4 +1,4 @@
-#import logic_layer
+from LogicLayer.logic_test import LogicLayerAPI
  
 class Menu:
     def __init__(self, menuid):
@@ -17,22 +17,32 @@ class Menu:
 #logic layer, tímabundin uppsetning.
  
 class PrintOverview:
+<<<<<<< HEAD
     def __init__(self, staff, airplane, destination, voyage, workPlan):
         self.staff_list = staffs
         self.airplane_list = airplanes
         self.destination_list = destinations
         self.voyage_list = voyages
         self.workPlan_list = workPlans
+=======
+    def __init__(self):
+        self.printer = LogicLayerAPI()
+>>>>>>> 4d623db8f70d913b301369dde1924f5f39b01df3
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
+        a = LogicLayerAPI()
         ret_str = "####\nAll Staff\n####"
         #Bæta við status ? Eða bara hafa hann þegar leitað er eftir status? (gæti verið hentugt að sjá beint í yfirliti hver er laus og hver ekki)
         header = "\n\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
         ret_str += header
         ret_str += "\n" + "-" * len(ret_str)            #Seperates header from data
+<<<<<<< HEAD
         for member in self.staff_list:                        #Laga þegar við tengjum við LL
+=======
+        for member in a.sortAllCrewAlpha():                        #Laga þegar við tengjum við LL
+>>>>>>> 4d623db8f70d913b301369dde1924f5f39b01df3
             ret_str += "\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format\
-                (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.air_license)
+                (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.license)
         print(ret_str)
    
     def printStaffMember(self, staffMember):
@@ -44,9 +54,9 @@ class PrintOverview:
  
     def printDestinations(self):
         ret_str = "####\nDestinations:\n####"
-        for destination in destinationList:         #Laga þegar við tengjum við LL.
-            ret_str += "\n{} ({}) - {}\n\tTravel Time: {} hours\n\tDistance from Iceland: {} km\n\tContact Name: {}\n\tEmergency Number: {}".format\
-                (destination.destination, destination.airport, destination.country, destination.time, destination.distance, destination.contactName, destination.emergencyNumber)
+        for destination in self.printer.getAllDestinationsList():         #Laga þegar við tengjum við LL.
+            ret_str += "\n{} ({}) - {}\n\tTravel Time: {} hours\n\tContact Name: {}\n\tEmergency Number: {}".format\
+                (destination.destination, destination.airport, destination.country, destination.distanceFromIceland, destination.contact, destination.emergencyNumber)
         print(ret_str)
    
     def printAirplanes(self):

@@ -1,1 +1,5 @@
-from LogicLayer.logic_test import LogicLayerAPI
+from UILayer.userinterface import PrintOverview
+
+a = PrintOverview()
+
+a.printDestinations()

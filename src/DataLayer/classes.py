@@ -10,18 +10,14 @@ class DataLayerAPI:
 		self.destinations = [] # list of nodes of destinations
 		self.airplanes = [] # list of nodes of airplanes
 		self.voyages = Voyage()
+
 	def registerPlane(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
 		node = Airplane(name, model, manufacturer, type, capacity, planeInsignia, planeTypeId)
 		self.airplanes.append(node) ## creating a airplane node and insert that node into list
-<<<<<<< HEAD
-	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
-		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
-		self.destinations.append(node)
-=======
+
 	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, emergencyNumber):
 		node = destinationNode(destination, country, airport, distanceFromIceland, contact, emergencyNumber)
 		self.destinations.append(node) 
->>>>>>> 29855183e4c9a07c2133d507fd0e0c3ed11aac5e
 
 		# create a instance of destination node 
 		# and putting that node into the list.
