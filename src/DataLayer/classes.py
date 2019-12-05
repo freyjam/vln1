@@ -71,10 +71,6 @@ class DataLayerAPI:
 				allCrewList.append(Crew(ssn, name, role, rank, license, address, phone, email))
 			return allCrewList
 
-	def getAllPastFlightsFromFile(self):
-		pastFlightsList = []
-		
-
 	
 	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
 		if address is not None:
