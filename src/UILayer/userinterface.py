@@ -1,20 +1,21 @@
 from LogicLayer.logic_test import LogicLayerAPI
  
-class Menu:
-    def __init__(self, menuid):
-        self.menuid = menuid
- 
-    def getMenu(self, menuid):
-        """Send message to logic layer to fetch the desired menu from the data layer"""
-        #returns a menu, write code when connections between layers have been nailed down.
+class Input:
+    def __init__(self):
         pass
  
- 
+    def getMenu(self):
+        """Processes input for menu choice, i.e. 1,2,3, etc."""
+        pass
+
+    def getInfo(self):
+        """Sends entered info to logic layer, i.e. ssn, name and other written information"""
+        pass
  
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
 #logic layer, tímabundin uppsetning.
  
-class PrintOverview:
+class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
     
@@ -94,12 +95,13 @@ class PrintOverview:
        
     def printVoyage(self):
         #Needs an iterable format of voyages from LL
+        #Skoða formattið á flight number þegar hægt er að prófa kóðan, gæti litið illa út :)
         ret_str = "####\nVoyages\n####"
         for voyage in voyages_list:     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
             voytitlestatus = "\n\n{} - {}\n   Status: {}".format(voyage.deplocation, voyage.destinationname, voyage.status) #dep = departure, arr = arrival
-            outbound = "\n   Outbound: {} - {}".format("RVK", voyage.destairport)                                           #dest = destination, out = outbound, in = inbound
+            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destairport, voyage.outflightnumber)                                           #dest = destination, out = outbound, in = inbound
             outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.outdeptime, voyage.outdepdate, "Arrival: ", voyage.outarrtime, voyage.outarrdate)
-            inbound = "\n   Inbound: {} - {}".format(voyage.destairport, "RVK")
+            inbound = "\n   Inbound: {} - {}\t{}".format(voyage.destairport, "RVK", voyage.inflightnumber)
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.indeptime, voyage.indepdate, "Arrival: ", voyage.inarrtime, voyage.inarrdate)
             crew = "\n   Crew: "
             for member in voyage_crew:  #For every member in the voyage's crew
