@@ -1,4 +1,4 @@
-import csv
+#import csv
 from models.crewModel import Crew
 from models.destinationModel import Destination
 
@@ -13,9 +13,15 @@ class DataLayerAPI:
 	def registerPlane(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
 		node = Airplane(name, model, manufacturer, type, capacity, planeInsignia, planeTypeId)
 		self.airplanes.append(node) ## creating a airplane node and insert that node into list
+<<<<<<< HEAD
+	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber):
+		node = destinationNode(destination, country, airport, distanceFromIceland, contact, contactNumber, emergencyNumber)
+		self.destinations.append(node)
+=======
 	def registerDestination(self, destination, country, airport, distanceFromIceland, contact, emergencyNumber):
 		node = destinationNode(destination, country, airport, distanceFromIceland, contact, emergencyNumber)
 		self.destinations.append(node) 
+>>>>>>> 29855183e4c9a07c2133d507fd0e0c3ed11aac5e
 
 		# create a instance of destination node 
 		# and putting that node into the list.
@@ -33,7 +39,7 @@ class DataLayerAPI:
 			file_stream = open(filename)
 			return file_stream
 		except FileNotFoundError:
-			print('ooops')
+			return None
 
 	def getAllDestinationsFromFile(self):
 		AllDestinationsList = []
@@ -45,8 +51,6 @@ class DataLayerAPI:
 				destination, country, airport, distance, contact, emergencyNumber = line.strip().split(',')
 				AllDestinationsList.append(Destination(destination, country, airport, distance, contact, emergencyNumber))
 		return AllDestinationsList
-
-
 			
 
 	
@@ -108,10 +112,4 @@ class CrewClass: ## store people in a hash map
 	def createPilot(self, ssn, name, role, rank, license, address, phonenumber, email):
 		node = Crew(ssn, name, role, rank, license, address, phonenumber, email)
 		self.data[ssn] = node
-			
-
-
-a = DataLayerAPI()
-
-for x in a.getAllDestinationsFromFile():
-	print(x.destination, x.country)
+		
