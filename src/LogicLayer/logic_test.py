@@ -79,3 +79,7 @@ class LogicLayerAPI:
         hour, minutes = isotime[11:13], isotime[14:18] 
         isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
         return isoTimeChange
+
+    def getAllAircrafts(self):
+        allAircraftList = self.instance.getAllAircraftInfoFromFile()
+        return allAircraftList
