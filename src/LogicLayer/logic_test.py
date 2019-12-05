@@ -71,8 +71,10 @@ class LogicLayerAPI:
         hours, minutes = time.split(':')
         dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
-    
+
     def changeIsoTimeFormat(self, isotime):
+        '''Takes in isoformat from file, and returns date and time on
+        the form year, month, day, hour, minutes'''
         year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
         hour, minutes = isotime[11:13], isotime[14:18] 
         isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
