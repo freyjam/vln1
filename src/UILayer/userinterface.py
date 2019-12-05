@@ -18,7 +18,7 @@ class Input:
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
-    
+
     def printMenu(self, menu):
         #Needs an iterable format of menu options.
         output = "What would you like to do?\n"
@@ -26,7 +26,7 @@ class Output:
         for option in menu:
             output += "\n" + "{}. {}".format(i, option)
             i += 1
-        output += "\n\nq - Quit Program"
+        output += "\n\nb - Go Back\nm - Main Menu"
         print(output)
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
