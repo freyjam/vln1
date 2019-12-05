@@ -72,14 +72,23 @@ class LogicLayerAPI:
         dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
 
-    def changeIsoTimeFormat(self, isotime):
+    def changeFromIsoTimeFormat(self, isotime):
         '''Takes in isoformat from file, and returns date and time on
         the form year, month, day, hour, minutes'''
         year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
         hour, minutes = isotime[11:13], isotime[14:18] 
-        isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
-        return isoTimeChange
+#        isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
+        return day + '/' + month + '/' + year, hour + ':' + minutes
 
     def getAllAircrafts(self):
         allAircraftList = self.instance.getAllAircraftInfoFromFile()
         return allAircraftList
+
+    def getAllVoyage(self):
+        allVoyageList = self.instance.getAllVoyageFromFile()
+        for obj in allVoyageList:
+            obj.departure = self.changeFromIsoTimeFormat(obj.departure)
+            obj.arrivalAtDest = self.changeFromIsoTimeFormat(obj.arrivalAtDest)
+            obj.departureFromDest = self.changeFromIsoTimeFormat(obj.departureFromDest)
+            obj.arrival = self.changeFromIsoTimeFormat(obj.arrival)
+        return allVoyageList
