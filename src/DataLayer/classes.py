@@ -65,7 +65,6 @@ class DataLayerAPI:
 				else:
 					insignia, typeId, capacity = line.strip().split(',')
 					aircraftsList.append(Aircraft(insignia, typeId, capacity))
-			aircraftsList[0].state = 'Free'
 			return aircraftsList
 
 	def getAllCrewFromFile(self):
