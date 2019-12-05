@@ -23,11 +23,10 @@ class PrintOverview:
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
         a = LogicLayerAPI()
         ret_str = "####\nAll Staff\n####"
-        #Bæta við status ? Eða bara hafa hann þegar leitað er eftir status? (gæti verið hentugt að sjá beint í yfirliti hver er laus og hver ekki)
         header = "\n\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
         ret_str += header
         ret_str += "\n" + "-" * len(ret_str)            #Seperates header from data
-        for member in a.sortAllCrewAlpha():                        #Laga þegar við tengjum við LL
+        for member in a.sortAllCrewAlpha():             #Laga þegar við tengjum við LL
             ret_str += "\n{:<15} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format\
                 (member.name, member.ssn, member.address, member.phone, member.email, member.role, member.rank, member.license)
         print(ret_str)
@@ -41,7 +40,7 @@ class PrintOverview:
  
     def printDestinations(self):
         ret_str = "####\nDestinations:\n####"
-        for destination in self.printer.getAllDestinationsList():         #Laga þegar við tengjum við LL.
+        for destination in self.printer.getAllDestinationsList():
             ret_str += "\n{} ({}) - {}\n\tTravel Time: {} hours\n\tContact Name: {}\n\tEmergency Number: {}".format\
                 (destination.destination, destination.airport, destination.country, destination.distanceFromIceland, destination.contact, destination.emergencyNumber)
         print(ret_str)
@@ -51,7 +50,7 @@ class PrintOverview:
         header = "\n\n{:<15}{:<15}{:<20}{:<15}".format("Name", "Model", "Manufacturer", "Capacity")
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in airplaneList:               #Laga þegar við tengjum við LL
+        for airplane in airplaneList:               #Vantar fall frá logic layer
             ret_str += "\n{:<15}{:<15}{:<20}{:<10}".format(airplane.name, airplane.model, airplane.manufacturer, airplane.capacity)
         print(ret_str)
  
@@ -60,16 +59,15 @@ class PrintOverview:
         pass
        
     def printVoyage(self):
-        #Tekur inn voyage
-        subject = "####\nVoyages\n####"
-        voytitlestatus = "\n\n{} - {}\n   Status: {}".format(deplocation, destinationname, status)
-        outbound = "\n   Outbound: {} - {}".format("RVK", destairport)
-        outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", outdeptime, outdepdate, "Arrival: ", outarrtime, outarrdate)
-        inbound = "\n   Inbound: {} - {}".format(destairport, "RVK")
-        inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", indeptime, indepdate, "Arrival: ", inarrtime, inarrdate)
-        #Ath uppsetningu gagna fra LL.
-        crew = "\n   Crew: "
-        for member in voyage_crew:
-            crew += "\n\t{}, {}".format(member.name, member.rank)
-        ret_str = subject + voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
+        ret_str = "####\nVoyages\n####"
+        for voyage in voyages_list:     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
+            voytitlestatus = "\n\n{} - {}\n   Status: {}".format(voyage.deplocation, voyage.destinationname, voyage.status) #dep = departure, arr = arrival
+            outbound = "\n   Outbound: {} - {}".format("RVK", voyage.destairport)                                           #dest = destination, out = outbound, in = inbound
+            outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.outdeptime, voyage.outdepdate, "Arrival: ", voyage.outarrtime, voyage.outarrdate)
+            inbound = "\n   Inbound: {} - {}".format(voyage.destairport, "RVK")
+            inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.indeptime, voyage.indepdate, "Arrival: ", voyage.inarrtime, voyage.inarrdate)
+            crew = "\n   Crew: "
+            for member in voyage_crew:  #For every member in the voyage's crew
+                crew += "\n\t{}, {}".format(member.name, member.rank)
+            ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         print(ret_str)
