@@ -1,4 +1,4 @@
-destination name,destination airport,departure,arrival at destination,departure from destination,arrival,aircraft,outbound flight number,inbound flight number,captain,co-pilot,fsm,fa1,fa2
+destination name,destination airport,departure,arrival at destination,departure from destination,arrival,aircraft,outbound flight number,inbound flight number,captain,copilot,fsm,fa1,fa2
 Longyearbyen,LYR,2019-12-20T06:45:00,2019-12-20T10:45:00,2019-12-20T11:45:00,2019-12-20T15:45:00,TF-TYQ,NA051,NA052,2706838569,2211658134,1600904199,3003962187,2509913418
 Nuuk,GOH,2019-12-21T06:21:00,2019-12-21T09:21:00,2019-12-21T10:21:00,2019-12-21T13:21:00,TF-XZM,NA041,NA042,3009907461,2504939263,1308941169,2807755841
 Kulusuk,KUS,2019-12-20T06:27:00,2019-12-20T08:27:00,2019-12-20T09:27:00,2019-12-20T11:27:00,TF-EPG,NA021,NA022,2910858778,1309927223,1811931544,1107951952,2602806942,0505942924
