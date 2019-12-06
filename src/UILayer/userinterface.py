@@ -8,7 +8,6 @@ class Output:
         self.printer = LogicLayerAPI()
    
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
-        #Meira pláss fyrir nafnið
         a = LogicLayerAPI()
         ret_str = "####\nAll Staff\n####"
         header = "\n\n{:<20} {:<15} {:<15} {:<15} {:<20} {:<13} {:<25} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
@@ -26,22 +25,22 @@ class Output:
             (staffMember.name, staffMember.snn, staffMember.address, staffMember.phone, staffMember.email, staffMember.role, staffMember.rank, staffMember.license)
         print(ret_str)
     
-    def printUnavailableStaff(self):
+    def printUnavailableStaff(self, date):
         #Birta fleiri/færri upplýsingar?
         ret_str = "####\nUnavailable Staff\n####"
-        header = "\n\n{:<20} {:<15} {:<25} {:<15} {:<15}".format("Name", "SSN", "Rank", "Destination", "Becomes Available")   
+        header = "\n\n{:<20} {:<15} {:<25} {:<15}".format("Name", "SSN", "Rank", "Destination")   #"Becomes Available" # {:<15}
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20)            #Seperates header from data
-        for staff in unavailable_staff_list:
-            ret_str += "\n{:<20} {:<15} {:<25} {:<15} {:<15}".format(staff.name, staff.ssn, staff.rank, staff.destination, staff.freedate)
+        for staff in self.printer.getAllCrewWorking(date):
+            ret_str += "\n{:<20} {:<15} {:<25} {:<15}".format(staff.name, staff.ssn, staff.rank, staff.destination) #Ath staff.freedate # {:<15}
         print(ret_str)
     
-    def printAvailableStaff(self):
+    def printAvailableStaff(self, date):
         #Birta fleiri upplýsingar? T.d. license
         ret_str = "####\nAvailable Staff\n####"
         header = "\n\n{:<20} {:<15} {:<25}".format("Name", "SSN", "Rank")
         ret_str += header + "\n" + "-" * (len(ret_str) - 20)
-        for staff in available_staff_list:
+        for staff in self.printer.getAllCrewNotWorking(date):
             ret_str += "\n{:<20} {:<15} {:<25}".format(staff.name, staff.ssn, staff.rank)
         print(ret_str)
 
@@ -61,16 +60,19 @@ class Output:
             ret_str += "\n{:<15}{:<15}{:<10}".format(airplane.insignia, airplane.typeid, airplane.capacity)
         print(ret_str)
  
-    def printWorkSchedule(self):
+    def printWorkSchedule(self, ssn, date1, date2):
         #Gets a tuple consisting of an instance of a staff member and their designated voyages
         ret_str = "####\nWork Schedule\n####\n"
         schedule = ""
+        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn, date1, date2)
         staff = work_plan_tuple[0]
         staff_info = "\n{:<20} {:<15} {:<15} {:<30}".format(staff.name, staff.ssn, staff.role, staff.rank)
         frame = "\n" + "=" * (len(staff_info) - 5)
         plan = work_plan_tuple[1]
         for entry in plan:
-            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>6}".format(entry.ddmmyy, entry.destination, "Departure: ", entry.departuretime, "Arrival: ", entry.arrivaltime)
+            date, departureTime = self.printer.changeFromIsoTimeFormat(entry.departure)             #Ath nota fall frekar í LL
+            datee, arrivalTime = self.printer.changeFromIsoTimeFormat(entry.arrival)
+            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>5}".format(date, entry.destinationAirport, "Departure: ", departureTime, "Arrival: ", arrivalTime)
         ret_str += frame + staff_info + frame + schedule
         print(ret_str)
        
@@ -78,14 +80,19 @@ class Output:
         #Needs an iterable format of voyages from LL
         #Skoða formattið á flight number þegar hægt er að prófa kóðan, gæti litið illa út :)
         ret_str = "####\nVoyages\n####"
-        for voyage in voyages_list:     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
-            voytitlestatus = "\n\n{} - {}\n   Status: {}".format(voyage.deplocation, voyage.destinationname, voyage.status) #dep = departure, arr = arrival
-            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destairport, voyage.outflightnumber)                                           #dest = destination, out = outbound, in = inbound
-            outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.outdeptime, voyage.outdepdate, "Arrival: ", voyage.outarrtime, voyage.outarrdate)
-            inbound = "\n   Inbound: {} - {}\t{}".format(voyage.destairport, "RVK", voyage.inflightnumber)
-            inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.indeptime, voyage.indepdate, "Arrival: ", voyage.inarrtime, voyage.inarrdate)
+        for voyage in self.printer.getAllVoyages():     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
+            voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, 'Landed') #dep = departure, arr = arrival
+            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)                                           #dest = destination, out = outbound, in = inbound
+            departureDate, DepartureTime = self.printer.changeFromIsoTimeFormat(voyage.departure)
+            arrAtDestDate, arrAtDestTime = self.printer.changeFromIsoTimeFormat(voyage.arrivalAtDest)
+            depFromDestDate, depFromDestTime = self.printer.changeFromIsoTimeFormat(voyage.departureFromDest)
+            arrivalDate, arrivalTime = self.printer.changeFromIsoTimeFormat(voyage.arrival)
+            outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", DepartureTime, departureDate, "Arrival: ", arrAtDestTime, arrAtDestDate)
+            inbound = "\n   Inbound: {} - {}\t{}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
+            inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", depFromDestTime, depFromDestDate, "Arrival: ", arrivalTime, arrivalDate)
             crew = "\n   Crew: "
-            for member in voyage_crew:  #For every member in the voyage's crew
+            for ssn in voyage.crew:  #For every member in the voyage's crew
+                member = self.printer.getCrewMemberBySsn(ssn)
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         print(ret_str)

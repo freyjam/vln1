@@ -1,7 +1,7 @@
 class Aircraft:
-	def __init__(self, insignia, typeId, capacity):
+	def __init__(self, insignia, typeID, capacity):
 		self.insignia = insignia
-		self.typeId = typeId
+		self.typeID = typeID
 		self.capacity = capacity
 		self.state = 'Available'
 		self.availableAt = None
