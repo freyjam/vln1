@@ -57,7 +57,7 @@ class Output:
         #Available at er tuple med date og time
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in self.printer.listOfAllAircraftsWithState("12/12/2019", "12:00"):           
+        for airplane in self.printer.listOfAllAircraftsWithState("21/12/2019", "12:00"):           
             availableDate = airplane.availableAt[0]
             availableTime = airplane.availableAt[1]
             #print(airplane.availableAt)
