@@ -27,6 +27,7 @@ class Output:
     
     def printUnavailableStaff(self, date):
         #Birta fleiri/færri upplýsingar?
+        #Bæta við dagsetningu í displayið (sýna hvaða dagsetningu notandinn var að tékka)
         ret_str = "####\nUnavailable Staff\n####"
         header = "\n\n{:<20} {:<15} {:<25} {:<15}".format("Name", "SSN", "Rank", "Destination")   #"Becomes Available" # {:<15}
         ret_str += header
@@ -37,6 +38,7 @@ class Output:
     
     def printAvailableStaff(self, date):
         #Birta fleiri upplýsingar? T.d. license
+        #Bæta við dagsetningu í displayið (sýna hvaða dagsetningu notandinn var að tékka)
         ret_str = "####\nAvailable Staff\n####"
         header = "\n\n{:<20} {:<15} {:<25}".format("Name", "SSN", "Rank")
         ret_str += header + "\n" + "-" * (len(ret_str) - 20)
@@ -53,15 +55,13 @@ class Output:
    
     def printAirplanes(self):
         ret_str = "####\nAirplanes\n####"
-        header = "\n\n{:<15}{:<15}{:<10}{:<15}{:<15}{:<15}{:<20}".format("Insignia", "Type", "Capacity", "Status", "Destination", "Flight Number", "Becomes Available")
-        #Available at er tuple med date og time
+        header = "\n\n{:<10}{:<15}{:<10}{:<15}{:<15}{:<15}{:<20}".format("Insignia", "Type", "Capacity", "Status", "Destination", "Flight Number", "Becomes Available")
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in self.printer.listOfAllAircraftsWithState("21/12/2019", "12:00"):           
+        for airplane in self.printer.listOfAllAircraftsWithState("21/12/2019", "12:00"):    #ATH! Tekur við date and time frá user (input fall), setti bara inn fyrir testing purposes :)
             availableDate = airplane.availableAt[0]
             availableTime = airplane.availableAt[1]
-            #print(airplane.availableAt)
-            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, availableTime, availableDate)
+            ret_str += "\n{:<10}{:<15}{:<10}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, availableTime, availableDate)
         print(ret_str)
  
     def printWorkSchedule(self, ssn, date1, date2):
