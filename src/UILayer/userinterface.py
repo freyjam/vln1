@@ -55,10 +55,14 @@ class Output:
         ret_str = "####\nAirplanes\n####"
         header = "\n\n{:<15}{:<15}{:<10}{:<15}{:<15}{:<15}{:<20}".format("Insignia", "Type", "Capacity", "Status", "Destination", "Flight Number", "Becomes Available")
         #Available at er tuple med date og time
+        
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in self.printer.listOfAllAircraftsWithState("12/12/2019", "12:00"):           
-            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, airplane.availableAt)
+        for airplane in self.printer.listOfAllAircraftsWithState("21/12/2019", "12:00"):           
+            availableDate = airplane.availableAt[0]
+            availableTime = airplane.availableAt[1]
+            print(airplane.availableAt)
+            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, availableTime, availableDate)
         print(ret_str)
  
     def printWorkSchedule(self, ssn, date1, date2):
