@@ -97,8 +97,15 @@ class DataLayerAPI:
 
 
 
-	# def addCrewToCSV(self, instance):
-		
+	def addCrewToCSV(self, instance):
+		email = instance.email
+		ssn = instance.ssn
+		name = instance.name
+		address = instance.address
+		phone = instance.phonenumber
+		role = instance.role
+		rank = instance.rank
+		license = instance.address
 	
 #	def changeCrewMemberDetail(self, ssn, address = None, phone = None, homephone = None):
 #		if address is not None:
