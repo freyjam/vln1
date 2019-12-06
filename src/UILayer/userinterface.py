@@ -133,8 +133,7 @@ Choose 1-5:
 
 
 """)
-
-
+    
 
 def retreiveMenu():
     userInput("""
