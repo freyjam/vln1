@@ -22,7 +22,8 @@ class LogicLayerAPI:
         return allDestinationsList
 
     def getAllVoyages(self):
-        for voyage in self.instance.getAllVoyageFromFile():
+        allVoyagesList = self.instance.getAllVoyageFromFile()
+        for voyage in allVoyagesList:
             voyage.status = self.getVoyageStatus(voyage)
         return allVoyagesList
 
