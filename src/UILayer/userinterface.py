@@ -121,6 +121,7 @@ Choose 1-3:"""
         return
 
 def registerMenu():
+    print("hello")
     userInput = input("""
 ###
 REGISTER DATA
