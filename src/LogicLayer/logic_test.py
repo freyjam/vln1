@@ -22,8 +22,23 @@ class LogicLayerAPI:
         return allDestinationsList
 
     def getAllVoyages(self):
-        allVoyagesList = self.instance.getAllVoyageFromFile()
+        for voyage in self.instance.getAllVoyageFromFile():
+            voyage.status = self.getVoyageStatus(voyage)
         return allVoyagesList
+
+    def getVoyageStatus(self, voyage):
+        time = self.getCurrentDateAndTimeISO()
+        if voyage.departure > time:
+            return 'Not started'
+        elif voyage.departure <= time <= voyage.arrivalAtDest:
+            return 'En route to destination'
+        elif voyage.arrivalAtDest <= time <= voyage.departureFromDest:
+            return 'Landed at destination'
+        elif voyage.departureFromDest <= time <= voyage.arrival:
+            return 'En route to Reykjavík'
+        else:
+            return 'Landed in Reykjavík'
+        
 
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
