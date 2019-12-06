@@ -109,3 +109,129 @@ class Output:
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         print(ret_str)
+
+
+def mainMenu():
+    stringToPrint = """
+
+1. Register data
+2. Retrieve data
+3. Update data
+
+q - Quit program
+
+Choose 1-3:"""
+
+    userInput = input(stringToPrint)
+    if userInput == 1:
+        registerMenu() ## register
+    elif userInput == 2:
+        retreiveMenu() ## Retreive
+    elif userInput == 3:
+        updateMenu() ## Update
+
+    elif userInput == "q":
+        return
+
+def registerMenu():
+    userInput = input("""
+###
+REGISTER DATA
+###
+
+1. Voyage
+2. Crew member
+3. Destination.
+4. Assign crew to voyage.
+5. Airplane
+
+b - go back
+m - main menu
+
+Choose 1-5:
+
+
+""")
+
+
+
+def retreiveMenu():
+    userInput("""
+###
+RETRIEVE DATA
+###
+
+1. Crew
+2. Airplanes
+3. Destinations
+4. Voyage
+
+b - go back
+
+Choose 1-5:""")
+
+    if userInput == 1:
+        pass
+    elif userInput == 2:
+        pass
+    elif userInput == 3:
+        pass
+    elif userInput == 4:
+        pass
+    elif userInput == 'b':
+        return
+
+
+
+def updateMenu():
+    userInput = input("""
+
+###
+UPDATE DATA
+###
+
+1. Crew member info
+2. Destination info
+
+b - go back
+""")
+
+    if userInput == 1:
+        updateCrewMenu()
+    elif userInput == 2:
+        updateDestinationMenu()
+    elif userInput == 'b':
+        return
+
+def updateCrewMenu():
+    userInput = input("""
+#
+UPDATE DATA -> CREW MEMBER INFO
+#
+
+Enter member's SSN:
+
+b - go back""")
+
+    if userInput == 'b':
+        return
+    else:  ## it's ssn
+        updateCrewMenuSSN(userInput)
+
+def updateCrewMenuSSN(ssn):
+    print("""
+    #
+    UPDATE DATA -> CREW MEMBER INFO -> {}
+    #""".format(ssn))
+
+    print("Leave it empty if you don't want to update")
+    updatedNumber = input("Phone number:")
+
+    updatedRedidence = input("Residence:")
+
+    updatedEmail = input("Email:")
+
+def updateDestinationMenu():
+    pass
+
+mainMenu()
