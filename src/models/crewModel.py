@@ -8,3 +8,5 @@ class Crew:
 		self.address = address
 		self.phone = phone
 		self.email = email
+		self.state = None
+		self.destination = None

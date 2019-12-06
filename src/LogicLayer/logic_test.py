@@ -2,6 +2,9 @@ from DataLayer.classes import DataLayerAPI
 
 from operator import attrgetter
 import datetime
+from datetime import datetime
+from datetime import date
+
 
 class LogicLayerAPI:
     def __init__(self):
@@ -18,6 +21,10 @@ class LogicLayerAPI:
         allDestinationsList = self.instance.getAllDestinationsFromFile()
         allDestinationsList.sort(key=attrgetter('destination'))
         return allDestinationsList
+
+    def getAllVoyages(self):
+        allVoyagesList = self.instance.getAllVoyageFromFile()
+        return allVoyagesList
 
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
@@ -50,12 +57,31 @@ class LogicLayerAPI:
                 allCabincrewList.append(obj)
         allCabincrewList.sort(key=attrgetter('name'))
         return allCabincrewList
-    
-    def getAllCrewNotWorking(self, date):
-        pass
 
     def getAllCrewWorking(self, date):
-        pass
+        crewWorking = []
+        crewWorkingSsn = []
+        voyagesList = self.getAllVoyages()
+        firstTime = self.changeInputedDateAndTimeToIso(date, '00:00')
+        secTime = self.changeInputedDateAndTimeToIso(date, '23:59')
+        for voyage in voyagesList:
+            if firstTime <= voyage.departure <= secTime or firstTime <= voyage.arrival <= secTime:
+                for member in self.getAllCrewList():
+                    if member.ssn in voyage.crew:
+                        crewWorking.append(member)
+                        member.destination = voyage.destinationAirport  #getum breytt
+                        member.state = 'Working'
+        return crewWorking
+
+    def getAllCrewNotWorking(self, date):
+        crewNotWorking = []
+        crewWorkingList = self.getAllCrewWorking(date)
+        allCrewMembersList = self.getAllCrewList()
+        for member in allCrewMembersList:
+            if member not in crewWorkingList:
+                crewNotWorking.append(member)
+        return crewNotWorking
+
 
     def getCrewMemberBySsn(self, inputedSSN):
         '''Takes in a SSN inputed by user and returns 
@@ -64,7 +90,7 @@ class LogicLayerAPI:
             if obj.ssn == inputedSSN:
                 return obj
 
-    def changeInputedDateAndTimeToIso(self, date, time):
+    def changeInputedDateAndTimeToIso(self, date, time='00:00'):
         '''Takes in a date on the form dd/mm/yyyy and a time on 
         the form 16:06 and returns the datetime on isoformat'''
         day, month, year = date.split('/')
@@ -72,14 +98,36 @@ class LogicLayerAPI:
         dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
 
-    def changeIsoTimeFormat(self, isotime):
+    def changeFromIsoTimeFormat(self, isotime):
         '''Takes in isoformat from file, and returns date and time on
         the form year, month, day, hour, minutes'''
         year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
-        hour, minutes = isotime[11:13], isotime[14:18] 
-        isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
-        return isoTimeChange
+        hour, minutes = isotime[11:13], isotime[14:16] 
+#        isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
+        return day + '/' + month + '/' + year, hour + ':' + minutes
 
     def getAllAircrafts(self):
         allAircraftList = self.instance.getAllAircraftInfoFromFile()
         return allAircraftList
+
+    def getCurrentDateAndTimeISO(self):
+        hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
+        year, month, day = str(date.today()).split('-')
+        return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
+
+    def listOfAllAircraftsWithState(self):
+        listOfAircrafts = self.getAllAircrafts()
+        listOfVoyages = self.getAllVoyages()
+        currentDatetime = self.getCurrentDateAndTimeISO()
+        for aircraft in listOfAircrafts:
+            for voyage in listOfVoyages:
+                if aircraft.insignia == voyage.aircraft:
+                    if voyage.departure <= currentDatetime <= voyage.arrival:
+                        aircraft.state = 'Buzy'
+                        aircraft.availableAt = self.changeFromIsoTimeFormat(voyage.arrival)
+                        aircraft.destination = voyage.destinationAirport
+                        if voyage.departure <= currentDatetime <= voyage.arrivalAtDest:
+                            aircraft.numberOfFlight = voyage.outboundFlightNumber
+                        elif voyage.departureFromDest <= currentDatetime <= voyage.arrival:
+                            aircraft.numberOfFlight = voyage.inboundFlightNumber
+        return listOfAircrafts

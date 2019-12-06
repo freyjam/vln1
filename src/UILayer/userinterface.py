@@ -92,6 +92,7 @@ class Output:
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", voyage.indeptime, voyage.indepdate, "Arrival: ", voyage.inarrtime, voyage.inarrdate)
             crew = "\n   Crew: "
             for member in voyage_crew:  #For every member in the voyage's crew
+                # Hér gæti þurft að kalla á fallið sem leitar að crew members eftir kt.
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         print(ret_str)
