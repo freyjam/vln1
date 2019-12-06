@@ -5,8 +5,3 @@ class Interface:
 		print(parameter)
 	def printOutAndTakeInput(self, parameter):
 		return input(parameter)
-
-
-
-
-		
