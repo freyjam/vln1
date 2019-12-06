@@ -1,17 +1,5 @@
 from LogicLayer.logic_test import LogicLayerAPI
- 
-class Input:
-    def __init__(self):
-        pass
- 
-    def getMenu(self):
-        """Processes input for menu choice, i.e. 1,2,3, etc."""
-        pass
 
-    def getInfo(self):
-        """Sends entered info to logic layer, i.e. ssn, name and other written information"""
-        pass
- 
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
 #logic layer, tímabundin uppsetning.
  
@@ -73,7 +61,6 @@ class Output:
         print(ret_str)
    
     def printAirplanes(self):
-        #Needs an iterable format of all airplanes, attributes must be accessible.
         ret_str = "####\nAirplanes\n####"
         header = "\n\n{:<15}{:<15}{:<20}{:<15}".format("Name", "Model", "Manufacturer", "Capacity")
         ret_str += header
