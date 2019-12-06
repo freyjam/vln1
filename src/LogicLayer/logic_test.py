@@ -12,7 +12,8 @@ class LogicLayerAPI:
         #Og ath hvort að þetta virki og sé eins og á að gera
 
     def getAllCrewList(self):
-        allCrewList = self.instance.getAllCrewFromFile()
+        self.instance.loadObjectFromClass()
+        allCrewList = allCrew.retrieveCrew()
         return allCrewList
 
     def getAllDestinationsList(self):
@@ -58,14 +59,13 @@ class LogicLayerAPI:
         return allCabincrewList
 
     def getAllCrewWorking(self, date):
-        ##
         crewWorking = []
         crewWorkingSsn = []
         voyagesList = self.getAllVoyages()
         firstTime = self.changeInputedDateAndTimeToIso(date, '00:00')
         secTime = self.changeInputedDateAndTimeToIso(date, '23:59')
         for voyage in voyagesList:
-            if firstTime <= voyage.departure <= secTime:
+            if firstTime <= voyage.departure <= secTime or firstTime <= voyage.arrival <= secTime:
                 for member in self.getAllCrewList():
                     if member.ssn in voyage.crew:
                         crewWorking.append(member)
@@ -74,7 +74,14 @@ class LogicLayerAPI:
         return crewWorking
 
     def getAllCrewNotWorking(self, date):
-        pass
+        crewNotWorking = []
+        crewWorkingList = self.getAllCrewWorking(date)
+        allCrewMembersList = self.getAllCrewList()
+        for member in allCrewMembersList:
+            if member not in crewWorkingList:
+                crewNotWorking.append(member)
+        return crewNotWorking
+
 
     def getCrewMemberBySsn(self, inputedSSN):
         '''Takes in a SSN inputed by user and returns 
@@ -88,7 +95,7 @@ class LogicLayerAPI:
         the form 16:06 and returns the datetime on isoformat'''
         day, month, year = date.split('/')
         hours, minutes = time.split(':')
-        dateTimeIso = datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
+        dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
 
     def changeFromIsoTimeFormat(self, isotime):
