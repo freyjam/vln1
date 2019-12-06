@@ -128,21 +128,21 @@ class LogicLayerAPI:
         year, month, day = str(date.today()).split('-')
         return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
 
-    def listOfAllAircraftsWithState(self):
+    def listOfAllAircraftsWithState(self, date, time):
         '''Returns a list  of all aircrafts and adds their state and state info to the instance'''
         listOfAircrafts = self.getAllAircrafts()
         listOfVoyages = self.getAllVoyages()
-        currentDatetime = self.getCurrentDateAndTimeISO()
+        time = self.changeInputedDateAndTimeToIso(date, time)
         for aircraft in listOfAircrafts:
             for voyage in listOfVoyages:
                 if aircraft.insignia == voyage.aircraft:
-                    if voyage.departure <= currentDatetime <= voyage.arrival:
-                        aircraft.state = 'Buzy'
+                    if voyage.departure <= time <= voyage.arrival:
+                        aircraft.state = 'Unavailable'
                         aircraft.availableAt = self.changeFromIsoTimeFormat(voyage.arrival)
                         aircraft.destination = voyage.destinationAirport
-                        if voyage.departure <= currentDatetime <= voyage.arrivalAtDest:
+                        if voyage.departure <= time <= voyage.arrivalAtDest:
                             aircraft.numberOfFlight = voyage.outboundFlightNumber
-                        elif voyage.departureFromDest <= currentDatetime <= voyage.arrival:
+                        elif voyage.departureFromDest <= time <= voyage.arrival:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
