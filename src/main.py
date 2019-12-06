@@ -2,4 +2,6 @@ from UILayer.userinterface import Output
 
 a = Output()
 
-a.printDestinations()
+
+
+a.printAirplanes()
