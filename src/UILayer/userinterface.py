@@ -2,7 +2,7 @@ from LogicLayer.logic_test import LogicLayerAPI
 
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
 #logic layer, tímabundin uppsetning.
- 
+
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
@@ -53,11 +53,12 @@ class Output:
    
     def printAirplanes(self):
         ret_str = "####\nAirplanes\n####"
-        header = "\n\n{:<15}{:<15}{:<15}".format("Insignia", "Type", "Capacity")
+        header = "\n\n{:<15}{:<15}{:<10}{:<15}{:<15}{:<15}{:<20}".format("Insignia", "Type", "Capacity", "Status", "Destination", "Flight Number", "Becomes Available")
+        #Available at er tuple med date og time
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in airplaneList:               #Vantar fall frá logic layer
-            ret_str += "\n{:<15}{:<15}{:<10}".format(airplane.insignia, airplane.typeid, airplane.capacity)
+        for airplane in self.printer.listOfAllAircraftsWithState("12/12/2019", "12:00"):           
+            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, airplane.availableAt)
         print(ret_str)
  
     def printWorkSchedule(self, ssn, date1, date2):
@@ -78,11 +79,10 @@ class Output:
        
     def printVoyage(self):
         #Needs an iterable format of voyages from LL
-        #Skoða formattið á flight number þegar hægt er að prófa kóðan, gæti litið illa út :)
         ret_str = "####\nVoyages\n####"
-        for voyage in self.printer.getAllVoyages():     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
-            voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, 'Landed') #dep = departure, arr = arrival
-            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)                                           #dest = destination, out = outbound, in = inbound
+        for voyage in self.printer.getAllVoyages():                                           
+            voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, voyage.status)
+            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)                                          
             departureDate, DepartureTime = self.printer.changeFromIsoTimeFormat(voyage.departure)
             arrAtDestDate, arrAtDestTime = self.printer.changeFromIsoTimeFormat(voyage.arrivalAtDest)
             depFromDestDate, depFromDestTime = self.printer.changeFromIsoTimeFormat(voyage.departureFromDest)
@@ -91,7 +91,7 @@ class Output:
             inbound = "\n   Inbound: {} - {}\t{}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", depFromDestTime, depFromDestDate, "Arrival: ", arrivalTime, arrivalDate)
             crew = "\n   Crew: "
-            for ssn in voyage.crew:  #For every member in the voyage's crew
+            for ssn in voyage.crew: 
                 member = self.printer.getCrewMemberBySsn(ssn)
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
