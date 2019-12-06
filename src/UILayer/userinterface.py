@@ -98,128 +98,198 @@ class Output:
         print(ret_str)
 
 
-def mainMenu():
-    stringToPrint = """
 
-1. Register data
-2. Retrieve data
-3. Update data
 
-q - Quit program
+class UserExperienceOutPutInputMeter:
 
-Choose 1-3:"""
+    def __init__(self):
+        stringToPrint = """
 
-    userInput = input(stringToPrint)
-    if userInput == 1:
-        registerMenu() ## register
-    elif userInput == 2:
-        retreiveMenu() ## Retreive
-    elif userInput == 3:
-        updateMenu() ## Update
+    1. Register data
+    2. Retrieve data
+    3. Update data
 
-    elif userInput == "q":
+    q - Quit program
+
+    Choose 1-3:"""
+
+        userInput = input(stringToPrint)
+        if userInput == "1":
+            self.registerMenu() ## register
+        elif userInput == "2":
+            self.retreiveMenu() ## Retreive
+        elif userInput == "3":
+            self.updateMenu() ## Update
+
+        elif userInput == "q":
+            return
+
+    def registerMenu(self):
+        print("hello")
+        userInput = input("""
+    ###
+    REGISTER DATA
+    ###
+
+    1. Voyage
+    2. Assign crew to voyage.
+    3. Assign airplane to voyage
+    4. Crew member
+    5. Destination.
+    6. Airplane
+
+    b - go back
+    m - main menu
+
+    Choose 1-5:
+
+
+    """)
+        
+        if userInput == "1":
+            self.registerVoyage()
+        elif userInput == '2':
+            self.registerCrewToVoyage()
+        elif userInput == '3':
+            self.registerAirplaneToVoyage()
+        elif userInput == '4':
+            self.registerCrew()
+        elif userInput == '5':
+            self.registerDestination()
+        elif userInput == '6':
+            self.registerAirplase()
+        elif userInput == "b":
+            return
+
+        def registerVoyage(self):
+
+            print("""###
+    REGISTER DATA -> VOYAGE
+    ###""")
+            print("if any line is empty it will not get registered")
+            destination = input('Destination: ')
+            departureFromIceland = input('Departure from Iceland: ')
+            departureFromDestination = input('Departure from destination: ')
+
+            print("function not implemented, returning")
+
+            return
+
+    def registerCrewMember(self):
+        print("""###
+REGISTER DATA -> CREW
+###""")
+        ssn = input('Social security number: ')
+        name = input('Name: ')
+        phone = input('Phone number: ')
+        email = input('Email: ')
+        address = input('Residence: ')
+
+        print("function not available, returning")
+    def registerDestination(self):
+        print("""###
+REGISTER DATA -> DESTINATION
+###""")
+        destination = input('Destination: ')
+        country     = input('Country: ')
+        airport     = input('Airport: ')
+        timeOfFlight = input('Time of flight: ')
+        DistanceFromIceland = input('Distance from Iceland: ')
+        contact = input('Contact: ')
+        contactsNumber = input('Contacts phonenumber: ')
+        emergencyNumber = input('Emergency number: ')
+        print("function not available")
         return
 
-def registerMenu():
-    print("hello")
-    userInput = input("""
-###
-REGISTER DATA
-###
-
-1. Voyage
-2. Crew member
-3. Destination.
-4. Assign crew to voyage.
-5. Airplane
-
-b - go back
-m - main menu
-
-Choose 1-5:
-
-
-""")
 
 
 
-def retreiveMenu():
-    userInput("""
-###
-RETRIEVE DATA
-###
-
-1. Crew
-2. Airplanes
-3. Destinations
-4. Voyage
-
-b - go back
-
-Choose 1-5:""")
-
-    if userInput == 1:
-        pass
-    elif userInput == 2:
-        pass
-    elif userInput == 3:
-        pass
-    elif userInput == 4:
-        pass
-    elif userInput == 'b':
-        return
 
 
 
-def updateMenu():
-    userInput = input("""
 
-###
-UPDATE DATA
-###
+    def retreiveMenu(self):
+        userInput("""
+    ###
+    RETRIEVE DATA
+    ###
 
-1. Crew member info
-2. Destination info
+    1. Crew
+    2. Airplanes
+    3. Destinations
+    4. Voyage
 
-b - go back
-""")
+    b - go back
 
-    if userInput == 1:
-        updateCrewMenu()
-    elif userInput == 2:
-        updateDestinationMenu()
-    elif userInput == 'b':
-        return
+    Choose 1-5:""")
 
-def updateCrewMenu():
-    userInput = input("""
-#
-UPDATE DATA -> CREW MEMBER INFO
-#
+        if userInput == "1":
+            pass
+        elif userInput == '2':
+            pass
+        elif userInput == '3':
+            pass
+        elif userInput == '4':
+            pass
+        elif userInput == 'b':
+            return
 
-Enter member's SSN:
 
-b - go back""")
 
-    if userInput == 'b':
-        return
-    else:  ## it's ssn
-        updateCrewMenuSSN(userInput)
+    def updateMenu(self):
+        userInput = input("""
 
-def updateCrewMenuSSN(ssn):
-    print("""
+    ###
+    UPDATE DATA
+    ###
+
+    1. Crew member info
+    2. Destination info
+
+    b - go back
+    """)
+
+        if userInput == '1':
+            self.updateCrewMenu()
+        elif userInput == '2':
+            self.updateDestinationMenu()
+        elif userInput == 'b':
+            return 0
+
+    def updateCrewMenu(self):
+        print("""
     #
-    UPDATE DATA -> CREW MEMBER INFO -> {}
-    #""".format(ssn))
+    UPDATE DATA -> CREW MEMBER INFO
+    #""")
 
-    print("Leave it empty if you don't want to update")
-    updatedNumber = input("Phone number:")
+        userInput = input('Enter members SSN, or b to return')
 
-    updatedRedidence = input("Residence:")
 
-    updatedEmail = input("Email:")
+        if userInput == 'b':
+            return
+        elif len(userInput) == 10:  ## it's ssn
+            self.updateCrewMenuSSN(userInput)
+        else:
+            print("not a real ssn")
+            return
 
-def updateDestinationMenu():
-    pass
 
-mainMenu()
+    def updateCrewMenuSSN(self, ssn):
+        print("""
+#
+UPDATE DATA -> CREW MEMBER INFO -> {}
+#""".format(ssn))
+
+        print("Leave it empty if you don't want to update")
+        updatedNumber = input("Phone number:")
+
+        updatedRedidence = input("Residence:")
+
+        updatedEmail = input("Email:")
+
+        print("function not available")
+        return
+
+        ## check if parameters are not "" and pass those into logic to be processed.
+    def updateDestinationMenu(self):
+        pass
