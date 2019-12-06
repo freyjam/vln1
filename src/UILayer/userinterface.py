@@ -2,7 +2,7 @@ from LogicLayer.logic_test import LogicLayerAPI
 
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
 #logic layer, tímabundin uppsetning.
- 
+
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
@@ -57,8 +57,8 @@ class Output:
         #Available at er tuple med date og time
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in self.printer.getAllAircraftsWithState(date, time):              
-            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeid, airplane.capacity, , airplane.status, airplane.destination, airplane.numberofflight, airplane.availableat)
+        for airplane in self.printer.listOfAllAircraftsWithState("12/12/2019", "12:00"):           
+            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, airplane.availableAt)
         print(ret_str)
  
     def printWorkSchedule(self, ssn, date1, date2):
