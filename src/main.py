@@ -1,5 +1,5 @@
-from UILayer.userinterface import PrintOverview
+from UILayer.userinterface import Output
 
-a = PrintOverview()
+a = Output()
 
 a.printDestinations()
