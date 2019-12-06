@@ -10,4 +10,5 @@ class Voyage:
 		self.outboundFlightNumber = outboundFlightNumber
 		self.inboundFlightNumber = inboundFlightNumber
 		self.crew = crewList
+		self.status = None
         

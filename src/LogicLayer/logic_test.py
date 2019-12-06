@@ -22,8 +22,23 @@ class LogicLayerAPI:
         return allDestinationsList
 
     def getAllVoyages(self):
-        allVoyagesList = self.instance.getAllVoyageFromFile()
+        for voyage in self.instance.getAllVoyageFromFile():
+            voyage.status = self.getVoyageStatus(voyage)
         return allVoyagesList
+
+    def getVoyageStatus(self, voyage):
+        time = self.getCurrentDateAndTimeISO()
+        if voyage.departure > time:
+            return 'Not started'
+        elif voyage.departure <= time <= voyage.arrivalAtDest:
+            return 'En route to destination'
+        elif voyage.arrivalAtDest <= time <= voyage.departureFromDest:
+            return 'Landed at destination'
+        elif voyage.departureFromDest <= time <= voyage.arrival:
+            return 'En route to Reykjavík'
+        else:
+            return 'Landed in Reykjavík'
+        
 
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
@@ -113,21 +128,21 @@ class LogicLayerAPI:
         year, month, day = str(date.today()).split('-')
         return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
 
-    def listOfAllAircraftsWithState(self):
+    def listOfAllAircraftsWithState(self, date, time):
         '''Returns a list  of all aircrafts and adds their state and state info to the instance'''
         listOfAircrafts = self.getAllAircrafts()
         listOfVoyages = self.getAllVoyages()
-        currentDatetime = self.getCurrentDateAndTimeISO()
+        time = self.changeInputedDateAndTimeToIso(date, time)
         for aircraft in listOfAircrafts:
             for voyage in listOfVoyages:
                 if aircraft.insignia == voyage.aircraft:
-                    if voyage.departure <= currentDatetime <= voyage.arrival:
-                        aircraft.state = 'Buzy'
+                    if voyage.departure <= time <= voyage.arrival:
+                        aircraft.state = 'Unavailable'
                         aircraft.availableAt = self.changeFromIsoTimeFormat(voyage.arrival)
                         aircraft.destination = voyage.destinationAirport
-                        if voyage.departure <= currentDatetime <= voyage.arrivalAtDest:
+                        if voyage.departure <= time <= voyage.arrivalAtDest:
                             aircraft.numberOfFlight = voyage.outboundFlightNumber
-                        elif voyage.departureFromDest <= currentDatetime <= voyage.arrival:
+                        elif voyage.departureFromDest <= time <= voyage.arrival:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
