@@ -91,7 +91,7 @@ class DataLayerAPI:
 					lineCounter +=1
 				else:
 					voyageFileList = line.strip().split(',')
-					allVoyagesList.append(Voyage(voyageFileList[0], voyageFileList[1], voyageFileList[2], voyageFileList[3], voyageFileList[4], voyageFileList[5], voyageFileList[6], voyageFileList[7], voyageFileList[8], voyageFileList[9]))
+					allVoyagesList.append(Voyage(voyageFileList[0], voyageFileList[1], voyageFileList[2], voyageFileList[3], voyageFileList[4], voyageFileList[5], voyageFileList[6], voyageFileList[7], voyageFileList[8], voyageFileList[9:]))
 			return allVoyagesList
 
 

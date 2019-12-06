@@ -1,5 +1,5 @@
 class Voyage: 
-	def __init__(self, destinationName, destinationAirport, departure, arrivalAtDest, departureFromDest, arrival, aircraft, outboundFlightNumber, inboundFlightNumber, crewList):
+	def __init__(self, destinationName, destinationAirport, departure, arrivalAtDest, departureFromDest, arrival, aircraft, outboundFlightNumber, inboundFlightNumber, crewList=None):
 		self.destinationName = destinationName
 		self.destinationAirport = destinationAirport
 		self.departure = departure
