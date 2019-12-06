@@ -12,8 +12,7 @@ class LogicLayerAPI:
         #Og ath hvort að þetta virki og sé eins og á að gera
 
     def getAllCrewList(self):
-        self.instance.loadObjectFromClass()
-        allCrewList = allCrew.retrieveCrew()
+        allCrewList = self.instance.getAllCrewFromFile()
         return allCrewList
 
     def getAllDestinationsList(self):
@@ -60,7 +59,6 @@ class LogicLayerAPI:
 
     def getAllCrewWorking(self, date):
         crewWorking = []
-        crewWorkingSsn = []
         voyagesList = self.getAllVoyages()
         firstTime = self.changeInputedDateAndTimeToIso(date, '00:00')
         secTime = self.changeInputedDateAndTimeToIso(date, '23:59')
@@ -70,7 +68,6 @@ class LogicLayerAPI:
                     if member.ssn in voyage.crew:
                         crewWorking.append(member)
                         member.destination = voyage.destinationAirport  #getum breytt
-                        member.state = 'Working'
         return crewWorking
 
     def getAllCrewNotWorking(self, date):
@@ -95,7 +92,7 @@ class LogicLayerAPI:
         the form 16:06 and returns the datetime on isoformat'''
         day, month, year = date.split('/')
         hours, minutes = time.split(':')
-        dateTimeIso = datetime.datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
+        dateTimeIso = datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
         return dateTimeIso
 
     def changeFromIsoTimeFormat(self, isotime):
@@ -103,19 +100,21 @@ class LogicLayerAPI:
         the form year, month, day, hour, minutes'''
         year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
         hour, minutes = isotime[11:13], isotime[14:16] 
-#        isoTimeChange = int(year), int(month), int(day), int(hour), int(minutes)
         return day + '/' + month + '/' + year, hour + ':' + minutes
 
     def getAllAircrafts(self):
+        '''Returns list of all aircrafts'''
         allAircraftList = self.instance.getAllAircraftInfoFromFile()
         return allAircraftList
 
     def getCurrentDateAndTimeISO(self):
+        '''Returns the current date and time on iso format'''
         hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
         year, month, day = str(date.today()).split('-')
         return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
 
     def listOfAllAircraftsWithState(self):
+        '''Returns a list  of all aircrafts and adds their state and state info to the instance'''
         listOfAircrafts = self.getAllAircrafts()
         listOfVoyages = self.getAllVoyages()
         currentDatetime = self.getCurrentDateAndTimeISO()
@@ -131,3 +130,19 @@ class LogicLayerAPI:
                         elif voyage.departureFromDest <= currentDatetime <= voyage.arrival:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
+
+    def getWorkScheduleForCrewMember(self, ssn, startDate, endDate):
+        startTime = self.changeInputedDateAndTimeToIso(startDate, '00:00')
+        endTime = self.changeInputedDateAndTimeToIso(endDate, '23:59')
+        crewMembersVoyagesList = []
+        crewMember = self.getCrewMemberBySsn(ssn)
+        voyagesList = self.getAllVoyages()
+        for voyage in voyagesList:
+            if startTime <= voyage.departure <= endTime or startTime <= voyage.arrival <= endTime:
+                if crewMember.ssn in voyage.crew:
+                    crewMembersVoyagesList.append(voyage)
+        return crewMember, crewMembersVoyagesList
+
+
+        
+
