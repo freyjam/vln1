@@ -4,6 +4,6 @@ class Aircraft:
 		self.typeID = typeID
 		self.capacity = capacity
 		self.state = 'Available'
-		self.availableAt = None
-		self.numberOfFlight = None
-		self.destination = None
+		self.availableAt = ''
+		self.numberOfFlight = ''
+		self.destination = ''
