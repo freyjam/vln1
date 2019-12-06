@@ -2,7 +2,7 @@ from LogicLayer.logic_test import LogicLayerAPI
 
 #ATH! Ekki viss um að klasinn eigi að vera settur svona fram, þ.e. hvort hann hafi aðgang að öllu þessu eða hverju nákvæmlega hann tekur við af
 #logic layer, tímabundin uppsetning.
- 
+
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
@@ -53,11 +53,12 @@ class Output:
    
     def printAirplanes(self):
         ret_str = "####\nAirplanes\n####"
-        header = "\n\n{:<15}{:<15}{:<15}".format("Insignia", "Type", "Capacity")
+        header = "\n\n{:<15}{:<15}{:<10}{:<15}{:<15}{:<15}{:<20}".format("Insignia", "Type", "Capacity", "Status", "Destination", "Flight Number", "Becomes Available")
+        #Available at er tuple med date og time
         ret_str += header
         ret_str += "\n" + "-" * (len(ret_str) - 20) #-20 to make the line align better with the header
-        for airplane in airplaneList:               #Vantar fall frá logic layer
-            ret_str += "\n{:<15}{:<15}{:<10}".format(airplane.insignia, airplane.typeid, airplane.capacity)
+        for airplane in self.printer.listOfAllAircraftsWithState("12/12/2019", "12:00"):           
+            ret_str += "\n{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, airplane.availableAt)
         print(ret_str)
  
     def printWorkSchedule(self, ssn, date1, date2):
@@ -78,11 +79,10 @@ class Output:
        
     def printVoyage(self):
         #Needs an iterable format of voyages from LL
-        #Skoða formattið á flight number þegar hægt er að prófa kóðan, gæti litið illa út :)
         ret_str = "####\nVoyages\n####"
-        for voyage in self.printer.getAllVoyages():     #Kallar í function frá LL, t.d. getAllVoyages                                       #Abbrevations
-            voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, 'Landed') #dep = departure, arr = arrival
-            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)                                           #dest = destination, out = outbound, in = inbound
+        for voyage in self.printer.getAllVoyages():                                           
+            voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, voyage.status)
+            outbound = "\n   Outbound: {} - {}\t{}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)                                          
             departureDate, DepartureTime = self.printer.changeFromIsoTimeFormat(voyage.departure)
             arrAtDestDate, arrAtDestTime = self.printer.changeFromIsoTimeFormat(voyage.arrivalAtDest)
             depFromDestDate, depFromDestTime = self.printer.changeFromIsoTimeFormat(voyage.departureFromDest)
@@ -91,135 +91,205 @@ class Output:
             inbound = "\n   Inbound: {} - {}\t{}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", depFromDestTime, depFromDestDate, "Arrival: ", arrivalTime, arrivalDate)
             crew = "\n   Crew: "
-            for ssn in voyage.crew:  #For every member in the voyage's crew
+            for ssn in voyage.crew: 
                 member = self.printer.getCrewMemberBySsn(ssn)
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         print(ret_str)
 
 
-def mainMenu():
-    stringToPrint = """
 
-1. Register data
-2. Retrieve data
-3. Update data
 
-q - Quit program
+class UserExperienceOutPutInputMeter:
 
-Choose 1-3:"""
+    def __init__(self):
+        stringToPrint = """
 
-    userInput = input(stringToPrint)
-    if userInput == 1:
-        registerMenu() ## register
-    elif userInput == 2:
-        retreiveMenu() ## Retreive
-    elif userInput == 3:
-        updateMenu() ## Update
+    1. Register data
+    2. Retrieve data
+    3. Update data
 
-    elif userInput == "q":
+    q - Quit program
+
+    Choose 1-3:"""
+
+        userInput = input(stringToPrint)
+        if userInput == "1":
+            self.registerMenu() ## register
+        elif userInput == "2":
+            self.retreiveMenu() ## Retreive
+        elif userInput == "3":
+            self.updateMenu() ## Update
+
+        elif userInput == "q":
+            return
+
+    def registerMenu(self):
+        print("hello")
+        userInput = input("""
+    ###
+    REGISTER DATA
+    ###
+
+    1. Voyage
+    2. Assign crew to voyage.
+    3. Assign airplane to voyage
+    4. Crew member
+    5. Destination.
+    6. Airplane
+
+    b - go back
+    m - main menu
+
+    Choose 1-5:
+
+
+    """)
+        
+        if userInput == "1":
+            self.registerVoyage()
+        elif userInput == '2':
+            self.registerCrewToVoyage()
+        elif userInput == '3':
+            self.registerAirplaneToVoyage()
+        elif userInput == '4':
+            self.registerCrew()
+        elif userInput == '5':
+            self.registerDestination()
+        elif userInput == '6':
+            self.registerAirplase()
+        elif userInput == "b":
+            return
+
+        def registerVoyage(self):
+
+            print("""###
+    REGISTER DATA -> VOYAGE
+    ###""")
+            print("if any line is empty it will not get registered")
+            destination = input('Destination: ')
+            departureFromIceland = input('Departure from Iceland: ')
+            departureFromDestination = input('Departure from destination: ')
+
+            print("function not implemented, returning")
+
+            return
+
+    def registerCrewMember(self):
+        print("""###
+REGISTER DATA -> CREW
+###""")
+        ssn = input('Social security number: ')
+        name = input('Name: ')
+        phone = input('Phone number: ')
+        email = input('Email: ')
+        address = input('Residence: ')
+
+        print("function not available, returning")
+    def registerDestination(self):
+        print("""###
+REGISTER DATA -> DESTINATION
+###""")
+        destination = input('Destination: ')
+        country     = input('Country: ')
+        airport     = input('Airport: ')
+        timeOfFlight = input('Time of flight: ')
+        DistanceFromIceland = input('Distance from Iceland: ')
+        contact = input('Contact: ')
+        contactsNumber = input('Contacts phonenumber: ')
+        emergencyNumber = input('Emergency number: ')
+        print("function not available")
         return
 
-def registerMenu():
-    print("hello")
-    userInput = input("""
-###
-REGISTER DATA
-###
-
-1. Voyage
-2. Crew member
-3. Destination.
-4. Assign crew to voyage.
-5. Airplane
-
-b - go back
-m - main menu
-
-Choose 1-5:
-
-
-""")
 
 
 
-def retreiveMenu():
-    userInput("""
-###
-RETRIEVE DATA
-###
-
-1. Crew
-2. Airplanes
-3. Destinations
-4. Voyage
-
-b - go back
-
-Choose 1-5:""")
-
-    if userInput == 1:
-        pass
-    elif userInput == 2:
-        pass
-    elif userInput == 3:
-        pass
-    elif userInput == 4:
-        pass
-    elif userInput == 'b':
-        return
 
 
 
-def updateMenu():
-    userInput = input("""
 
-###
-UPDATE DATA
-###
+    def retreiveMenu(self):
+        userInput("""
+    ###
+    RETRIEVE DATA
+    ###
 
-1. Crew member info
-2. Destination info
+    1. Crew
+    2. Airplanes
+    3. Destinations
+    4. Voyage
 
-b - go back
-""")
+    b - go back
 
-    if userInput == 1:
-        updateCrewMenu()
-    elif userInput == 2:
-        updateDestinationMenu()
-    elif userInput == 'b':
-        return
+    Choose 1-5:""")
 
-def updateCrewMenu():
-    userInput = input("""
-#
-UPDATE DATA -> CREW MEMBER INFO
-#
+        if userInput == "1":
+            pass
+        elif userInput == '2':
+            pass
+        elif userInput == '3':
+            pass
+        elif userInput == '4':
+            pass
+        elif userInput == 'b':
+            return
 
-Enter member's SSN:
 
-b - go back""")
 
-    if userInput == 'b':
-        return
-    else:  ## it's ssn
-        updateCrewMenuSSN(userInput)
+    def updateMenu(self):
+        userInput = input("""
 
-def updateCrewMenuSSN(ssn):
-    print("""
+    ###
+    UPDATE DATA
+    ###
+
+    1. Crew member info
+    2. Destination info
+
+    b - go back
+    """)
+
+        if userInput == '1':
+            self.updateCrewMenu()
+        elif userInput == '2':
+            self.updateDestinationMenu()
+        elif userInput == 'b':
+            return 0
+
+    def updateCrewMenu(self):
+        print("""
     #
-    UPDATE DATA -> CREW MEMBER INFO -> {}
-    #""".format(ssn))
+    UPDATE DATA -> CREW MEMBER INFO
+    #""")
 
-    print("Leave it empty if you don't want to update")
-    updatedNumber = input("Phone number:")
+        userInput = input('Enter members SSN, or b to return')
 
-    updatedRedidence = input("Residence:")
 
-    updatedEmail = input("Email:")
+        if userInput == 'b':
+            return
+        elif len(userInput) == 10:  ## it's ssn
+            self.updateCrewMenuSSN(userInput)
+        else:
+            print("not a real ssn")
+            return
 
-def updateDestinationMenu():
-    pass
 
-mainMenu()
+    def updateCrewMenuSSN(self, ssn):
+        print("""
+#
+UPDATE DATA -> CREW MEMBER INFO -> {}
+#""".format(ssn))
+
+        print("Leave it empty if you don't want to update")
+        updatedNumber = input("Phone number:")
+
+        updatedRedidence = input("Residence:")
+
+        updatedEmail = input("Email:")
+
+        print("function not available")
+        return
+
+        ## check if parameters are not "" and pass those into logic to be processed.
+    def updateDestinationMenu(self):
+        pass
