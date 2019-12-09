@@ -1,8 +1,10 @@
-
+from tempfile import NamedTemporaryFile
 from models.crewModel import Crew
 from models.destinationModel import Destination
 from models.aircraftModel import Aircraft
 from models.voyageModel import Voyage
+import shutil
+import csv
 
 
 class DataLayerAPI:
@@ -13,6 +15,27 @@ class DataLayerAPI:
             return fileStream
         except FileNotFoundError:
             return None
+
+
+    def updateCrewCSV(self, listOfInstances):
+        # create temporary file
+        for instance in listOfInstances:
+            
+            email = instance.email
+            ssn = instance.ssn
+            name = instance.name
+            address = instance.address
+            phone = instance.phonenumber
+            role = instance.role
+            rank = instance.rank
+            license = instance.address
+            tempfile = NamedTemporaryFile(mode='w', delete=False)
+          
+            row = [ssn, name, role, rank, license, address, phonenumber, email ] 
+            row = ",".join(row)
+            row = "\n" + row
+            with open('csv/Crew.csv','a') as file:
+                file.write(row)
 
     def getAllDestinationsFromFile(self):
         '''Reads all info about destinations from file and returns a list of destination instances'''
