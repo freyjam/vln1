@@ -4,4 +4,4 @@ a = Output()
 
 
 
-a.printAvailableStaff("21/12/2019")
+a.printWorkSchedule('3009907461')
