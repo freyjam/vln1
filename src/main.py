@@ -1,9 +1,13 @@
-from UILayer.menuclass import Menu
+from UILayer.menuclass import MenuAPI
+
+a = MenuAPI()
+
+
+a.retrieveCrewMenu()
 
 
 
-
-b = Menu()
+b = MenuAPI()
 
 while True:
 	b.mainMenu()
