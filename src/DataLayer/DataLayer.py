@@ -37,7 +37,7 @@ class DataLayerAPI:
             with tempfile as file:
                 file.write(row)
 
-        
+        shutil.copy(tempfile, 'csv/Crew.csv')
 
     def getAllDestinationsFromFile(self):
         '''Reads all info about destinations from file and returns a list of destination instances'''
