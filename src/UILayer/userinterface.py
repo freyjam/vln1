@@ -104,10 +104,10 @@ class Output:
             voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, voyage.status)
             outbound = "\n   Outbound: {} - {}\t  Flight {}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)  
 
-            departureDate, DepartureTime = self.printer.changeFromIsoTimeFormat(voyage.departure)
-            arrAtDestDate, arrAtDestTime = self.printer.changeFromIsoTimeFormat(voyage.arrivalAtDest)
-            depFromDestDate, depFromDestTime = self.printer.changeFromIsoTimeFormat(voyage.departureFromDest)
-            arrivalDate, arrivalTime = self.printer.changeFromIsoTimeFormat(voyage.arrival)
+            departureDate, DepartureTime = voyage.departure
+            arrAtDestDate, arrAtDestTime = voyage.arrivalAtDest
+            depFromDestDate, depFromDestTime = voyage.departureFromDest
+            arrivalDate, arrivalTime = voyage.arrival
 
             outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", DepartureTime, departureDate, "Arrival: ", arrAtDestTime, arrAtDestDate)
             inbound = "\n   Inbound: {} - {}\t  Flight {}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)

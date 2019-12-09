@@ -24,8 +24,16 @@ class LogicLayerAPI:
 
     def getAllVoyages(self):
         allVoyagesList = self.instance.getAllVoyageFromFile()
+        return allVoyagesList
+
+    def getListofAllVoyages(self):
+        allVoyagesList = self.getAllVoyages()
         for voyage in allVoyagesList:
             voyage.status = self.getVoyageStatus(voyage)
+            voyage.departure = self.changeFromIsoTimeFormat(voyage.departure)                       # Date and time will be on the right form for printing
+            voyage.departureFromDest = self.changeFromIsoTimeFormat(voyage.departureFromDest)
+            voyage.arrivalAtDest = self.changeFromIsoTimeFormat(voyage.arrivalAtDest)
+            voyage.arrival = self.changeFromIsoTimeFormat(voyage.arrival)
         return allVoyagesList
 
     def getVoyageStatus(self, voyage):
