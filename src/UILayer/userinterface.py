@@ -185,21 +185,20 @@ class UserExperienceOutPutInputMeter:
         elif userInput == '6':
             self.registerAirplase()
         elif userInput == "b":
-            return
+            pass
+    def registerVoyage(self):
 
-        def registerVoyage(self):
+        print("""###
+REGISTER DATA -> VOYAGE
+###""")
+        print("if any line is empty it will not get registered")
+        destination = input('Destination: ')
+        departureFromIceland = input('Departure from Iceland: ')
+        departureFromDestination = input('Departure from destination: ')
 
-            print("""###
-    REGISTER DATA -> VOYAGE
-    ###""")
-            print("if any line is empty it will not get registered")
-            destination = input('Destination: ')
-            departureFromIceland = input('Departure from Iceland: ')
-            departureFromDestination = input('Departure from destination: ')
+        print("function not implemented, returning")
 
-            print("function not implemented, returning")
-
-            return
+        return
 
     def registerCrewMember(self):
         print("""###
