@@ -6,31 +6,6 @@ from models.voyageModel import Voyage
 
 
 class DataLayerAPI:
-#   def __init__(self):  ## probably going to have no parameters when created, but
-                         ## when the    
-#       self.crew = CrewClass() ## create instance of class that maintains people
-#       self.destinations = [] # list of nodes of destinations
-#       self.airplanes = [] # list of nodes of airplanes
-#       self.voyages = Voyage()
-
-#   def registerPlane(self, name, model, manufacturer, type, capacity, planeInsignia, planeTypeId):
-#       node = Airplane(name, model, manufacturer, type, capacity, planeInsignia, planeTypeId)
-#       self.airplanes.append(node) ## creating a airplane node and insert that node into list
-
-#   def registerDestination(self, destination, country, airport, distanceFromIceland, contact, emergencyNumber):
-#       node = destinationNode(destination, country, airport, distanceFromIceland, contact, emergencyNumber)
-#       self.destinations.append(node) 
-
-        # create a instance of destination node 
-        # and putting that node into the list.
-#   def registerCrewMember(self, ssn, name, role, rank, license, address, phonenumber, email):
-#       self.crew.createPilot(ssn, name, role, rank, license, address, phonenumber, email)
-        # crew instance has a function that creates 
-        # a crew node and puts it into a dictionary with
-        # the ssn as a key.
-
-        # iterate over all crew members and taking the flight attendants 
-        # and putting them into a list and returning the list
 
     def openFileForReading(self, filename):
         try:
