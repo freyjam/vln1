@@ -1,5 +1,25 @@
-import datetime
+    def printWorkSchedule(self, ssn):
+        #Gets a tuple consisting of an instance of a staff member and their designated voyages
+        ret_str = "####\nWork Schedule\n####\n"
+        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn)
+        staff = work_plan_tuple[0]
+        staff_info = "\n{:<20} {:<15} {:<15} {:<20}".format(staff.name, staff.ssn, staff.role, staff.rank)
+        frame = "\n" + "=" * len(staff_info)
 
+        schedule = ""
+        plan = work_plan_tuple[1]
+        if len(plan) == 0:
+            schedule = "\nNo voyages for the upcoming week."
+        for entry in plan:
+            departureDate, departureTime = entry.departure
+            arrivalDate, arrivalTime = entry.arrival
+            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>5}".format(departureDate, entry.destinationAirport, "Departure: ", departureTime, "Arrival: ", arrivalTime)
+
+        ret_str += frame + staff_info + frame + schedule
+        print(ret_str)
+
+<<<<<<< HEAD
+=======
 def reverseIsoformat(isotime, whatToChange, howMany): 
     dateTest = isotime[:4] + isotime[5:7] + isotime[8:10] + isotime[11:13] + isotime[14:16]
     if whatToChange == 'days':
@@ -21,3 +41,4 @@ def getCurrentDateAndTimeISO(self):
     hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
     year, month, day = str(date.today()).split('-')
     return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
+>>>>>>> c8e58cf02c07bbe7952daca492de3c826d8b77f9

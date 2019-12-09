@@ -24,9 +24,27 @@ class LogicLayerAPI:
 
     def getAllVoyages(self):
         allVoyagesList = self.instance.getAllVoyageFromFile()
+        return allVoyagesList
+
+    def getListofAllVoyages(self):
+        allVoyagesList = self.getAllVoyages()
         for voyage in allVoyagesList:
             voyage.status = self.getVoyageStatus(voyage)
+            voyage.departure = self.changeFromIsoTimeFormat(voyage.departure)                       # Date and time will be on the right form for printing
+            voyage.departureFromDest = self.changeFromIsoTimeFormat(voyage.departureFromDest)
+            voyage.arrivalAtDest = self.changeFromIsoTimeFormat(voyage.arrivalAtDest)
+            voyage.arrival = self.changeFromIsoTimeFormat(voyage.arrival)
         return allVoyagesList
+
+    def getAllVoyagesByDate(self, date):
+        voyagesThatDate = []
+        for voyage in self.getAllVoyages():
+            departureDate, departureTime = self.changeFromIsoTimeFormat(voyage.departure)
+            if departureDate == date:
+                voyages.append(voyage)
+        return voyagesThatDate
+
+    
 
     def getVoyageStatus(self, voyage):
         time = self.getCurrentDateAndTimeISO()
@@ -104,11 +122,10 @@ class LogicLayerAPI:
     def getAllCrewNotWorking(self, date):
         allCrewList = self.sortAllCrewAlpha()
         allCrewWorkingList = [obj.ssn for obj in self.getAllCrewWorking(date)]
-        startTime = self.changeInputedDateAndTimeToIso(date, '00:00')
-        endTime = self.changeInputedDateAndTimeToIso(date, '23:59')
         for member in allCrewList:
-            if member.ssn in allCrewWorkingList:
-                allCrewList.remove(member)
+            nr1 = member.ssn
+            if nr1 in allCrewWorkingList:
+                allCrewList.remove(member)                            # Removes all working Crew members from list
         return allCrewList
 
 
@@ -163,9 +180,9 @@ class LogicLayerAPI:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
-    def getWorkScheduleForCrewMember(self, ssn, startDate, endDate):
-        startTime = self.changeInputedDateAndTimeToIso(startDate, '00:00')
-        endTime = self.changeInputedDateAndTimeToIso(endDate, '23:59')
+    def getWorkScheduleForCrewMember(self, ssn):
+        startTime = self.getCurrentDateAndTimeISO()
+        endTime = self.addToIsoFormat('days', 7)
         crewMembersVoyagesList = []
         crewMember = self.getCrewMemberBySsn(ssn)
         voyagesList = self.getAllVoyages()
@@ -177,7 +194,7 @@ class LogicLayerAPI:
                     voyage.arrival = self.changeFromIsoTimeFormat(voyage.arrival)
         return crewMember, crewMembersVoyagesList
 
-    def reverseIsoformat(self, isotime, whatToChange, howMany): 
+    def addToIsoFormat(self, isotime, whatToChange, howMany): 
         dateTest = isotime[:4] + isotime[5:7] + isotime[8:10] + isotime[11:13] + isotime[14:16]
         if whatToChange == 'days':
             newTime = (datetime.strptime(str(dateTest),"%Y%m%d%H%M") + timedelta(days=howMany)).strftime("%Y%m%d%H%M")
@@ -236,6 +253,61 @@ class LogicLayerAPI:
             if aircraft.planeInsignia not in voyageByDate.aircraft:
                 aircraftsAvailable.append(aircraft)
         return aircraftsAvailable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def getTimingsForVoyage(self, destination, departureDate, departureTime):
+        if isTimeFormatValid(departureDate, departureTime):
+            departureISO = self.changeInputedDateAndTimeToIso(departureDate, departureTime)
+            if isAirportAvailable(departureTime):
+                arrivalAtDestISO = self.addToIsoFormat(departure, 'hours', destination.distanceFromIceland)
+                departureFromDestISO = self.addToIsoFormat(arrivalAtDest, 'hours', 1)
+                arrivalISO = self.addToIsoFormat(departureFromDest, 'hours', destination.distanceFromIceland)
+                if isAirportAvailable(arrival):
+                    return departureISO, arrivalAtDestISO, departureFromDestISO, arrivalISO
+
+    def getNextFlightNumbers(self, priorFlightNumberOut, priorFlightNumberIn):
+        firstPartOut, secondPartOut = priorFlightNumberOut[:4], int(priorFlightNumberOut[4])
+        newFlightNumberOut = firstPartOut + str(secondPartOut + 2)
+
+        firstPartIn, secondPartIn = priorFlightNumberIn[:4], int(priorFlightNumberIn[4])
+        newFlightNumberIn = firstPartIn + str(secondPartIn + 2)
+
+        return newFlightNumberOut, newFlightNumberIn
+
+    
+    def getFlightNumbersForVoyage(destination, departureISO):
+        departureDate, departureTime = self.changeFromIsoTimeFormat(departureISO)
+        for voyage in self.getAllVoyagesByDate(departureDate):
+            if voyage.destinationAirport == destination.airport:
+                if departureISO < voyage.departure:
+                    outboundFlightNumber = voyage.outboundFlightNumber
+                    inboundFlightNumber = voyage.inboundFlightNumber
+                    voyage.outboundFlightNumber, voyage.inboundFlightNumber = getNextFlightNumbers(voyage.outboundFlightNumber, voyage.inboundFlightNumber)
+                    #Hér er kallað á fall sem update-ar voyage.csv og bætir þessum nýju flugnúmerum við
+
+
+
+
 
 
 
