@@ -128,7 +128,6 @@ class Output:
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         
         print(ret_str)
-<<<<<<< HEAD:src/UILayer/userinterface.py
 
 
 
@@ -325,6 +324,3 @@ UPDATE DATA -> CREW MEMBER INFO -> {}
         ## check if parameters are not "" and pass those into logic to be processed.
     def updateDestinationMenu(self):
         pass
-
-=======
->>>>>>> 832789acf15a44139d8b5f74ccfc546e23053804:src/UILayer/outputclass.py

@@ -1,7 +1,7 @@
-from UILayer.userinterface import Output, UserExperienceOutPutInputMeter
-
-a = Output()
+from UILayer.menuclass import Menu
 
 
 
-b = UserExperienceOutPutInputMeter()
+
+b = Menu()
+b.mainMenu()

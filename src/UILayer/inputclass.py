@@ -1,9 +1,6 @@
-from UILayer.menuclass import Menu
-
 class Input:
     def __init__(self):
-        self.writer = Menu()
-
+        pass
     def getUpdateStaffInput(self):
         newNumber = input("Enter Phone Number: ")
         newResidence = input("Enter Residence: ")
@@ -46,7 +43,7 @@ class Input:
         return destinationInfo
     
     def getSSN(self):
-        ssn = input("Enter SSN: )
+        ssn = input("Enter SSN: ")
 
         return ssn
 

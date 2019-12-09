@@ -1,5 +1,5 @@
-from UILayer.inputclass import Input
 from UILayer.outputclass import Output
+from UILayer.inputclass import Input
 from LogicLayer.logic_test import LogicLayerAPI
 
 class Menu:
@@ -31,7 +31,7 @@ class Menu:
         
 
     def registerMenu(self):
-        print("###\nREGISTER DATA\n###)
+        print("###\nREGISTER DATA\n###")
         registerMenu = input("""
 
     1. Voyage
@@ -117,7 +117,7 @@ class Menu:
 
     b - go back
     
-    Choose 1-2: """)
+    Choose 1-2: """
         userInput = input(updateMenu)
         if userInput == '1':
             self.updateCrewMenu()
