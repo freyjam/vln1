@@ -64,7 +64,7 @@ class MenuAPI:
         elif userInput == '6':
             self.registerAirplane()
         elif userInput == "b":
-            return
+            self.mainMenu()
 
     def registerVoyage(self):
 
@@ -116,13 +116,13 @@ class MenuAPI:
         if userInput == '1':
             self.retrieveCrewMenu()   #Retrieve Crew
         elif userInput == '2':
-            pass                    #Retrieve Aircrafts
+            raise NotImplementedError                    #Retrieve Aircrafts
         elif userInput == '3':
             self.outputclass.printDestinations()                #Retrieve Destinations
         elif userInput == '4':
             self.retrieveVoyagesMenu()                  #Retrieve Voyages
         elif userInput == 'b':
-            return
+            self.mainMenu()
 
     def retrieveVoyagesMenu(self):
         print("###\nRETRIEVE DATA -> VOYAGE\n###")
@@ -138,14 +138,14 @@ class MenuAPI:
 
         userInput = input(retrieveVoyagesMenu)
         if userInput == "1":
-            pass                        #LL needs a function for a day and for a week
+            raise NotImplementedError                        #LL needs a function for a day and for a week
         if userInput == "2":
-            pass                        #LL needs a function for a day and for a week.
+            raise NotImplementedError                        #LL needs a function for a day and for a week.
         if userInput == "3":
             ssn = self.inputclass.getSSN()
             self.outputclass.printWorkSchedule(ssn)
         if userInput == "b":
-            return
+            self.mainMenu()
 
     
     def retrieveCrewMenu(self):
@@ -174,7 +174,7 @@ class MenuAPI:
             ssn = self.inputclass.getSSN()
             self.outputclass.printStaffMember(ssn)
         elif userInput == "b":
-            return 0
+            self.mainMenu()
     
 
     """
@@ -198,7 +198,7 @@ class MenuAPI:
         elif userInput == '2':
             self.updateDestinationMenu()
         elif userInput == 'b':
-            return 0
+            self.mainMenu()
     
     def updateCrewMenu(self):
         print("###\nUPDATE DATA -> CREW MEMBER INFO\n###")
@@ -225,7 +225,7 @@ class MenuAPI:
         #Select a destination
         userInput = input("b - go back\n\nSelect a destination: ")
         #Update contact or emergency number
-        pass
+        raise NotImplementedError
 
 
 

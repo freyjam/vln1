@@ -1,4 +1,4 @@
-from DataLayer.DataLayer import DataLayerAPI
+from DataLayer import ReadCSV
 
 from operator import attrgetter
 import datetime
@@ -10,7 +10,7 @@ import re # regex for validation
 class LogicLayerAPI:
     def __init__(self):
         pass
-        self.instance = DataLayerAPI() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
+        self.instance = ReadCSV.ReadCSV() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
         #Og ath hvort að þetta virki og sé eins og á að gera
 
     def getAllCrewList(self):
