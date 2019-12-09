@@ -4,4 +4,4 @@ a = Output()
 
 
 
-a.printAirplanes()
+a.printAvailableStaff("21/12/2019")
