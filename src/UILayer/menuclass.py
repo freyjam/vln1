@@ -1,5 +1,5 @@
-from UILayer.inputclass import Input
 from UILayer.outputclass import Output
+from UILayer.inputclass import Input
 from LogicLayer.logic_test import LogicLayerAPI
 
 class MenuAPI:
@@ -23,7 +23,7 @@ class MenuAPI:
         if userInput == "1":
             self.registerMenu()
         elif userInput == "2":
-            self.retreiveMenu() 
+            self.retrieveMenu() 
         elif userInput == "3":
             self.updateMenu() 
         elif userInput == "q":
@@ -96,7 +96,7 @@ class MenuAPI:
 
     def retrieveMenu(self):
         print("###\nRETRIEVE DATA\n###")
-        retrieveMenu = """
+        retrieveMenuList = """
 
     1. Crew
     2. Aircrafts
@@ -106,7 +106,7 @@ class MenuAPI:
     b - go back
 
     Choose 1-5: """
-        userInput = input(retrieveMenu)
+        userInput = input(retrieveMenuList)
         if userInput == "1":
             self.retrieveCrewMenu   #Retrieve Crew
         elif userInput == '2':
