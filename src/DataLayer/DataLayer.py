@@ -19,6 +19,7 @@ class DataLayerAPI:
 
     def updateCrewCSV(self, listOfInstances):
         # create temporary file
+        tempfile = NamedTemporaryFile(mode='w', delete=False)
         for instance in listOfInstances:
             
             email = instance.email
@@ -29,13 +30,14 @@ class DataLayerAPI:
             role = instance.role
             rank = instance.rank
             license = instance.address
-            tempfile = NamedTemporaryFile(mode='w', delete=False)
           
             row = [ssn, name, role, rank, license, address, phonenumber, email ] 
             row = ",".join(row)
             row = "\n" + row
-            with open('csv/Crew.csv','a') as file:
+            with tempfile as file:
                 file.write(row)
+
+        
 
     def getAllDestinationsFromFile(self):
         '''Reads all info about destinations from file and returns a list of destination instances'''
