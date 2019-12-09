@@ -70,9 +70,6 @@ class DataLayerAPI:
             return allVoyagesList
 
 
-<<<<<<< HEAD
-
-=======
     def addVoyageToCSV(self, instance):
         destination = instance.destination
         name = instance.name
@@ -105,14 +102,12 @@ class DataLayerAPI:
         capacity      = instance.capacity
 
 
-<<<<<<< HEAD
         row = [planeInsignia, planeTypeId, capacity] 
         row = ",".join(row)
         row = "\n" + row
         with open('csv/Aircraft.csv','a') as file:
             file.write(row)
->>>>>>> 8e6150241c0f25edd2063091c601e72801601754
-=======
+
         try:
             row = [planeInsignia, planeTypeId, capacity] 
             row = ",".join(row)
@@ -122,7 +117,6 @@ class DataLayerAPI:
         except Exception as e:
             return e
 
->>>>>>> 1d1d8051ab813d1dde20128279097a3ab9a0f9e5
     def addDestinationToCSV(self, instance):
         destination         = instance.destination
         country             = instance.country

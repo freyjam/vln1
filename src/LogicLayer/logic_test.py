@@ -213,5 +213,25 @@ class LogicLayerAPI:
                     returnAvailableCrewList.append(member)                  #OF STÓRT FALL????
         return returnAvailableCrewList
 
+    def isAirportAvailable(self, IsoTime):
+        '''Checks if airport is available for takeoff or landing'''
+        allVoyagesList = self.getAllVoyages()
+        for voyage in allVoyagesList:
+            if voyage.departure == IsoTime:
+                return False
+            elif voyage.arrival == IsoTime:
+                return False
+        return True
+
+    def aircraftAvailable(self, departureTime, arrivalTime):
+        '''Returns all aircraft available for specific time'''
+        #Þarf að skoða betur!
+        aircraftsAvailable = []
+        voyageByDate = self.getAllVoyagesBydate
+        for aircraft in self.getAllAircrafts():
+            if aircraft.planeInsignia not in voyageByDate.aircraft:
+                aircraftsAvailable.append(aircraft)
+        return aircraftsAvailable
+
 
 
