@@ -183,9 +183,9 @@ class LogicLayerAPI:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
-    def getWorkScheduleForCrewMember(self, ssn, startDate, endDate):
-        startTime = self.changeInputedDateAndTimeToIso(startDate, '00:00')
-        endTime = self.changeInputedDateAndTimeToIso(endDate, '23:59')
+    def getWorkScheduleForCrewMember(self, ssn):
+        startTime = self.getCurrentDateAndTimeISO()
+        endTime = self.addToIsoFormat('days', 7)
         crewMembersVoyagesList = []
         crewMember = self.getCrewMemberBySsn(ssn)
         voyagesList = self.getAllVoyages()
