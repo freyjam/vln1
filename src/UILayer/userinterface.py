@@ -1,5 +1,4 @@
 from LogicLayer.logic_test import LogicLayerAPI
-
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
@@ -315,4 +314,9 @@ UPDATE DATA -> CREW MEMBER INFO -> {}
 
         ## check if parameters are not "" and pass those into logic to be processed.
     def updateDestinationMenu(self):
+        pass
+
+
+class modelInstances:
+    def __init__(self):
         pass
