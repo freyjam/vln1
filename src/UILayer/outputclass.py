@@ -107,7 +107,7 @@ class Output:
     def printVoyages(self):
         #Needs an iterable format of voyages from LL
         ret_str = "####\nVoyages\n####"
-        for voyage in self.printer.getAllVoyages():                                           
+        for voyage in self.printer.getListofAllVoyages():                                           
             voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, voyage.status)
             outbound = "\n   Outbound: {} - {}\t  Flight {}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)  
 
