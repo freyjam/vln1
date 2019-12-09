@@ -13,7 +13,7 @@ def reverseIsoformat(isotime, whatTime, number):
     year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
     hour, minutes = isotime[11:13], isotime[14:16] 
 
-    print('{}/{}/{}'.format(tesst[:4],tesst[4:6], tesst[6:]))
+    print('{}/{}/{} {}:{}'.format(tesst[:4],tesst[4:6], tesst[6:8], tesst[8:10], tesst[10:12]))
     #return int(year) int(month), int(day), int(hour), int(minutes)
 
 
