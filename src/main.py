@@ -4,4 +4,4 @@ a = Output()
 
 
 
-a.printAirplanes()
+a.printWorkSchedule('2504939263')

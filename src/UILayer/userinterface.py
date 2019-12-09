@@ -64,11 +64,11 @@ class Output:
             ret_str += "\n{:<10}{:<15}{:<10}{:<15}{:<15}{:<15}{}{:>12}".format(airplane.insignia, airplane.typeID, airplane.capacity, airplane.state, airplane.destination, airplane.numberOfFlight, availableTime, availableDate)
         print(ret_str)
  
-    def printWorkSchedule(self, ssn, date1, date2):
+    def printWorkSchedule(self, ssn):
         #Gets a tuple consisting of an instance of a staff member and their designated voyages
         ret_str = "####\nWork Schedule\n####\n"
         schedule = ""
-        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn, date1, date2)
+        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn)
         staff = work_plan_tuple[0]
         staff_info = "\n{:<20} {:<15} {:<15} {:<30}".format(staff.name, staff.ssn, staff.role, staff.rank)
         frame = "\n" + "=" * (len(staff_info) - 5)
