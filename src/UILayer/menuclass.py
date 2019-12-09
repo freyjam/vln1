@@ -23,7 +23,7 @@ class Menu:
         if userInput == "1":
             self.registerMenu()
         elif userInput == "2":
-            self.retreiveMenu() 
+            self.retrieveMenu() 
         elif userInput == "3":
             self.updateMenu() 
         elif userInput == "q":
@@ -86,7 +86,7 @@ class Menu:
     
     def retrieveMenu(self):
         print("###\nRETRIEVE DATA\n###")
-        retrieveMenu = """
+        retrieveMenuList = """
 
     1. Crew
     2. Aircrafts
@@ -96,7 +96,7 @@ class Menu:
     b - go back
 
     Choose 1-5: """
-        userInput = input(retrieveMenu)
+        userInput = input(retrieveMenuList)
         if userInput == "1":
             pass                    #Retrieve Crew
         elif userInput == '2':
