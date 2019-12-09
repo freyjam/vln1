@@ -170,6 +170,41 @@ class LogicLayerAPI:
         year, months, days, hours, minutes = newTime[:4], newTime[4:6], newTime[6:8], newTime[8:10], newTime[10:12]
         return datetime(int(year), int(months), int(days), int(hours), int(minutes)).isoformat()
 
+    def getAllPilotsAfterLicenseOnAircraft(self, aircraftInsignia, rank):
+        returnList = []
+        for aircraft in self.getAllAircrafts():
+            if aircraft.insignia == aircraftInsignia:
+                aircraftTypeID = aircraft.typeID
+        for pilot in self.sortAllPilotsAlpha():
+            if pilot.rank == rank:
+                if pilot.license == aircraftTypeID:
+                    returnList.append(pilot)
+        return returnList
+
+    def getAllAvailebleCrewMembersForVoyage(self, voyage, rank):
+        returnAvailableCrewList = []
+        departureDate, departureTime = self.changeFromIsoTimeFormat(voyage.departure)
+        arrivalDate, arrivalTime = self.changeFromIsoTimeFormat(voyage.arrival)
+        if departureDate == arrivalDate:
+            availableCrew = self.getAllCrewNotWorking(departureDate)
+        else:
+            availableCrewDepartureDate = {self.getAllCrewNotWorking(departureDate)}                 # If voyage ends after midnight a crew member that is unavailable the next day is not available
+            availableCrewArrivalDate = {self.getAllCrewNotWorking(arrivalDate)}
+            availableCrew = intersection(availableCrewDepartureDate, availableCrewArrivalDate)
+        if rank == 'Captain' or rank == 'Copilot':                                                  # When finding pilot, license have to be checked
+            for pilot in self.getAllPilotsAfterLicenseOnAircraft(voyage.aircraft, rank):
+                if pilot.ssn in [member.ssn for member in availableCrew]:
+                    returnAvailableCrewList.append(pilot)
+        else:
+            for member in availableCrew:
+                if member.rank == rank:
+                    returnAvailableCrewList.append(member)
+        return returnAvailableCrewList
+
+
+
+        
+
 
         
 
