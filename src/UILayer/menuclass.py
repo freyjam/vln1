@@ -122,14 +122,14 @@ class MenuAPI:
         print("###\nRETRIEVE DATA -> CREW\n###")
         retrieveCrewMenu = """
 
-1. All Crew
-2. Available Crew
-3. Unavailable Crew
-4. Crew Member by SSN
+    1. All Crew
+    2. Available Crew
+    3. Unavailable Crew
+    4. Crew Member by SSN
 
-b - go back
+    b - go back
 
-Choose 1-4: """
+    Choose 1-4: """
 
         userInput = input(retrieveCrewMenu)
         if userInput == "1":
