@@ -1,3 +1,8 @@
+from models.voyageModel import Voyage
+from models.crewModel import Crew
+from models.destinationModel import Destination
+from models.aircraftModel import Aircraft
+
 class ReadCSV:
     def openFileForReading(self, filename):
         try:

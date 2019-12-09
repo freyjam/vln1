@@ -1,5 +1,5 @@
-from DataLayer.ReadCSV import ReadCSV
-from DataLayer.WriteCSV import WriteCSV
+from DataLayer import ReadCSV
+from DataLayer import WriteCSV
 
 from operator import attrgetter
 import datetime
@@ -11,7 +11,7 @@ import re # regex for validation
 class LogicLayerAPI:
     def __init__(self):
         pass
-        self.ReadCSV = ReadCSV() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
+        self.instance = ReadCSV.ReadCSV() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
         #Og ath hvort að þetta virki og sé eins og á að gera
         self.WriteCSV = WriteCSV()
     def getAllCrewList(self):
