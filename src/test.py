@@ -19,11 +19,6 @@ def reverseIsoformat(isotime, whatToChange, howMany):
     return datetime.datetime(int(year), int(months), int(days), int(hours), int(minutes)).isoformat()
 
 
-<<<<<<< HEAD
-=======
-    print('{}/{}/{} {}:{}'.format(tesst[:4],tesst[4:6], tesst[6:8], tesst[8:10], tesst[10:12]))
-    #return int(year) int(month), int(day), int(hour), int(minutes)
->>>>>>> e3318de570dea283f93fb79a1c8539bf391b32ae
 
 print(reverseIsoformat('2010-01-03T18:00:00', 'minutes', 30 ))
 

@@ -4,7 +4,12 @@ from operator import attrgetter
 import datetime
 from datetime import datetime
 from datetime import date
+<<<<<<< HEAD
 
+=======
+from datetime import timedelta
+import re # regex for validation
+>>>>>>> b38a403edcffa6446bde0ce64ae637c57361a35f
 
 class LogicLayerAPI:
     def __init__(self):
@@ -52,6 +57,9 @@ class LogicLayerAPI:
         else:
             return 'SSN not Valid'
 
+
+    def isSSNValid(snn):
+        return len(ssn) == 10
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
         allCrewList = self.getAllCrewList()

@@ -1,7 +1,9 @@
-from UILayer.userinterface import Output
-
-a = Output()
+from UILayer.menuclass import Menu
 
 
 
-a.printWorkSchedule('3009907461')
+
+b = Menu()
+
+while True:
+	b.mainMenu()

@@ -1,8 +1,15 @@
 from LogicLayer.logic_test import LogicLayerAPI
+import models.aircraftModel
+import models.crewModel
+import models.destinationModel
+import models.voyageModel
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
-   
+    
+    # def printMenu(self, menuString): #Sleppa??? klasauppsetning
+    #     print(menuString)
+
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
         ret_str = "####\nAll Staff\n####"
         header = "\n\n{:<20} {:<15} {:<15} {:<15} {:<20} {:<13} {:<20} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
@@ -79,7 +86,7 @@ class Output:
     def printWorkSchedule(self, ssn):
         #Gets a tuple consisting of an instance of a staff member and their designated voyages
         ret_str = "####\nWork Schedule\n####\n"
-        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn)
+        work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn, date1, date2)
         staff = work_plan_tuple[0]
         staff_info = "\n{:<20} {:<15} {:<15} {:<20}".format(staff.name, staff.ssn, staff.role, staff.rank)
         frame = "\n" + "=" * len(staff_info)
@@ -89,9 +96,9 @@ class Output:
         if len(plan) == 0:
             schedule = "\nNo voyages for the upcoming week."
         for entry in plan:
-            departureDate, departureTime = entry.departure
-            arrivalDate, arrivalTime = entry.arrival
-            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>5}".format(departureDate, entry.destinationAirport, "Departure: ", departureTime, "Arrival: ", arrivalTime)
+            date, departureTime = self.printer.changeFromIsoTimeFormat(entry.departure)             #Ath nota fall frekar í LL
+            datee, arrivalTime = self.printer.changeFromIsoTimeFormat(entry.arrival)
+            schedule += "\n{:<15} {:<15} {:<11} {:<5}\n{:>43} {:>5}".format(date, entry.destinationAirport, "Departure: ", departureTime, "Arrival: ", arrivalTime)
 
         ret_str += frame + staff_info + frame + schedule
         print(ret_str)
@@ -111,9 +118,12 @@ class Output:
             outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", DepartureTime, departureDate, "Arrival: ", arrAtDestTime, arrAtDestDate)
             inbound = "\n   Inbound: {} - {}\t  Flight {}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", depFromDestTime, depFromDestDate, "Arrival: ", arrivalTime, arrivalDate)
+            
             crew = "\n   Crew: "
+            if len(voyage.crew) < 3:
+                crew+= "\nVOYAGE NOT SUFFICIENTLY STAFFED!"
             for ssn in voyage.crew: 
-                member = self.printer.getCrewMemberBySsn(ssn)
+                member = self.printer.getCrewMemberBySsn(ssn)        
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         
@@ -181,21 +191,20 @@ class UserExperienceOutPutInputMeter:
         elif userInput == '6':
             self.registerAirplase()
         elif userInput == "b":
-            return
+            pass
+    def registerVoyage(self):
 
-        def registerVoyage(self):
+        print("""###
+REGISTER DATA -> VOYAGE
+###""")
+        print("if any line is empty it will not get registered")
+        destination = input('Destination: ')
+        departureFromIceland = input('Departure from Iceland: ')
+        departureFromDestination = input('Departure from destination: ')
 
-            print("""###
-    REGISTER DATA -> VOYAGE
-    ###""")
-            print("if any line is empty it will not get registered")
-            destination = input('Destination: ')
-            departureFromIceland = input('Departure from Iceland: ')
-            departureFromDestination = input('Departure from destination: ')
+        print("function not implemented, returning")
 
-            print("function not implemented, returning")
-
-            return
+        return
 
     def registerCrewMember(self):
         print("""###
@@ -314,9 +323,4 @@ UPDATE DATA -> CREW MEMBER INFO -> {}
 
         ## check if parameters are not "" and pass those into logic to be processed.
     def updateDestinationMenu(self):
-        pass
-
-
-class modelInstances:
-    def __init__(self):
         pass
