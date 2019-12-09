@@ -320,12 +320,3 @@ UPDATE DATA -> CREW MEMBER INFO -> {}
     def updateDestinationMenu(self):
         pass
 
-
-class modelInstances:
-    def __init__(self):
-        pass
-
-    def crewModel(self,ssn, name, role, rank, license, address, phonenumber, email):
-        instance = crewModel.Crew(ssn, name, role, rank, license, address, phonenumber, email)
-        ## pass into logic layer
-        
