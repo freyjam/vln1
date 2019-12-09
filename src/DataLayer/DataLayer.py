@@ -70,7 +70,44 @@ class DataLayerAPI:
             return allVoyagesList
 
 
+<<<<<<< HEAD
 
+=======
+    def addVoyageToCSV(self, instance):
+        destination = instance.destination
+        name = instance.name
+        destinationAirport = instance.destinationAirport
+        departure = instance.departure
+        arrivalAtAirport = instance.arrivalAtAirport
+        deportureFromAirport = instance.deportureFromAirport
+        arrival = instance.arrival
+        aircraft = instance.aircraft
+        outboundFlightNumber = instance.outboundFlightNumber
+        captain = instance.captain
+        copilot = instance.copilot
+        scc = instance.scc
+        fa1 = instance.fa1
+        fa2 = instance.fa2
+
+
+        row = [destination name,destination airport,departure,arrival at destination,departure from destination,arrival,aircraft,outbound flight number,inbound flight number,captain,copilot,scc,fa1,fa2 ] 
+        row = ",".join(row)
+        row = "\n" + row
+        with open('csv/Voyage.csv','a') as file:
+            file.write(row)
+
+    def addAircraftsToCSV(self, instance):
+        planeInsignia = instance.planeInsignia
+        planeTypeId   = instance.planeTypeId
+        capacity      = instance.capacity
+
+
+        row = [planeInsignia, planeTypeId, capacity] 
+        row = ",".join(row)
+        row = "\n" + row
+        with open('csv/Aircraft.csv','a') as file:
+            file.write(row)
+>>>>>>> 8e6150241c0f25edd2063091c601e72801601754
     def addDestinationToCSV(self, instance):
         destination         = instance.destination
         country             = instance.country
