@@ -5,7 +5,7 @@ import datetime
 from datetime import datetime
 from datetime import date
 from datetime import timedelta
-
+import re # regex for validation
 
 class LogicLayerAPI:
     def __init__(self):
@@ -53,6 +53,9 @@ class LogicLayerAPI:
         else:
             return 'SSN not Valid'
 
+
+    def isSSNValid(snn):
+        return len(ssn) == 10
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
         allCrewList = self.getAllCrewList()
