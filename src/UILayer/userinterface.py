@@ -77,7 +77,7 @@ class Output:
         
         print(ret_str)
  
-    def printWorkSchedule(self, ssn, date1, date2):
+    def printWorkSchedule(self, ssn):
         #Gets a tuple consisting of an instance of a staff member and their designated voyages
         ret_str = "####\nWork Schedule\n####\n"
         work_plan_tuple = self.printer.getWorkScheduleForCrewMember(ssn, date1, date2)

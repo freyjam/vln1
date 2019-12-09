@@ -4,6 +4,7 @@ from operator import attrgetter
 import datetime
 from datetime import datetime
 from datetime import date
+from datetime import timedelta
 
 
 class LogicLayerAPI:
@@ -147,9 +148,9 @@ class LogicLayerAPI:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
-    def getWorkScheduleForCrewMember(self, ssn, startDate, endDate):
-        startTime = self.changeInputedDateAndTimeToIso(startDate, '00:00')
-        endTime = self.changeInputedDateAndTimeToIso(endDate, '23:59')
+    def getWorkScheduleForCrewMember(self, ssn):
+        startTime = self.getCurrentDateAndTimeISO()
+        endTime = self.reverseIsoformat(startTime, 'days', 7)
         crewMembersVoyagesList = []
         crewMember = self.getCrewMemberBySsn(ssn)
         voyagesList = self.getAllVoyages()
@@ -158,6 +159,15 @@ class LogicLayerAPI:
                 if crewMember.ssn in voyage.crew:
                     crewMembersVoyagesList.append(voyage)
         return crewMember, crewMembersVoyagesList
+
+    def reverseIsoformat(self, isotime, whatToChange, howMany): 
+        dateTest = isotime[:4] + isotime[5:7] + isotime[8:10] + isotime[11:13] + isotime[14:16]
+        if whatToChange == 'days':
+            newTime = (datetime.strptime(str(dateTest),"%Y%m%d%H%M") + timedelta(days=howMany)).strftime("%Y%m%d%H%M")
+        elif whatToChange =='hours':
+            newTime = (datetime.strptime(str(dateTest),"%Y%m%d%H%M") + timedelta(minutes=howMany)).strftime("%Y%m%d%H%M")
+        year, months, days, hours, minutes = newTime[:4], newTime[4:6], newTime[6:8], newTime[8:10], newTime[10:12]
+        return datetime(int(year), int(months), int(days), int(hours), int(minutes)).isoformat()
 
 
         
