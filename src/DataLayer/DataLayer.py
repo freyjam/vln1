@@ -89,12 +89,15 @@ class DataLayerAPI:
         fa1 = instance.fa1
         fa2 = instance.fa2
 
+        try:
+            row = [destination, name,destinationAirport,departure,arrivalAtDestination,departureFromDestination,arrival,aircraft,outboundFlightNumber,inboundFlightNumber,captain,copilot,scc,fa1,fa2 ] 
+            row = ",".join(row)
+            row = "\n" + row
+            with open('csv/Voyage.csv','a') as file:
+                file.write(row)
 
-        row = [destination name,destination airport,departure,arrival at destination,departure from destination,arrival,aircraft,outbound flight number,inbound flight number,captain,copilot,scc,fa1,fa2 ] 
-        row = ",".join(row)
-        row = "\n" + row
-        with open('csv/Voyage.csv','a') as file:
-            file.write(row)
+        except Exception as e:
+            return e
 
     def addAircraftsToCSV(self, instance):
         planeInsignia = instance.planeInsignia
@@ -102,12 +105,24 @@ class DataLayerAPI:
         capacity      = instance.capacity
 
 
+<<<<<<< HEAD
         row = [planeInsignia, planeTypeId, capacity] 
         row = ",".join(row)
         row = "\n" + row
         with open('csv/Aircraft.csv','a') as file:
             file.write(row)
 >>>>>>> 8e6150241c0f25edd2063091c601e72801601754
+=======
+        try:
+            row = [planeInsignia, planeTypeId, capacity] 
+            row = ",".join(row)
+            row = "\n" + row
+            with open('csv/Aircraft.csv','a') as file:
+                file.write(row)
+        except Exception as e:
+            return e
+
+>>>>>>> 1d1d8051ab813d1dde20128279097a3ab9a0f9e5
     def addDestinationToCSV(self, instance):
         destination         = instance.destination
         country             = instance.country
@@ -115,11 +130,16 @@ class DataLayerAPI:
         distanceFromIceland = instance.distanceFromIceland
         contact             = instance.contact
         emergencyNumber     = instance.emergencyNumber
-        row = [destination, country, airport, distanceFromIceland, contact, emergencyNumber ] 
-        row = ",".join(row)
-        row = "\n" + row
-        with open('csv/Destination.csv','a') as file:
-            file.write(row)
+       
+        try:
+            
+            row = [destination, country, airport, distanceFromIceland, contact, emergencyNumber ] 
+            row = ",".join(row)
+            row = "\n" + row
+            with open('csv/Destination.csv','a') as file:
+                file.write(row)
+        except Exception as e:
+            return e    
 
     
     def addCrewToCSV(self, instance):
@@ -131,11 +151,13 @@ class DataLayerAPI:
         role = instance.role
         rank = instance.rank
         license = instance.address
-
-        row = [ssn, name, role, rank, license, address, phonenumber, email ] 
-        row = ",".join(row)
-        row = "\n" + row
-        with open('csv/Crew.csv','a') as file:
-            file.write(row)
-
+        try:        
+            row = [ssn, name, role, rank, license, address, phonenumber, email ] 
+            row = ",".join(row)
+            row = "\n" + row
+            with open('csv/Crew.csv','a') as file:
+                file.write(row)
+            return "success"
+        except Exception as e:
+            return e
     
