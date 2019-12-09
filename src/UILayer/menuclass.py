@@ -107,16 +107,38 @@ class MenuAPI:
 
     Choose 1-5: """
         userInput = input(retrieveMenuList)
-        if userInput == "1":
-            self.retrieveCrewMenu   #Retrieve Crew
+        if userInput == '1':
+            self.retrieveCrewMenu()   #Retrieve Crew
         elif userInput == '2':
             pass                    #Retrieve Aircrafts
         elif userInput == '3':
             pass                    #Retrieve Destinations
         elif userInput == '4':
-            pass                    #Retrieve Voyages
+            self.retrieveVoyagesMenu()                  #Retrieve Voyages
         elif userInput == 'b':
             return
+    
+    def retrieveVoyagesMenu(self):
+        print("###\nRETRIEVE DATA -> VOYAGE\n###")
+        retrieveVoyagesMenu = """
+
+        1. Next Day
+        2. Next Week
+        3. By Crew Member (SSN)
+
+        b - go back
+
+        Choose 1-3: """
+
+        userInput = input(retrieveVoyagesMenu)
+        if userInput == "1":
+            self.outputclass.printVoyages()
+        if userInput == "2":
+            pass
+        if userInput == "3":
+            ssn = self.inputclass.getSSN()
+            self.outputclass.printWorkSchedule(ssn)
+
     
     def retrieveCrewMenu(self):
         print("###\nRETRIEVE DATA -> CREW\n###")
