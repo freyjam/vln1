@@ -6,7 +6,10 @@ import models.voyageModel
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()
-   
+    
+    # def printMenu(self, menuString): #Sleppa??? klasauppsetning
+    #     print(menuString)
+
     def printAllStaff(self):            #Gætum hugsanlega notað þetta sama fall í að prenta filteraðan staff lista.
         ret_str = "####\nAll Staff\n####"
         header = "\n\n{:<20} {:<15} {:<15} {:<15} {:<20} {:<13} {:<20} {:<15}".format("Name", "SSN", "Address", "Phone number", "E-mail address", "Role", "Rank", "License")   
@@ -115,13 +118,17 @@ class Output:
             outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", DepartureTime, departureDate, "Arrival: ", arrAtDestTime, arrAtDestDate)
             inbound = "\n   Inbound: {} - {}\t  Flight {}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
             inbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", depFromDestTime, depFromDestDate, "Arrival: ", arrivalTime, arrivalDate)
+            
             crew = "\n   Crew: "
+            if len(voyage.crew) < 3:
+                crew+= "\nVOYAGE NOT SUFFICIENTLY STAFFED!"
             for ssn in voyage.crew: 
-                member = self.printer.getCrewMemberBySsn(ssn)
+                member = self.printer.getCrewMemberBySsn(ssn)        
                 crew += "\n\t{}, {}".format(member.name, member.rank)
             ret_str += voytitlestatus + outbound + outbound_info + inbound + inbound_info + crew
         
         print(ret_str)
+<<<<<<< HEAD:src/UILayer/userinterface.py
 
 
 
@@ -319,3 +326,5 @@ UPDATE DATA -> CREW MEMBER INFO -> {}
     def updateDestinationMenu(self):
         pass
 
+=======
+>>>>>>> 832789acf15a44139d8b5f74ccfc546e23053804:src/UILayer/outputclass.py
