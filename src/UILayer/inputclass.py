@@ -32,6 +32,17 @@ class Input:
 
         return crewMemberInfo
     
+    def getRegisterAircraftInput(self):
+        name = input("Name: ")
+        model = input("Model: ")
+        manufacturer = input("Manufacturer: ")
+        aircraftType = input("Type: ")
+        capacity = input("Capacity: ")
+
+        aircraftInfo = [name, model, manufacturer, aircraftType, capacity]
+
+        return aircraftInfo
+    
     def getRegisterDestinationInput(self):
         destination = input('Destination: ')
         country     = input('Country: ')

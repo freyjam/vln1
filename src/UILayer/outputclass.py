@@ -63,13 +63,25 @@ class Output:
         print(ret_str)
 
     def printDestinations(self):
-        ret_str = "####\nDestinations:\n####"
+        ret_str = "####\nDestinations\n####"
 
         for destination in self.printer.getAllDestinationsList():
             ret_str += "\n{} ({}) - {}\n\tTravel Time: {} hours\n\tContact Name: {}\n\tEmergency Number: {}".format\
                 (destination.destination, destination.airport, destination.country, destination.distanceFromIceland, destination.contact, destination.emergencyNumber)
         
         print(ret_str)
+    
+    def printDestinationsNameList(self):
+        ret_str = ""
+        #destinations = []
+        for destination in self.printer.getAllDestinationsList():
+            destCount = 1
+            destinations.append(destination.name)
+            ret_str += "{}. {}".format(destCount, destination.name)
+            destCount += 1
+        print(ret_str)
+        #return destinations
+
    
     def printAirplanes(self):
         ret_str = "####\nAirplanes\n####"

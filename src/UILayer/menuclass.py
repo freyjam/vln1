@@ -58,11 +58,11 @@ class MenuAPI:
         elif userInput == '3':
             self.registerAirplaneToVoyage()
         elif userInput == '4':
-            self.registerCrew()
+            self.registerCrewMember()
         elif userInput == '5':
             self.registerDestination()
         elif userInput == '6':
-            self.registerAirplase()
+            self.registerAirplane()
         elif userInput == "b":
             return
 
@@ -82,12 +82,18 @@ class MenuAPI:
         return crewMemberInfo
 
     def registerDestination(self):
-        print("""###\nREGISTER DATA -> DESTINATION\n###""")
+        print("###\nREGISTER DATA -> DESTINATION\n###")
 
         destinationInfo = self.inputclass.getRegisterDestinationInput()
-        print("function not available")
         
         return destinationInfo
+    
+    def registerAirplane(self):
+        print("###\nREGISTER DATA -> AIRCRAFT\n###")
+
+        aircraftInfo = self.inputclass.getRegisterAircraftInput()
+
+        return aircraftInfo
     
 
     """
@@ -112,12 +118,12 @@ class MenuAPI:
         elif userInput == '2':
             pass                    #Retrieve Aircrafts
         elif userInput == '3':
-            pass                    #Retrieve Destinations
+            self.outputclass.printDestinations()                #Retrieve Destinations
         elif userInput == '4':
             self.retrieveVoyagesMenu()                  #Retrieve Voyages
         elif userInput == 'b':
             return
-    
+
     def retrieveVoyagesMenu(self):
         print("###\nRETRIEVE DATA -> VOYAGE\n###")
         retrieveVoyagesMenu = """
@@ -132,12 +138,14 @@ class MenuAPI:
 
         userInput = input(retrieveVoyagesMenu)
         if userInput == "1":
-            self.outputclass.printVoyages()
+            pass                        #LL needs a function for a day and for a week
         if userInput == "2":
-            pass
+            pass                        #LL needs a function for a day and for a week.
         if userInput == "3":
             ssn = self.inputclass.getSSN()
             self.outputclass.printWorkSchedule(ssn)
+        if userInput == "b":
+            return
 
     
     def retrieveCrewMenu(self):
@@ -211,6 +219,12 @@ class MenuAPI:
         return updatedInfo
 
     def updateDestination(self):
+        print("###\nUPDATE DATA -> DESTINATION")
+        #View a list of destinations in the system
+        self.outputclass.printDestinationsNameList()
+        #Select a destination
+        userInput = input("b - go back\n\nSelect a destination: ")
+        #Update contact or emergency number
         pass
 
 

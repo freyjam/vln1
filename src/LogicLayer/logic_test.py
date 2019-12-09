@@ -4,14 +4,12 @@ from operator import attrgetter
 import datetime
 from datetime import datetime
 from datetime import date
-<<<<<<< HEAD
-=======
 from datetime import timedelta
 import re # regex for validation
->>>>>>> 55a19a82277732619d25409d3ae2486fe26d409e
 
 class LogicLayerAPI:
     def __init__(self):
+        pass
         self.instance = DataLayerAPI() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
         #Og ath hvort að þetta virki og sé eins og á að gera
 
