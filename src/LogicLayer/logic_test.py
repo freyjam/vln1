@@ -40,7 +40,18 @@ class LogicLayerAPI:
             return 'En route to Reykjavík'
         else:
             return 'Landed in Reykjavík'
-        
+
+    def registerNewCrewMember(self, instanceOfCrew):
+        if self.isSSNValid(instanceOfCrew.ssn):
+            if self.isPhoneNumberValid(instanceOfCrew.phone):
+                if self.isEmailValid(instanceOfCrew.email):
+                    return self.instance.addCrewToCSV(instanceOfCrew)
+                else:
+                    return 'Email is not valid'
+            else:
+                return 'Phone number is not valid'
+        else:
+            return 'SSN not Valid'
 
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
@@ -159,6 +170,8 @@ class LogicLayerAPI:
             if startTime <= voyage.departure <= endTime or startTime <= voyage.arrival <= endTime:
                 if crewMember.ssn in voyage.crew:
                     crewMembersVoyagesList.append(voyage)
+                    voyage.departure = self.changeFromIsoTimeFormat(voyage.departure)
+                    voyage.arrival = self.changeFromIsoTimeFormat(voyage.arrival)
         return crewMember, crewMembersVoyagesList
 
     def reverseIsoformat(self, isotime, whatToChange, howMany): 
@@ -198,13 +211,8 @@ class LogicLayerAPI:
         else:
             for member in availableCrew:
                 if member.rank == rank:
-                    returnAvailableCrewList.append(member)
+                    returnAvailableCrewList.append(member)                  #OF STÓRT FALL????
         return returnAvailableCrewList
 
 
-
-        
-
-
-        
 
