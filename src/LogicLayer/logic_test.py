@@ -13,7 +13,7 @@ class LogicLayerAPI:
         pass
         self.instance = ReadCSV.ReadCSV() #ATH þarf að breyta nafni! Okkur datt ekkert betra í hug
         #Og ath hvort að þetta virki og sé eins og á að gera
-        self.WriteCSV = WriteCSV()
+        self.WriteCSV = WriteCSV.WriteCSV()
     def getAllCrewList(self):
         allCrewList = self.instance.getAllCrewFromFile()
         return allCrewList

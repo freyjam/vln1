@@ -1,3 +1,4 @@
+from DataLayer import WriteCSV
 from UILayer.outputclass import Output
 from UILayer.inputclass import Input
 from LogicLayer.logic_test import LogicLayerAPI
@@ -7,6 +8,7 @@ class MenuAPI:
         self.inputclass = Input()
         self.outputclass = Output()
         self.logic = LogicLayerAPI()
+        self.writer = WriteCSV.WriteCSV()
     
     def mainMenu(self):
         print("Welcome to NaN Air!")
@@ -37,7 +39,7 @@ class MenuAPI:
 
     def registerMenu(self):
         print("###\nREGISTER DATA\n###")
-        registerMenu = input("""
+        registerMenu = """
 
     1. Voyage
     2. Assign crew to voyage.
@@ -47,9 +49,8 @@ class MenuAPI:
     6. Airplane
 
     b - go back
-    m - main menu
 
-    Choose 1-6: """)
+    Choose 1-6: """
         userInput = input(registerMenu)
         if userInput == "1":
             self.registerVoyage()
@@ -71,6 +72,7 @@ class MenuAPI:
         print("###\nREGISTER DATA -> VOYAGE\n###")
         print("If any line is empty it will not get registered")
         voyageInfo = self.inputclass.getRegisterVoyageInput()
+        self.writer.addVoyageToCSV(voyageInfo)
 
         return voyageInfo
 
@@ -78,6 +80,7 @@ class MenuAPI:
         print("###\nREGISTER DATA -> CREW\n###")
 
         crewMemberInfo = self.inputclass.getRegisterCrewMemberInput()
+        self.writer.addCrewCSV(crewMemberInfo)
 
         return crewMemberInfo
 
@@ -85,6 +88,7 @@ class MenuAPI:
         print("###\nREGISTER DATA -> DESTINATION\n###")
 
         destinationInfo = self.inputclass.getRegisterDestinationInput()
+        self.writer.addDestinationToCSV(destinationInfo)
         
         return destinationInfo
     

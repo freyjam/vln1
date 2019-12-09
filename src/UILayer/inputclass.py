@@ -1,3 +1,6 @@
+from models.destinationModel import Destination
+from models.crewModel import Crew
+from models.voyageModel import Voyage
 
 class Input:
     def __init__(self):
@@ -13,25 +16,30 @@ class Input:
         return newInfoList
     
     def getRegisterVoyageInput(self):
-        destination = input("Destination: ")
-        departureFromIceland = input("Departure from Iceland: ")
-        departureFromDestination = input("Departure from Destination: ")
-
-        voyageInfoList = [destination, departureFromIceland, departureFromDestination]
-
-        return voyageInfoList
+        return Voyage(
+            input('Destination name: '),
+            input('Destination Airport: '),
+            input('Departure from Iceland: '),
+            input('Arrival at destination: '),
+            input('Departure from destination: '),
+            input('Time of arrival: '),
+            input('Aircraft: '),
+            input('Outbound flightnumber: '),
+            input('Inbound flightnumber: ')
+        )
     
     def getRegisterCrewMemberInput(self):
         ssn = input('Social security number: ')
         name = input('Name: ')
+        role = input('Role: ')
+        rank = input('Rank: ')
+        license = input('License: ')
+        address = input('Residence: ')
         phone = input('Phone number: ')
         email = input('Email: ')
-        address = input('Residence: ')
 
-        crewMemberInfo = [ssn, name, phone, email, address]
+        return Crew(ssn, name, role, rank, license, address, phone, email)
 
-        return crewMemberInfo
-    
     def getRegisterAircraftInput(self):
         name = input("Name: ")
         model = input("Model: ")
@@ -51,9 +59,7 @@ class Input:
         contact = input('Contact: ')
         emergencyNumber = input('Emergency number: ')
 
-        destinationInfo = [destination, country, airport, travelTime, contact, emergencyNumber]
-
-        return destinationInfo
+        return Destination(destination, country, airport, travelTime, contact, emergencyNumber)
     
     def getSSN(self):
         ssn = input("Enter SSN: ")
