@@ -1,13 +1,4 @@
 import datetime
-<<<<<<< HEAD
-def reverseIsoformat(isotime, whatTime, number):
-    year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
-    hour, minutes = isotime[11:13], isotime[14:16] 
-    dateTest = year + month + day + hour + minutes
-    if whatTime == 'days':
-        tesst = (datetime.datetime.strptime(str(dateTest),"%Y%m%d%H%M") + datetime.timedelta(days=number)).strftime("%Y%m%d%H%M")
-=======
->>>>>>> 646ac466a214212ca440c09357c26156e8c401cc
 
 def reverseIsoformat(isotime, whatToChange, howMany): 
     dateTest = isotime[:4] + isotime[5:7] + isotime[8:10] + isotime[11:13] + isotime[14:16]
@@ -24,20 +15,9 @@ print(reverseIsoformat('2010-01-03T18:00:00', 'minutes', 30 ))
 
 
 
-<<<<<<< HEAD
-"""
-
-    def getCurrentDateAndTimeISO(self):
-        '''Returns the current date and time on iso format'''
-        hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
-        year, month, day = str(date.today()).split('-')
-        return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
-        """
-=======
 
 def getCurrentDateAndTimeISO(self):
     '''Returns the current date and time on iso format'''
     hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
     year, month, day = str(date.today()).split('-')
     return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
->>>>>>> 646ac466a214212ca440c09357c26156e8c401cc
