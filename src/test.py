@@ -1,3 +1,4 @@
+import datetime
 def reverseIsoformat(isotime, whatTime, number):
     year, month, day = isotime[:4], isotime[5:7] ,isotime[8:10]
     hour, minutes = isotime[11:13], isotime[14:16] 
@@ -20,10 +21,11 @@ def reverseIsoformat(isotime, whatTime, number):
 timed = reverseIsoformat('2010-01-03T18:00:00', 'days', 30 )
 
 
-
+"""
 
     def getCurrentDateAndTimeISO(self):
         '''Returns the current date and time on iso format'''
         hours, minutes = str(datetime.now().strftime('%H:%M')).split(':')
         year, month, day = str(date.today()).split('-')
         return datetime(int(year), int(month), int(day), int(hours), int(minutes), 0).isoformat()
+        """
