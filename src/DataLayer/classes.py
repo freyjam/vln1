@@ -71,7 +71,20 @@ class DataLayerAPI:
 
 
 
+    def addDestinationToCSV(self, instance):
+        destination         = instance.destination
+        country             = instance.country
+        airport             = instance.airport
+        distanceFromIceland = instance.distanceFromIceland
+        contact             = instance.contact
+        emergencyNumber     = instance.emergencyNumber
+        row = [destination, country, airport, distanceFromIceland, contact, emergencyNumber ] 
+        row = ",".join(row)
+        row = "\n" + row
+        with open('csv/Destination.csv','a') as file:
+            file.write(row)
 
+    
     def addCrewToCSV(self, instance):
         email = instance.email
         ssn = instance.ssn
