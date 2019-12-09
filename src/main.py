@@ -3,7 +3,7 @@ from UILayer.menuclass import MenuAPI
 a = MenuAPI()
 
 
-a.printWorkSchedule("1309797899")
+# a.printWorkSchedule("1309797899")
 
 # <<<<<<< HEAD
 # a.printVoyages()
