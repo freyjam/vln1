@@ -2,7 +2,7 @@ from UILayer.outputclass import Output
 from UILayer.inputclass import Input
 from LogicLayer.logic_test import LogicLayerAPI
 
-class Menu:
+class MenuAPI:
     def __init__(self):
         self.inputclass = Input()
         self.outputclass = Output()
@@ -29,6 +29,11 @@ class Menu:
         elif userInput == "q":
             return
         
+
+
+    """
+    Register
+    """
 
     def registerMenu(self):
         print("###\nREGISTER DATA\n###")
@@ -84,6 +89,11 @@ class Menu:
         
         return destinationInfo
     
+
+    """
+    Retrieve
+    """
+
     def retrieveMenu(self):
         print("###\nRETRIEVE DATA\n###")
         retrieveMenuList = """
@@ -98,7 +108,7 @@ class Menu:
     Choose 1-5: """
         userInput = input(retrieveMenuList)
         if userInput == "1":
-            pass                    #Retrieve Crew
+            self.retrieveCrewMenu   #Retrieve Crew
         elif userInput == '2':
             pass                    #Retrieve Aircrafts
         elif userInput == '3':
@@ -108,6 +118,40 @@ class Menu:
         elif userInput == 'b':
             return
     
+    def retrieveCrewMenu(self):
+        print("###\nRETRIEVE DATA -> CREW\n###")
+        retrieveCrewMenu = """
+
+    1. All Crew
+    2. Available Crew
+    3. Unavailable Crew
+    4. Crew Member by SSN
+
+    b - go back
+
+    Choose 1-4: """
+
+        userInput = input(retrieveCrewMenu)
+        if userInput == "1":
+            self.outputclass.printAllStaff()
+        elif userInput == "2":
+            date = self.inputclass.getDate()
+            self.outputclass.printAvailableStaff(date)
+        elif userInput == "3":
+            date = self.inputclass.getDate()
+            self.outputclass.printUnavailableStaff(date)
+        elif userInput == "4":
+            ssn = self.inputclass.getSSN()
+            self.outputclass.printStaffMember(ssn)
+        elif userInput == "b":
+            return 0
+    
+
+    """
+    Update
+    """
+
+
     def updateMenu(self):
         print("###\nUPDATE DATA\n###")
         updateMenu = """

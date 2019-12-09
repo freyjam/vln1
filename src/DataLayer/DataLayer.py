@@ -127,6 +127,12 @@ class DataLayerAPI:
         capacity      = instance.capacity
 
 
+        row = [planeInsignia, planeTypeId, capacity] 
+        row = ",".join(row)
+        row = "\n" + row
+        with open('csv/Aircraft.csv','a') as file:
+            file.write(row)
+
         try:
             row = [planeInsignia, planeTypeId, capacity] 
             row = ",".join(row)

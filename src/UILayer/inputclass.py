@@ -1,6 +1,8 @@
+
 class Input:
     def __init__(self):
         pass
+
     def getUpdateStaffInput(self):
         newNumber = input("Enter Phone Number: ")
         newResidence = input("Enter Residence: ")
@@ -47,4 +49,13 @@ class Input:
 
         return ssn
 
+    def getDate(self):
+        date = input("Enter date: ")
+
+        return date
+    
+    def getTime(self):
+        time = input("Enter date: ")
+        
+        return time
 

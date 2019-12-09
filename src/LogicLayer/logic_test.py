@@ -4,8 +4,12 @@ from operator import attrgetter
 import datetime
 from datetime import datetime
 from datetime import date
+<<<<<<< HEAD
+
+=======
 from datetime import timedelta
 import re # regex for validation
+>>>>>>> b38a403edcffa6446bde0ce64ae637c57361a35f
 
 class LogicLayerAPI:
     def __init__(self):
@@ -163,9 +167,9 @@ class LogicLayerAPI:
                             aircraft.numberOfFlight = voyage.inboundFlightNumber
         return listOfAircrafts
 
-    def getWorkScheduleForCrewMember(self, ssn):
-        startTime = self.getCurrentDateAndTimeISO()
-        endTime = self.reverseIsoformat(startTime, 'days', 7)
+    def getWorkScheduleForCrewMember(self, ssn, startDate, endDate):
+        startTime = self.changeInputedDateAndTimeToIso(startDate, '00:00')
+        endTime = self.changeInputedDateAndTimeToIso(endDate, '23:59')
         crewMembersVoyagesList = []
         crewMember = self.getCrewMemberBySsn(ssn)
         voyagesList = self.getAllVoyages()
@@ -216,6 +220,26 @@ class LogicLayerAPI:
                 if member.rank == rank:
                     returnAvailableCrewList.append(member)                  #OF STÓRT FALL????
         return returnAvailableCrewList
+
+    def isAirportAvailable(self, IsoTime):
+        '''Checks if airport is available for takeoff or landing'''
+        allVoyagesList = self.getAllVoyages()
+        for voyage in allVoyagesList:
+            if voyage.departure == IsoTime:
+                return False
+            elif voyage.arrival == IsoTime:
+                return False
+        return True
+
+    def aircraftAvailable(self, departureTime, arrivalTime):
+        '''Returns all aircraft available for specific time'''
+        #Þarf að skoða betur!
+        aircraftsAvailable = []
+        voyageByDate = self.getAllVoyagesBydate
+        for aircraft in self.getAllAircrafts():
+            if aircraft.planeInsignia not in voyageByDate.aircraft:
+                aircraftsAvailable.append(aircraft)
+        return aircraftsAvailable
 
 
 
