@@ -97,7 +97,7 @@ class Output:
         ret_str += frame + staff_info + frame + schedule
         print(ret_str)
        
-    def printVoyage(self):
+    def printVoyages(self):
         #Needs an iterable format of voyages from LL
         ret_str = "####\nVoyages\n####"
         for voyage in self.printer.getAllVoyages():                                           

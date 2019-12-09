@@ -80,20 +80,21 @@ class LogicLayerAPI:
         secTime = self.changeInputedDateAndTimeToIso(date, '23:59')
         for voyage in voyagesList:
             if firstTime <= voyage.departure <= secTime or firstTime <= voyage.arrival <= secTime:
-                for member in self.getAllCrewList():
+                for member in self.sortAllCrewAlpha():
                     if member.ssn in voyage.crew:
                         crewWorking.append(member)
-                        member.destination = voyage.destinationAirport  #getum breytt
+                        member.destination = voyage.destinationAirport
         return crewWorking
 
     def getAllCrewNotWorking(self, date):
-        crewNotWorking = []
-        crewWorkingList = self.getAllCrewWorking(date)
-        allCrewMembersList = self.getAllCrewList()
-        for member in allCrewMembersList:
-            if member not in crewWorkingList:
-                crewNotWorking.append(member)
-        return crewNotWorking
+        allCrewList = self.sortAllCrewAlpha()
+        allCrewWorkingList = [obj.ssn for obj in self.getAllCrewWorking(date)]
+        startTime = self.changeInputedDateAndTimeToIso(date, '00:00')
+        endTime = self.changeInputedDateAndTimeToIso(date, '23:59')
+        for member in allCrewList:
+            if member.ssn in allCrewWorkingList:
+                allCrewList.remove(member)
+        return allCrewList
 
 
     def getCrewMemberBySsn(self, inputedSSN):
