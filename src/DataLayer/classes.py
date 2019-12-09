@@ -107,7 +107,7 @@ class DataLayerAPI:
         rank = instance.rank
         license = instance.address
 
-        row = [ssn, name, role, rank, license, address, phonenumber, email ] 
+        row = [ssn, name, role, rank, license, address, phonenumber, email] 
         row = ",".join(row)
         row = "\n" + row
         with open('csv/Crew.csv','a') as file:
