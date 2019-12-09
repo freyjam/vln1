@@ -32,7 +32,7 @@ class Output:
         print(ret_str)
     
     def printUnavailableStaff(self, date):
-        ret_str = "####\nUnavailable Staff {}\n####".format(date)
+        ret_str = "####\nUnavailable Staff\n####"
         header = "\n\n{:<20} {:<15} {:<20} {:<15}".format("Name", "SSN", "Rank", "Destination")   #"Becomes Available" # {:<15}
         separator = "\n" + "-" * len(header)            #Seperates header from data
         
@@ -47,7 +47,7 @@ class Output:
         print(ret_str)
     
     def printAvailableStaff(self, date):
-        ret_str = "####\nAvailable Staff {}\n####".format(date)
+        ret_str = "####\nAvailable Staff\n####"
         header = "\n\n{:<20} {:<15} {:<20}".format("Name", "SSN", "Rank")
         separator = "\n" + "-" * len(header)
         
@@ -110,10 +110,10 @@ class Output:
             voytitlestatus = "\n\n{} - {}\n   Status: {}".format('Reykjavík', voyage.destinationName, voyage.status)
             outbound = "\n   Outbound: {} - {}\t  Flight {}".format("RVK", voyage.destinationAirport, voyage.outboundFlightNumber)  
 
-            departureDate, DepartureTime = self.printer.changeFromIsoTimeFormat(voyage.departure)
-            arrAtDestDate, arrAtDestTime = self.printer.changeFromIsoTimeFormat(voyage.arrivalAtDest)
-            depFromDestDate, depFromDestTime = self.printer.changeFromIsoTimeFormat(voyage.departureFromDest)
-            arrivalDate, arrivalTime = self.printer.changeFromIsoTimeFormat(voyage.arrival)
+            departureDate, DepartureTime = voyage.departure
+            arrAtDestDate, arrAtDestTime = voyage.arrivalAtDest
+            depFromDestDate, depFromDestTime = voyage.departureFromDest
+            arrivalDate, arrivalTime = voyage.arrival
 
             outbound_info = "\n\t{:<11} {:<6} {:<10}\n\t{:<11} {:<6} {:<10}".format("Departure: ", DepartureTime, departureDate, "Arrival: ", arrAtDestTime, arrAtDestDate)
             inbound = "\n   Inbound: {} - {}\t  Flight {}".format(voyage.destinationAirport, "RVK", voyage.inboundFlightNumber)
