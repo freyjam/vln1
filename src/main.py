@@ -4,4 +4,3 @@ a = Output()
 
 
 
-a.printAvailableStaff("21/12/2019")

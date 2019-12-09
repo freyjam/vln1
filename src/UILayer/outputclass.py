@@ -1,5 +1,8 @@
 from LogicLayer.logic_test import LogicLayerAPI
-
+import models.aircraftModel
+import models.crewModel
+import models.destinationModel
+import models.voyageModel
 class Output:
     def __init__(self):
         self.printer = LogicLayerAPI()

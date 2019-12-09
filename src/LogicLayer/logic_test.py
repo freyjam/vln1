@@ -1,11 +1,11 @@
-from DataLayer.classes import DataLayerAPI
+from DataLayer.DataLayer import DataLayerAPI
 
 from operator import attrgetter
 import datetime
 from datetime import datetime
 from datetime import date
 from datetime import timedelta
-
+import re # regex for validation
 
 class LogicLayerAPI:
     def __init__(self):
@@ -40,8 +40,22 @@ class LogicLayerAPI:
             return 'En route to Reykjavík'
         else:
             return 'Landed in Reykjavík'
-        
 
+    def registerNewCrewMember(self, instanceOfCrew):
+        if self.isSSNValid(instanceOfCrew.ssn):
+            if self.isPhoneNumberValid(instanceOfCrew.phone):
+                if self.isEmailValid(instanceOfCrew.email):
+                    return self.instance.addCrewToCSV(instanceOfCrew)
+                else:
+                    return 'Email is not valid'
+            else:
+                return 'Phone number is not valid'
+        else:
+            return 'SSN not Valid'
+
+
+    def isSSNValid(snn):
+        return len(ssn) == 10
     def sortAllCrewAlpha(self):
         '''Sorts list of all crew alphabetically'''
         allCrewList = self.getAllCrewList()
@@ -81,20 +95,21 @@ class LogicLayerAPI:
         secTime = self.changeInputedDateAndTimeToIso(date, '23:59')
         for voyage in voyagesList:
             if firstTime <= voyage.departure <= secTime or firstTime <= voyage.arrival <= secTime:
-                for member in self.getAllCrewList():
+                for member in self.sortAllCrewAlpha():
                     if member.ssn in voyage.crew:
                         crewWorking.append(member)
-                        member.destination = voyage.destinationAirport  #getum breytt
+                        member.destination = voyage.destinationAirport
         return crewWorking
 
     def getAllCrewNotWorking(self, date):
-        crewNotWorking = []
-        crewWorkingList = self.getAllCrewWorking(date)
-        allCrewMembersList = self.getAllCrewList()
-        for member in allCrewMembersList:
-            if member not in crewWorkingList:
-                crewNotWorking.append(member)
-        return crewNotWorking
+        allCrewList = self.sortAllCrewAlpha()
+        allCrewWorkingList = [obj.ssn for obj in self.getAllCrewWorking(date)]
+        startTime = self.changeInputedDateAndTimeToIso(date, '00:00')
+        endTime = self.changeInputedDateAndTimeToIso(date, '23:59')
+        for member in allCrewList:
+            if member.ssn in allCrewWorkingList:
+                allCrewList.remove(member)
+        return allCrewList
 
 
     def getCrewMemberBySsn(self, inputedSSN):
@@ -158,6 +173,8 @@ class LogicLayerAPI:
             if startTime <= voyage.departure <= endTime or startTime <= voyage.arrival <= endTime:
                 if crewMember.ssn in voyage.crew:
                     crewMembersVoyagesList.append(voyage)
+                    voyage.departure = self.changeFromIsoTimeFormat(voyage.departure)
+                    voyage.arrival = self.changeFromIsoTimeFormat(voyage.arrival)
         return crewMember, crewMembersVoyagesList
 
     def reverseIsoformat(self, isotime, whatToChange, howMany): 
@@ -169,6 +186,36 @@ class LogicLayerAPI:
         year, months, days, hours, minutes = newTime[:4], newTime[4:6], newTime[6:8], newTime[8:10], newTime[10:12]
         return datetime(int(year), int(months), int(days), int(hours), int(minutes)).isoformat()
 
+    def getAllPilotsAfterLicenseOnAircraft(self, aircraftInsignia, rank):
+        returnList = []
+        for aircraft in self.getAllAircrafts():
+            if aircraft.insignia == aircraftInsignia:
+                aircraftTypeID = aircraft.typeID
+        for pilot in self.sortAllPilotsAlpha():
+            if pilot.rank == rank:
+                if pilot.license == aircraftTypeID:
+                    returnList.append(pilot)
+        return returnList
 
-        
+    def getAllAvailebleCrewMembersForVoyage(self, voyage, rank):
+        returnAvailableCrewList = []
+        departureDate, departureTime = self.changeFromIsoTimeFormat(voyage.departure)
+        arrivalDate, arrivalTime = self.changeFromIsoTimeFormat(voyage.arrival)
+        if departureDate == arrivalDate:
+            availableCrew = self.getAllCrewNotWorking(departureDate)
+        else:
+            availableCrewDepartureDate = {self.getAllCrewNotWorking(departureDate)}                 # If voyage ends after midnight a crew member that is unavailable the next day is not available
+            availableCrewArrivalDate = {self.getAllCrewNotWorking(arrivalDate)}
+            availableCrew = intersection(availableCrewDepartureDate, availableCrewArrivalDate)
+        if rank == 'Captain' or rank == 'Copilot':                                                  # When finding pilot, license have to be checked
+            for pilot in self.getAllPilotsAfterLicenseOnAircraft(voyage.aircraft, rank):
+                if pilot.ssn in [member.ssn for member in availableCrew]:
+                    returnAvailableCrewList.append(pilot)
+        else:
+            for member in availableCrew:
+                if member.rank == rank:
+                    returnAvailableCrewList.append(member)                  #OF STÓRT FALL????
+        return returnAvailableCrewList
+
+
 
