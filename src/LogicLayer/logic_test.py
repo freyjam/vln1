@@ -1,4 +1,4 @@
-from DataLayer.classes import DataLayerAPI
+from DataLayer.DataLayer import DataLayerAPI
 
 from operator import attrgetter
 import datetime
